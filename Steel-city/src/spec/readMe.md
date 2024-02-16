@@ -1,0 +1,1 @@
+The spec folder is for the tests that we will create later on in the semester.
