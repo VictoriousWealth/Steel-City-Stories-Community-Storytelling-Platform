@@ -1,0 +1,1 @@
+Contains all the html that is common to all the pages such as the header and the footer
