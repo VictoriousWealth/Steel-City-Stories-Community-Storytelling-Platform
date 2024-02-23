@@ -1,8 +1,11 @@
-require "sinatra"
 
 get "/" do
     erb :home
 end
+
+#get "/create-account"
+#    erb :create-account
+#end
 
 get "/login" do
     erb :login_Page
