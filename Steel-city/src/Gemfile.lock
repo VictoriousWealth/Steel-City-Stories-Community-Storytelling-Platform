@@ -2,8 +2,11 @@ GEM
   remote: https://rubygems.org/
   specs:
     base64 (0.2.0)
+    bigdecimal (3.1.6)
     diff-lcs (1.5.1)
     docile (1.4.0)
+    logger (1.6.0)
+    mini_portile2 (2.8.5)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     rack (3.0.9)
@@ -29,6 +32,8 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.0)
     ruby2_keywords (0.0.5)
+    sequel (5.77.0)
+      bigdecimal
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -41,6 +46,9 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
+    sqlite3 (1.7.2)
+      mini_portile2 (~> 2.8.0)
+    sqlite3 (1.7.2-x86_64-linux)
     tilt (2.3.0)
 
 PLATFORMS
@@ -48,11 +56,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  logger
   rack-test
   require_all
   rspec
+  sequel
   simplecov
   sinatra
+  sqlite3
 
 BUNDLED WITH
    2.5.5

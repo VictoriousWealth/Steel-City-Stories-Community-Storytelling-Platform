@@ -1,3 +1,4 @@
+require "require_all"
 
 DB = Sequel.sqlite("database.sqlite3",logger: Logger.new("db.log"))
 
