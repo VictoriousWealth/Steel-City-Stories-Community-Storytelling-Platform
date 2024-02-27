@@ -5,8 +5,13 @@ DB = Sequel.sqlite("database.sqlite3",logger: Logger.new("db.log"))
 class User < Sequel::Model
 end
 
+get "/common/header" do
+  @myTitle = "Team 25"
+  erb :header
+end
+
 get "/" do
-    erb :home
+  erb :home
 end
 
 #get "/create-account"
