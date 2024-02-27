@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>SSLCom • Design</title>
+  <meta name="author" content="Myron Sukhanov">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/sslcom.css">
+</head>
+
+<body id="home">
+  
+  <header>
+    <h1 class="title">&#127804; SSLCom &#127804;</h1>
+    <p id="sslcom">Staff-Student Liaison Committee</p>
+  </header>
+
+  <!-- I may want to implement other buttons later, so "nav" class is needed -->
+  <nav>
+    <ul class="ul_org">
+      <li class="li_org"><button class="nav" onclick="window.location.href='index.html'">Home</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='about.html'">About</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='members.html'">Members</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='meetings.html'">Meetings</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='contact.html'">Contact</button></li>
+    </ul>
+  </nav>
+
+  <!-- jumptotop button -->
+  <div>
+    <a href="#" id="jumptotop">&#11165;</a>
+  </div>
+
+  <main>
+
+    <section>
+      <h2>Introduction</h2>
+      <p> 
+        I have tried a host of different color contrasts and came to the conclusion that there is 
+        a better way of achieving two goals I had - making an unusual website that is stylish and quite accessible.
+         Ultimately, I came to the idea of white rounded islands on an art-based background that symbolizes 
+         the bridge of communication between students and staff.
+         The background symbolizes the bridge betweeen students and staff.
+      </p>
+    </section>
+
+    <section>
+      <h2>Site Map</h2>
+      <figure>
+        <img src="./images/site_map.jpg" alt="Site Map">
+        <figcaption>Site Map sketch</figcaption>
+      </figure>
+      <p>
+        The site map has the Home page as a root and all other pages are childs that are connected between each other via menus.
+        I drew this in multiple rows to show that there are the main menu and the footer menu.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Design mock-ups</h2>
+      <figure>
+        <img src="./images/mock.jpg" alt="Design mock-up">
+        <figcaption>Design mock-up</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Design reasoning</h2>
+      <p>
+        I have used three breakpoints when creating this website: mobile (under 550px) -> narrow (under 900px) -> desktop (above 900px).
+        The main difference is between the mobile and the narrow layouts. I slightly adjusted usual values for the breakpoints
+        (500, 1000) to these ones since my website looks better compared to using the standard ones.
+        <br>
+        The tweakpoints are font sizes, height & radius of the menu buttons, and radius of the "islands"
+         - sections of content. I was slightly adjusting the fonts to make them look better when transitioning
+          from mobile to the narrow screen. On the other hand, I changed the height of the buttons:
+           on the mobile, they are large to avoid misclicks with the fingers, and smaller (relative to the screen width)
+            on the desktops. It is important to note that I used flexboxes to make my content spread out aesthetically 
+            on the desktop, whereas on the mobile the content islands go one by one in the column.
+      </p>
+      <br>
+      <p>
+        Overall, Home, About, and Memmbers pages share the same approach: same navigation, footer,
+         title, and content spread out on the desktops using flexboxes. I did not use flexboxes where
+          it is important to allocate all the width to the image, like diagrams. 
+      </p>
+      <br>
+      <p>
+        The case where there is not a lot of content - adding a sidebar may be not the best approach.
+        Therefore, Meetings, and all the footer pages (except the Test page) have no flexboxes. Otherwise, the page may look empty on the desktop.
+      </p>
+    </section>
+
+    <section>
+      <h2>Menu System</h2>
+      <p>
+        Buttons as elements of an unordered flex list have been used to create the navigation menu.
+        This approach allows for easier & more efficient customization than using links, whilst the buttons being a part of an
+         unordered flex list spreads out the items, and centers them. 
+      </p>
+      <br>
+      <p>
+        This approach is simple, but allows for easier adjusments for wider screens (e.g. reducing the height), and is responsive.
+        I used specific classes to customize the navigation buttons and menu.
+      </p>
+    </section>
+  
+  </main>
+
+  <footer>
+    <ul class="ul_org">
+      <li class="li_org"><a class="a_footer" href="accessibility.html">Accessibility</a></li>
+      <li class="li_org"><a class="a_footer" href="legal.html">Legal</a></li>
+      <li class="li_org"><a class="a_footer" href="design.html">Design</a></li>
+      <li class="li_org"><a class="a_footer" href="test.html">Test</a></li>
+    </ul>
+    <p id="author">
+      &copy; Myron Sukhanov, 2023
+    </p>
+  </footer>
+
+</body>
+
+</html>
+

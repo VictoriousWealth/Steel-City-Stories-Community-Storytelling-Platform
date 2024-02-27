@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>SSLCom • Test</title>
+  <meta name="author" content="Myron Sukhanov">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/sslcom.css">
+</head>
+
+<body id="home">
+  
+  <header>
+    <h1 class="title">&#127804; SSLCom &#127804;</h1>
+    <p id="sslcom">Staff-Student Liaison Committee</p>
+  </header>
+
+  <!-- I may want to implement other buttons later, so "nav" class is needed -->
+  <nav>
+    <ul class="ul_org">
+      <li class="li_org"><button class="nav" onclick="window.location.href='index.html'">Home</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='about.html'">About</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='members.html'">Members</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='meetings.html'">Meetings</button></li>
+      <li class="li_org"><button class="nav" onclick="window.location.href='contact.html'">Contact</button></li>
+    </ul>
+  </nav>
+
+  <!-- jumptotop button -->
+  <div>
+    <a href="#" id="jumptotop">&#11165;</a>
+  </div>
+
+  <main>
+
+    <section>
+      <h2>Optimisation</h2>
+      <p>
+        The main element that can relatively affect the loading time of the page is the size of the images you use.
+        To address this I downloaded the same image, say, background image, in different qualities.
+        But the time of loading of the images is pretty fast, on the vast majority of devices.
+        Even on the low-end mobile (tested via browser's dev tools) it takes a small portion of the time compared to the rest.
+        Therefore, I decided to just stick to the default images.
+        <br>
+        However, when I was using large background image (10mb and more) I expirienced slightly longer loading times, so I 
+        switched it to the smaller resolution.
+      </p>
+      <figure>
+        <img src="./images/optimisation_pics.png" alt="page loading time">
+        <figcaption>Loading graph with no throttling</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Debugging</h2>
+      <p>
+        W3C Web Validator has beem used to validate both HTML & CSS.
+        I encountered an issue - I used "a" tag inside a button instead of using "onclick" within the button.
+        That is considered a bad practice, therefore, I had to completely remake the HTML & CSS for the navigation menu.
+      </p>
+      <figure>
+        <img src="./images/nav_menu_after.png" alt="navigation's menu html now">
+        <figcaption>HTML code of the current navigation menu</figcaption>
+      </figure>
+      <p>
+        Fortunately, I have not encountered other issues.
+      </p>
+    </section>
+
+    <section>
+      <h2>Browser testing</h2>
+      <p>
+        To my knowledge, the website looks the same when using dev tools of Chrome, Firefox, and Microsoft Edge browsers.
+      </p>
+      <figure>
+        <img src="./images/chrome.jpg" alt="dev tools in chrome">
+        <figcaption>Dev tools. Chrome. Jump to top button is hovered.</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/firefox.jpg" alt="dev tools in firefox">
+        <figcaption>Dev tools. Firefox.</figcaption>
+      </figure>
+    </section>
+
+    <div class="flexbox">
+      <!-- id="accessibility_test", so I can fine-tune this element to look better via CSS-->
+      <section id="accessibility_test">
+        <h2>Accessibility</h2>
+        <p>
+          WAVE Evaluation Tool has been used to test the accessibility.
+          I have not encountered a single issue. However, the evaluation tool counts my QUIZ-related
+          black boxes (on the About page) that reveal the answers after you hover. I do not think that is an issue, but I think it is important to
+          consider this if you need to meet a strict zero issues criteria.
+        </p>
+        <figure>
+          <img src="./images/wave_eval.jpg" alt="wave shows three issues">
+          <figcaption>Contrast issues.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <figure>
+          <img src="./images/issue.jpg" alt="false issue">
+          <figcaption>The problem that is not a problem.</figcaption>
+        </figure>
+      </section>
+    </div>
+  
+  </main>
+
+  <footer>
+    <ul class="ul_org">
+      <li class="li_org"><a class="a_footer" href="accessibility.html">Accessibility</a></li>
+      <li class="li_org"><a class="a_footer" href="legal.html">Legal</a></li>
+      <li class="li_org"><a class="a_footer" href="design.html">Design</a></li>
+      <li class="li_org"><a class="a_footer" href="test.html">Test</a></li>
+    </ul>
+    <p id="author">
+      &copy; Myron Sukhanov, 2023
+    </p>
+  </footer>
+
+</body>
+
+</html>
+
