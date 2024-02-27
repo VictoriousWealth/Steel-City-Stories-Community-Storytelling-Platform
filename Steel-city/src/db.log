@@ -1,0 +1,6 @@
+# Logfile created on 2024-02-27 14:26:30 +0000 by logger.rb/v1.6.0
+I, [2024-02-27T14:26:30.794031 #775]  INFO -- : (0.000308s) PRAGMA foreign_keys = 1
+I, [2024-02-27T14:26:30.794173 #775]  INFO -- : (0.000023s) PRAGMA case_sensitive_like = 1
+I, [2024-02-27T14:26:30.794728 #775]  INFO -- : (0.000106s) SELECT sqlite_version()
+I, [2024-02-27T14:26:30.795180 #775]  INFO -- : (0.000209s) PRAGMA table_xinfo('users')
+I, [2024-02-27T14:26:47.157773 #775]  INFO -- : (0.000351s) SELECT * FROM `users` WHERE (`username` = 'staff') LIMIT 1
