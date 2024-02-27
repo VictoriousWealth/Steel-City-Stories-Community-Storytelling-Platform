@@ -1,4 +1,9 @@
 
+DB = Sequel.sqlite("database.sqlite3",logger: Logger.new("db.log"))
+
+class User < Sequel::Model
+end
+
 get "/" do
     erb :home
 end
@@ -7,7 +12,7 @@ end
 #    erb :create-account
 #end
 
-get "/login" do
+get "/login" do 
     erb :login_Page
 end
 
@@ -15,8 +20,8 @@ post "/login" do
     @username = params.fetch("username", "")
     @password = params.fetch("password", "")
     @error = nil
-  
-    if @username == "user" && @password == "pass"
+    entered_password=User.first(username: @username)
+    if @Password==entered_password
       session["logged_in"] = true
       redirect "/"
     else
