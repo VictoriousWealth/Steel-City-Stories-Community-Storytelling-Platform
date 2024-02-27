@@ -4,3 +4,19 @@ I, [2024-02-27T14:26:30.794173 #775]  INFO -- : (0.000023s) PRAGMA case_sensitiv
 I, [2024-02-27T14:26:30.794728 #775]  INFO -- : (0.000106s) SELECT sqlite_version()
 I, [2024-02-27T14:26:30.795180 #775]  INFO -- : (0.000209s) PRAGMA table_xinfo('users')
 I, [2024-02-27T14:26:47.157773 #775]  INFO -- : (0.000351s) SELECT * FROM `users` WHERE (`username` = 'staff') LIMIT 1
+I, [2024-02-27T14:33:53.316454 #449]  INFO -- : (0.000343s) PRAGMA foreign_keys = 1
+I, [2024-02-27T14:33:53.316592 #449]  INFO -- : (0.000024s) PRAGMA case_sensitive_like = 1
+I, [2024-02-27T14:33:53.317123 #449]  INFO -- : (0.000095s) SELECT sqlite_version()
+I, [2024-02-27T14:33:53.317534 #449]  INFO -- : (0.000205s) PRAGMA table_xinfo('users')
+I, [2024-02-27T14:50:17.328791 #486]  INFO -- : (0.000306s) PRAGMA foreign_keys = 1
+I, [2024-02-27T14:50:17.328946 #486]  INFO -- : (0.000026s) PRAGMA case_sensitive_like = 1
+I, [2024-02-27T14:50:17.329505 #486]  INFO -- : (0.000102s) SELECT sqlite_version()
+I, [2024-02-27T14:50:17.329954 #486]  INFO -- : (0.000211s) PRAGMA table_xinfo('users')
+I, [2024-02-27T14:51:21.060368 #511]  INFO -- : (0.000357s) PRAGMA foreign_keys = 1
+I, [2024-02-27T14:51:21.060511 #511]  INFO -- : (0.000024s) PRAGMA case_sensitive_like = 1
+I, [2024-02-27T14:51:21.061054 #511]  INFO -- : (0.000101s) SELECT sqlite_version()
+I, [2024-02-27T14:51:21.061457 #511]  INFO -- : (0.000203s) PRAGMA table_xinfo('users')
+I, [2024-02-27T14:52:39.494416 #536]  INFO -- : (0.000307s) PRAGMA foreign_keys = 1
+I, [2024-02-27T14:52:39.494560 #536]  INFO -- : (0.000024s) PRAGMA case_sensitive_like = 1
+I, [2024-02-27T14:52:39.495123 #536]  INFO -- : (0.000100s) SELECT sqlite_version()
+I, [2024-02-27T14:52:39.495537 #536]  INFO -- : (0.000206s) PRAGMA table_xinfo('users')
