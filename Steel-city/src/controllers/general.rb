@@ -1,6 +1,6 @@
 require "require_all"
 
-DB = Sequel.sqlite("database.sqlite3",logger: Logger.new("db.log"))
+DB = Sequel.sqlite("database.sqlite3")
 
 class User < Sequel::Model
 end
