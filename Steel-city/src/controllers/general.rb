@@ -1,7 +1,5 @@
 require "require_all"
 
-DB = Sequel.sqlite("database.sqlite3")
-
 class User < Sequel::Model
 end
 
@@ -26,15 +24,17 @@ post "/login" do
     @username = params.fetch("username", "")
     @password = params.fetch("password", "")
     @error = nil
-    entered_password=User.first(username: @username)
+    entered_password=User.first(username: @username).password
+    entered_password = entered_password.to_s
     if @Password==entered_password
       session["logged_in"] = true
       redirect "/"
     else
-      @error = "Username/Password combination incorrect"
+      @error = "Username/Password combination incorrect - #{entered_password}"
+
     end
   
-    erb :login
+    erb :login_Page
 end
 
 get "/logout" do
