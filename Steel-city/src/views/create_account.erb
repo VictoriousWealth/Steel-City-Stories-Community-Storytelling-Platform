@@ -1,0 +1,47 @@
+<HTML>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style/login-style.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Create account</h1>
+
+    <form method="post" action="/create-account">
+
+        <% unless @error.nil? %>
+            <p><strong class="error"><%= @error %></strong></p>
+        <% end %>
+
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="<%= h @username %>" required><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" value="<%= h @password %>" required><br>
+
+        <label for="confirm_password">Confirm Password:</label><br>
+        <input type="password" id="confirm_password" name="confirm_password" value="<%= h @confirm_password %>" required><br>
+
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob" value="<%= h @dob %>" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="<%= h @email %>" required><br>
+
+        <label for="account_type">Account Type:</label><br>
+        <input type="radio" id="reader" name="account_type" value="reader" <%= @account_type == 'reader' ? 'checked' : '' %>>
+        <label for="reader">Reader</label><br>
+        <input type="radio" id="writer" name="account_type" value="writer" <%= @account_type == 'writer' ? 'checked' : '' %>>
+        <label for="writer">Writer</label><br><br>
+
+        <input type="submit" value="Create Account">
+
+
+        <p>Already have an account? <a href="/login">Login here.</a><p>
+
+    </form>
+    </div>
+<body>
+</HTML>

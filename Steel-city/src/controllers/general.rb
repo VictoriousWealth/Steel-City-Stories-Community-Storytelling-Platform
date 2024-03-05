@@ -17,7 +17,17 @@ end
 #end
 
 get "/login" do 
-    erb :login_Page
+  erb :login_Page
+end
+
+get "/create-account" do
+  erb :create_account
+end
+
+post "/create-account" do
+    @username = params.fetch("username", "")
+    @password = params.fetch("password", "")
+    @error = nil
 end
 
 post "/login" do
@@ -30,7 +40,7 @@ post "/login" do
       session["logged_in"] = true
       redirect "/"
     else
-      @error = "Username/Password combination incorrect - #{entered_password}"
+    @error = "Username/Password combination incorrect - #{entered_password} - #{@password}"
 
     end
   
