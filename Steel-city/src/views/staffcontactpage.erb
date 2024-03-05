@@ -1,6 +1,27 @@
 <% myTitle = "Contact Staff" %>
 <%= erb :"common/header" %>
   <main>
-    
+      <h2>Contact Form:</h2>
+      <form name="contactusform" action="mailto:tjohnson-martin1@sheffield.ac.uk?subject=FeedbackForm" enctype="text/plain" method="post">
+      <p>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder=
+        "Enter your Email" maxlength="40" size="20" required>
+      </p>
+      p>
+        <label for="formember">For:</label>
+        <input type="text" name="formember" id="formember"
+        placeholder="Enter what the feedback is for" required>
+      </p>
+      <p>
+        <label for="feedback">Feedback:</label>
+        <textarea name="feedback" id="feedback"
+        placeholder="Enter your feedback" required></textarea>
+      </p>
+      <p>
+        <input type="reset" class="button">
+        <input type="submit" class="button" id="submit">
+      </p>
+    </form>
   </main>
 <%= erb :"common/footer" %>
