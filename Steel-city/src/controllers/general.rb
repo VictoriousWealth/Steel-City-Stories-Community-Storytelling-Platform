@@ -27,6 +27,27 @@ end
 post "/create-account" do
     @username = params.fetch("username", "")
     @password = params.fetch("password", "")
+    @confirm_password = params.fetch("confirm_password","")
+    @dob = params.fetch("dob","")
+    @email = params.fetch("email","")
+    @account_type = params.fetch("account_type","")
+    if @password!=@confirm_password
+      @error="Passwords do not match"
+    else
+      user=User.new
+      numusers=User.all.count()
+      user.userid=numusers+1
+      user.username=@username
+      user.password=@password
+      user.email=@email
+      user.dateofbirth=@dob
+      user.type=@account_type
+      user.premium=0
+      user.popcorns=0
+      user.activediscount=1
+      user.save_changes
+      redirect "/"
+    end
     @error = nil
 end
 
