@@ -32,10 +32,13 @@ post "/create-account" do
     @email = params.fetch("email","")
     @account_type = params.fetch("account_type","")
     check_username = User.first(username: @username).username
+    check_email = User.first(email: @email).email
     if @password!=@confirm_password
       @error="Passwords do not match"
     elsif check_username!.empty?
       @error="Username already in use"
+    elsif check_email!.empty?
+      @error="Email already in use"
     else
       user=User.new
       numusers=User.all.count()
