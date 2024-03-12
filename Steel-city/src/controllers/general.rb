@@ -31,8 +31,11 @@ post "/create-account" do
     @dob = params.fetch("dob","")
     @email = params.fetch("email","")
     @account_type = params.fetch("account_type","")
+    check_username = User.first(username: @username).username
     if @password!=@confirm_password
       @error="Passwords do not match"
+    elsif check_username!.empty?
+      @error="Username already in use"
     else
       user=User.new
       numusers=User.all.count()
