@@ -62,7 +62,6 @@ post "/login" do
     @password = params.fetch("password", "")
     @error = nil
     entered_password=User.first(username: @username).password
-    entered_password = entered_password.to_s
     type=User.first(username: @username).type
     if @password==entered_password
       session["logged_in"] = true
