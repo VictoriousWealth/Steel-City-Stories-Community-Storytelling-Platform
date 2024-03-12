@@ -13,8 +13,7 @@
               <ul>
                 <li><a href="/">Home</a><li>
                 <li><a href="/store">Store</a><li>
-                <p><% @type %> is the account type</p>
-                <% if @type == "writer" || @type == "staff" %>
+                <% if session["writer"] || session["staff"] %>
                     <li><a href="/create-story">Create new story</a></li>
                     <li><a href="/">Login</a>login</li>
                 <% end %>
