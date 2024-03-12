@@ -8,11 +8,11 @@
     <header>
         <img src="images/peak-district-prose-logo.png" width="50"/>
         <h1><%= myTitle %> working on it</h1>
-        <%if session["logged_in"]%>
+        <% if session["logged_in"] %>
             <nav>
               <p>The nav works!</p>
             </nav>
-        <%end%>
+        <% end %>
         <div class="search-bar">
             <input type="text" placeholder="Search campaigns...">
             <button type="submit">Search</button>
