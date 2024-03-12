@@ -62,7 +62,8 @@ post "/login" do
     entered_password = entered_password.to_s
     if @password==entered_password
       session["logged_in"] = true
-      @account_type=User.first(username: @username).type
+      @type=User.first(username: @username).type
+
       redirect "/"
     else
     @error = "Username/Password combination incorrect - #{entered_password} - #{@password}"

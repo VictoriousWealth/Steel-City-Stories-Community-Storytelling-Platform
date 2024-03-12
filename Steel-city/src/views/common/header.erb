@@ -10,11 +10,19 @@
         <h1><%= myTitle %> working on it</h1>
         <% if session["logged_in"] %>
             <nav>
-              <p>The nav works!</p>
+              <ul>
+                <li><a href="/">Home</a><li>
+                <li><a href="/store">Store</a><li>
+                <p><% @type %> is the account type</p>
+                <% if @type == "writer" || @type == "staff" %>
+                    <li><a href="/create-story">Create new story</a></li>
+                    <li><a href="/">Login</a>login</li>
+                <% end %>
+              </ul>
             </nav>
         <% end %>
         <div class="search-bar">
-            <input type="text" placeholder="Search campaigns...">
+            <input type="text" placeholder="Search stories...">
             <button type="submit">Search</button>
         </div>
     </header>
