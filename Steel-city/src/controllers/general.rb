@@ -1,8 +1,5 @@
 require "require_all"
 
-class User < Sequel::Model
-end
-
 get "/common/header" do
   @myTitle = "Team 25"
   erb :header
