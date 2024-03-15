@@ -1,4 +1,4 @@
-require "sequel"
+require "all"
 
 class User < Sequel::Model
 end

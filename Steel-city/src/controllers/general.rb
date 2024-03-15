@@ -12,10 +12,6 @@ get "/" do
   erb :home
 end
 
-#get "/create-account"
-#    erb :create-account
-#end
-
 get "/login" do 
   erb :login_Page
 end
@@ -66,17 +62,33 @@ post "/login" do
     @username = params.fetch("username", "")
     @password = params.fetch("password", "")
     @error = nil
-    entered_password=User.first(username: @username).password
-    type=User.first(username: @username).type
-    if @password==entered_password
-      session["logged_in"] = true
-      if type=="reader" then session["reader"] = true
-      elsif type=="writer" then session["writer"] = true
-      elsif type=="staff" then session["staff"] = true
+
+    if @username != "" and @password != "" then
+      if !User.where(username: @username).empty? then
+
+        entered_password=User.first(username: @username).password
+        type=User.first(username: @username).type
+    
+        if @password==entered_password
+          session["logged_in"] = true
+
+          if type=="reader" then
+            session["reader"] = true
+          elsif type=="writer" then
+            session["writer"] = true
+          elsif type=="staff" then
+            session["staff"] = true
+          end
+
+          redirect "/"
+        else
+          @error = "Password incorrect"
+        end
+      else
+        @error = "Username incorrect"
       end
-      redirect "/"
     else
-      @error = "Username/Password combination incorrect"
+      @error = "Please ensure all fields have been filled in"
     end
   
     erb :login_Page
