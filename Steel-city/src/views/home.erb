@@ -1,7 +1,9 @@
 <%= erb :"common/header" %>
     <article>
         <h1>Stories</h1>
-        <p><a href="/login">Login</a></p>
+        <% if !session["logged_in"] %>
+            <p><a href="/login">Login</a></p>
+        <% end %>
     </article>
 
   <main class = home>

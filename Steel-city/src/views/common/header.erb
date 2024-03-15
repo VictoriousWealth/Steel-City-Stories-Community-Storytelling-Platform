@@ -15,8 +15,8 @@
                 <li><a href="/store">Store</a><li>
                 <% if session["writer"] || session["staff"] %>
                     <li><a href="/create-story">Create new story</a></li>
-                    <li><a href="/">Login</a>login</li>
                 <% end %>
+                <li><a href="/logout">Logout</a></li>
               </ul>
             </nav>
         <% end %>

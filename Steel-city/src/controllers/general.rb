@@ -29,16 +29,21 @@ post "/create-account" do
     @password = params.fetch("password", "")
     @confirm_password = params.fetch("confirm_password","")
     @dob = params.fetch("dob","")
+    Date.parse(@dob)
     @email = params.fetch("email","")
     @account_type = params.fetch("account_type","")
-    check_username = User.first(username: @username).username
-    check_email = User.first(email: @email).email
+    sql = "SELECT * FROM users WHERE email = ? LIMIT 1"
+    check_email = User.exists?(email: @email)
+    sql = "SELECT * FROM users WHERE username = ? LIMIT 1"
+    check_username = db.execute(sql, @username)
     if @password!=@confirm_password
       @error="Passwords do not match"
-    elsif check_username!.empty?
+    elsif check_username
       @error="Username already in use"
-    elsif check_email!.empty?
+    elsif check_email
       @error="Email already in use"
+    elsif @dob<Date.today-15*365.25
+      @error="Invalid Date of Birth"
     else
       user=User.new
       numusers=User.all.count()
@@ -71,7 +76,7 @@ post "/login" do
       end
       redirect "/"
     else
-      @error = "Username/Password combination incorrect - #{entered_password} - #{@password}"
+      @error = "Username/Password combination incorrect"
     end
   
     erb :login_Page
@@ -79,5 +84,5 @@ end
 
 get "/logout" do
     session.clear
-    erb :logout
+    erb :home
 end
