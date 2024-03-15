@@ -33,7 +33,7 @@ post "/create-account" do
     @email = params.fetch("email","")
     @account_type = params.fetch("account_type","")
     sql = "SELECT * FROM users WHERE email = ? LIMIT 1"
-    check_email = User.exists?(email: @email)
+    check_email = db.execute(sql,@email)
     sql = "SELECT * FROM users WHERE username = ? LIMIT 1"
     check_username = db.execute(sql, @username)
     if @password!=@confirm_password
