@@ -10,9 +10,10 @@
         <h1><%= myTitle %> working on it</h1>
         <% if session["logged_in"] %>
             <nav>
-              <ul>
+              <ul class="ul_org">
                 <li><a href="/">Home</a><li>
                 <li><a href="/store">Store</a><li>
+                <li><a href="/promotions">Promotional Campaigns</a><li>
                 <% if session["writer"] || session["staff"] %>
                     <li><a href="/create-story">Create new story</a></li>
                 <% end %>

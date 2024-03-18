@@ -9,6 +9,18 @@ get "/" do
   erb :home
 end
 
+get "/store" do
+  erb :storepage
+end
+
+get "/promotions" do
+  erb :promotionalcampaigns
+end
+
+get "/create-story" do
+  erb :writingstorypage
+end
+
 get "/login" do 
   erb :login_Page
 end
