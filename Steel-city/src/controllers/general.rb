@@ -115,10 +115,10 @@ post "/login" do
 
           redirect "/"
         else
-          @error = "Incorrect Username or Password"
+          @error = "Password incorrect"
         end
       else
-        @error = "Incorrect Username or Password"
+        @error = "Username incorrect"
       end
     else
       @error = "Please ensure all fields have been filled in"

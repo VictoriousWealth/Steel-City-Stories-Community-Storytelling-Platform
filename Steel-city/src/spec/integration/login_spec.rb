@@ -18,15 +18,37 @@ RSpec.describe "Login controller" do
 
         context "with correct username but incorrect password" do
             it "tells the user the password is incorrect" do
-                post "/login", "username" => "test", "password" => "wrong_password"
+                post '/create-account', {
+                username: 'testuser',
+                password: 'testpassword',
+                confirm_password: 'testpassword',
+                dob: '1990-01-01',
+                email: 'test@example.com',
+                account_type: 'reader'
+                }
+
+                get '/logout'
+
+                post "/login", "username" => "testuser", "password" => "testpassword_wrong"
                 expect(last_response).to be_ok
                 expect(last_response.body).to include("Password incorrect")
             end
         end
 
         context "with correct login details" do
-            it "redirects to the secure area page" do
-                post "/login", "username" => "staff", "password" => "12345"
+            it "redirects to the home page" do
+                post '/create-account', {
+                username: 'testuser',
+                password: 'testpassword',
+                confirm_password: 'testpassword',
+                dob: '1990-01-01',
+                email: 'test@example.com',
+                account_type: 'reader'
+                }
+
+                get '/logout'
+
+                post "/login", "username" => "testuser", "password" => "testpassword"
                 expect(last_response).to be_redirect
                 expect(last_response.location).to end_with("/")
             end

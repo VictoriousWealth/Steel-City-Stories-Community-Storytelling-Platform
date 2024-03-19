@@ -22,7 +22,7 @@ RSpec.configure do |config|
   config.include Rack::Test::Methods
 
   # before each test is run, delete all records in the Player table
-  #config.before do
-    #users.dataset.delete
-  #end
+  config.before do
+    User.dataset.delete
+  end
 end
