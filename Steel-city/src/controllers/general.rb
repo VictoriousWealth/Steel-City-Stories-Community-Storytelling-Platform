@@ -9,10 +9,6 @@ get "/" do
   erb :home
 end
 
-get "/store" do
-  erb :storepage
-end
-
 get "/promotions" do
   erb :promotionalcampaigns
 end
