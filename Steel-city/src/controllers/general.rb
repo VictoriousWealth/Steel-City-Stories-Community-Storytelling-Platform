@@ -53,9 +53,9 @@ post "/create-account" do
       sql = "SELECT * FROM users WHERE username = ? LIMIT 1"
       check_username = db.execute(sql, @username)
       if @password!=@confirm_password
-        @error="Passwords do not match"
+        @error="Ensure that the passwords match"
       elsif !check_username.empty?
-        @error="Username already in use"
+        @error="Username already taken"
       elsif !check_email.empty?
         @error="Email already in use"
       elsif @dob.empty? || Date.parse(@dob) > Date.today - (15 * 365.25)
@@ -115,10 +115,10 @@ post "/login" do
 
           redirect "/"
         else
-          @error = "Password incorrect"
+          @error = "Incorrect Username or Password"
         end
       else
-        @error = "Username incorrect"
+        @error = "Incorrect Username or Password"
       end
     else
       @error = "Please ensure all fields have been filled in"
