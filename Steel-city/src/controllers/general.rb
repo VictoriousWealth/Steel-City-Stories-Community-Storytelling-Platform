@@ -25,6 +25,14 @@ get "/login" do
   erb :login_Page
 end
 
+get "/account-settings" do 
+    erb :accountsettings
+  end
+
+  get "/contact-staff" do 
+    erb :staffcontactpage
+  end
+
 get "/create-account" do
   erb :create_account
 end
