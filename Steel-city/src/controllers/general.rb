@@ -58,7 +58,7 @@ post "/create-account" do
         @error="Username already in use"
       elsif !check_email.empty?
         @error="Email already in use"
-      elsif @dob.empty? || Date.parse(@dob) > Date.today - (15 * 365.25)
+      elsif @dob.empty? || Date.parse(@dob) > Date.today - (13 * 365.25)
         @error="Invalid Date of Birth"
       else
         user=User.new
