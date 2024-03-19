@@ -24,7 +24,18 @@
           1,
           null,
           null,
+          1,
+          null,
+          null,
           1
+        ]
+      },
+      "/home/codio/workspace/project/Steel-city/src/models/User.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null
         ]
       },
       "/home/codio/workspace/project/Steel-city/src/controllers/general.rb": {
@@ -32,9 +43,6 @@
           1,
           null,
           1,
-          null,
-          null,
-          1,
           0,
           0,
           null,
@@ -53,11 +61,26 @@
           null,
           1,
           0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
           0,
           0,
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          null,
           0,
           0,
           0,
@@ -84,6 +107,19 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          0,
+          null,
           0,
           null,
           0,
@@ -132,6 +168,6 @@
         ]
       }
     },
-    "timestamp": 1710517005
+    "timestamp": 1710849627
   }
 }
