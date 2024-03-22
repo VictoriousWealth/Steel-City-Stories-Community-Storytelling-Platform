@@ -8,6 +8,11 @@ body {
     margin: 0%;
 }
 
+.error {
+    color: red !important;
+}
+
+
 .container {
     max-width: 400px;
     width: fit-content;

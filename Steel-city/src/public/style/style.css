@@ -33,6 +33,9 @@ footer {
     color: darkgray;
     border-top: 1px solid darkgray;
 }
+.error {
+    color: red;
+}
 
 .home {
   margin: 0;
@@ -110,10 +113,6 @@ Author: Myron Sukhanov
     width: 20px;
     max-width: 20px;
   }
-
-  .error {
-    color: red !important;
-    }
 
   figcaption {
     text-align: center;
