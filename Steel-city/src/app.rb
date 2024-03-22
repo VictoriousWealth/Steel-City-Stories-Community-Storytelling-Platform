@@ -18,5 +18,8 @@ DB = Sequel.sqlite("database.sqlite3")
 # Sessions
 enable :sessions
 
+# Models
+require_rel "models"
+
 # App
 require_rel "controllers"
