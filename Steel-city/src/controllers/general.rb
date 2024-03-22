@@ -9,10 +9,6 @@ get "/" do
   erb :home
 end
 
-get "/store" do
-  erb :storepage
-end
-
 get "/promotions" do
   erb :promotionalcampaigns
 end
@@ -22,7 +18,17 @@ get "/create-story" do
 end
 
 get "/login" do 
-  erb :login_Page
+    @database = nil
+    begin 
+        db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT * FROM users"
+        @database = db.execute(sql)
+    rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+    ensure
+        db.close if db
+    end
+    erb :login_Page
 end
 
 get "/account-settings" do 
