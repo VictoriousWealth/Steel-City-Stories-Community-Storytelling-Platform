@@ -31,8 +31,8 @@ get "/login" do
     erb :login_Page
 end
 
-get "/account-settings" do 
-    erb :accountsettings
+get "/account-settings" do
+  erb :accountsettings
   end
 
   get "/contact-staff" do 
@@ -58,14 +58,16 @@ post "/create-account" do
       check_email = db.execute(sql,@email)
       sql = "SELECT * FROM users WHERE username = ? LIMIT 1"
       check_username = db.execute(sql, @username)
-      if @password!=@confirm_password
-        @error="Ensure that the passwords match"
-      elsif !check_username.empty?
+      if !check_username.empty?
         @error="Username already taken"
-      elsif !check_email.empty?
-        @error="Email already in use"
+      elsif @password!=@confirm_password
+        @error="Ensure that the passwords match"
+      elsif get_password_strength(@password) < 3
+        @error="Password is too weak"
       elsif @dob.empty? || Date.parse(@dob) > Date.today - (13 * 365.25)
         @error="Invalid Date of Birth"
+      elsif !check_email.empty?
+        @error="Email already in use"
       else
         user=User.new
         numusers=User.all.count()
@@ -95,6 +97,16 @@ post "/create-account" do
       db.close if db
     end
     erb :create_account
+end
+
+def get_password_strength(password)
+  strength = 0
+  strength += 1 if password.length >= 8
+  strength += 1 if password.match?(/[A-Z]/)
+  strength += 1 if password.match?(/[a-z]/)
+  strength += 1 if password.match?(/\d/)
+  strength += 1 if password.match?(/[!@#$%^&*]/)
+  strength
 end
 
 post "/login" do
