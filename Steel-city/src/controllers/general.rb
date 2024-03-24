@@ -68,6 +68,8 @@ post "/create-account" do
         @error="Invalid Date of Birth"
       elsif !check_email.empty?
         @error="Email already in use"
+      elsif @account_type.empty?
+        @error="Choose an account type! Reader or Writer."
       else
         user=User.new
         numusers=User.all.count()
