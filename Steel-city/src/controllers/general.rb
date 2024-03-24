@@ -92,7 +92,6 @@ post "/create-account" do
         elsif @account_type=="staff" then
           session["staff"] = true
         end
-        @
         redirect "/"
       end
     rescue SQLite3::Exception => e
