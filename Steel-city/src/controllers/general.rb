@@ -63,7 +63,8 @@ post "/create-account" do
       elsif @password!=@confirm_password
         @error="Ensure that the passwords match"
       elsif get_password_strength(@password) < 3
-        @error="Password is too weak"
+        @error="Password is too weak. Password strength is "+get_password_strength(@password).to_s
+        +". Password strength should be at least 3."
       elsif @dob.empty? || Date.parse(@dob) > Date.today - (13 * 365.25)
         @error="Invalid Date of Birth"
       elsif !check_email.empty?
@@ -91,6 +92,7 @@ post "/create-account" do
         elsif @account_type=="staff" then
           session["staff"] = true
         end
+        @
         redirect "/"
       end
     rescue SQLite3::Exception => e
