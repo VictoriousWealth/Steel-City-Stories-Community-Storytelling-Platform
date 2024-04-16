@@ -6,15 +6,17 @@
     <% unless @error.nil? %>
         <p><strong class="error"><%= @error %></strong></p>
     <% end %>
+    <% if session["type"].eql?("admin")%>
     <form method="post" action="/find-user">
     <p>Find User: <br /><input type="text" name="username" value="<%= h @username %>"/></p>
     <button type="submit">Find User</button>
     </form>
+    <% end %>
     <form method="post" action="/find-story">
     <p>Find Story: <br /><input type="text" name="story" value="<%= h @storyname %>"/></p>
     <button type="submit">Find Story</button>
     </form>
-    <% if !session["userfound"].nil? && session["type"].eql?("admin")%>
+    <% if !@userfound.nil? && session["type"].eql?("admin")%>
     <form action="/delete-account" method="post">
     <button type="submit">Delete Account</button>
     </form>
