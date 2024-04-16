@@ -3,7 +3,10 @@
   <main>
     <section class="story-form">
       <h2>Write Your Story</h2>
-      <form id="story-form" enctype="multipart/form-data">
+      <% unless @error.nil? %>
+        <p><strong class="error"><%= @error %></strong></p>
+        <% end %>
+      <form id="story-form" enctype="multipart/form-data" method="post" action="/submit-story">
         <label for="story-title">Title:</label>
         <input type="text" id="story-title" name="story-title" required><br><br>
 
@@ -11,8 +14,15 @@
         <textarea id="story-content" name="story-content" rows="10" cols="50" required></textarea><br><br>
 
         <label for="story-file">Upload Story File:</label>
-        <input type="file" id="story-file" name="story-file" accept=".txt,.doc,.docx,.pdf" required><br><br>
+        <input type="file" id="story-file" name="story-file" accept=".txt,.doc,.docx,.pdf" ><br><br>
 
+       <label for="blurb-content">Blurb:</label><br>
+        <textarea id="blurb-content" name="blurb-content" rows="5" cols="50" required></textarea><br><br>
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required><br><br>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required><br><br>
         <input type="submit" value="Submit">
       </form>
     </section>

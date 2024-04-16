@@ -13,8 +13,52 @@ get "/promotions" do
   erb :promotionalcampaigns
 end
 
-get "/create-story" do
-  erb :writingstorypage
+get "/staff-actions" do
+    erb :staff_actions
+end
+
+
+post "/find-user" do
+    @chosenusername = params.fetch("username","")
+    @error = nil
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
+      usersID = db.execute(sql,@chosenusername)
+      if usersID.nil?
+        session["userfound"] = nil
+        @error="Username not found"
+       else
+        session["userfound"] = usersID
+        end
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    erb :staff_actions
+end
+
+post "/delete-account" do
+    @error = nil
+    begin
+        if session["userfound"].empty?
+            @error="Username not found"
+        end
+      db = SQLite3::Database.new 'database.sqlite3'
+      sql = "DELETE FROM users WHERE userid = ?"
+      db.execute(sql,session["userfound"])
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    session["userfound"] = nil
+    erb :staff_actions
+end
+
+post "find-story" do
+
 end
 
 get "/login" do 
@@ -92,6 +136,8 @@ post "/create-account" do
         elsif @account_type=="staff" then
           session["staff"] = true
         end
+        sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
+        session["currentuser"] = db.execute(sql,@username)
         redirect "/"
       end
     rescue SQLite3::Exception => e
@@ -127,13 +173,13 @@ post "/login" do
           session["logged_in"] = true
 
           if type=="reader" then
-            session["reader"] = true
+            session["type"] = "reader"
           elsif type=="writer" then
-            session["writer"] = true
+            session["type"] = "writer"
           elsif type=="staff" then
-            session["staff"] = true
+            session["type"] = "staff"
           end
-
+          session["currentuser"] = User.first(username: @username).userid
           redirect "/"
         else
           @error = "Password incorrect"
@@ -144,7 +190,6 @@ post "/login" do
     else
       @error = "Please ensure all fields have been filled in"
     end
-  
     erb :login_Page
 end
 
