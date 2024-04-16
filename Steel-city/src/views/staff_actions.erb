@@ -14,7 +14,7 @@
     <p>Find Story: <br /><input type="text" name="story" value="<%= h @storyname %>"/></p>
     <button type="submit">Find Story</button>
     </form>
-    <% if session["userfound"].nil? %>
+    <% if !session["userfound"].nil? %% session["type"].eql?("admin")%>
     <form action="/delete-account" method="post">
     <button type="submit">Delete Account</button>
     </form>

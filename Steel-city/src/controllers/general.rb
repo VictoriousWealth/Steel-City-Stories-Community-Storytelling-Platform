@@ -130,11 +130,13 @@ post "/create-account" do
         user.save_changes
         session["logged_in"] = true
         if @account_type=="reader" then
-          session["reader"] = true
+          session["type"] = "reader"
         elsif @account_type=="writer" then
-          session["writer"] = true
-        elsif @account_type=="staff" then
-          session["staff"] = true
+          session["type"] = "writer"
+        elsif @account_type=="admin" then
+          session["type"] = "admin"
+        elsif type=="manager" then
+          session["type"] = "manager"
         end
         sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
         session["currentuser"] = db.execute(sql,@username)
@@ -176,8 +178,10 @@ post "/login" do
             session["type"] = "reader"
           elsif type=="writer" then
             session["type"] = "writer"
-          elsif type=="staff" then
-            session["type"] = "staff"
+          elsif type=="admin" then
+            session["type"] = "admin"
+          elsif type=="manager" then
+            session["type"] = "manager"
           end
           session["currentuser"] = User.first(username: @username).userid
           redirect "/"

@@ -18,10 +18,10 @@
                 <li><a href="/">Home</a><li>
                 <li><a href="/store">Store</a><li>
                 <li><a href="/promotions">Promotional Campaigns</a><li>
-                <% if session["type"].eql?("writer") || session["type"].eql?("staff") %>
+                <% if session["type"].eql?("writer") || session["type"].eql?("admin")|| session["type"].eql?("manager") %>
                     <li><a href="/create-story">Create new story</a></li>
                 <% end %>
-                <% if session["type"].eql?("staff") %>
+                <% if session["type"].eql?("admin") || session["type"].eql?("manager")%>
                     <li><a href="/staff-actions">Staff Actions</a></li>
                 <% end %>
                 <li><a href="/account-settings">Account Settings</a></li>
