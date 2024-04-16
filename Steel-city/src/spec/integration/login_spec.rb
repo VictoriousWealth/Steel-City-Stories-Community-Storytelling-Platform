@@ -20,10 +20,10 @@ RSpec.describe "Login controller" do
             it "tells the user the password is incorrect" do
                 post '/create-account', {
                 username: 'testuser',
-                password: 'testpassword',
-                confirm_password: 'testpassword',
+                password: 'Testpassword',
+                confirm_password: 'Testpassword',
                 dob: '1990-01-01',
-                email: 'test@example.com',
+                email: 'test1@example.com',
                 account_type: 'reader'
                 }
 
@@ -39,16 +39,16 @@ RSpec.describe "Login controller" do
             it "redirects to the home page" do
                 post '/create-account', {
                 username: 'testuser',
-                password: 'testpassword',
-                confirm_password: 'testpassword',
+                password: 'Testpassword',
+                confirm_password: 'Testpassword',
                 dob: '1990-01-01',
-                email: 'test@example.com',
+                email: 'test1@example.com',
                 account_type: 'reader'
                 }
 
                 get '/logout'
 
-                post "/login", "username" => "testuser", "password" => "testpassword"
+                post "/login", "username" => "testuser", "password" => "Testpassword"
                 expect(last_response).to be_redirect
                 expect(last_response.location).to end_with("/")
             end

@@ -23,6 +23,6 @@ RSpec.configure do |config|
 
   # before each test is run, delete all non-hardcoded records in the Player table
   config.before do
-    User.where { userid > 3 }.delete
+    User.where { userid > 4 }.delete
   end
 end
