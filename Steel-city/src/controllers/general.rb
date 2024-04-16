@@ -127,6 +127,7 @@ post "/create-account" do
         user.premium=0
         user.popcorns=0
         user.activediscount=1
+        user.interactions=0
         user.save_changes
         session["logged_in"] = true
         if @account_type=="reader" then
