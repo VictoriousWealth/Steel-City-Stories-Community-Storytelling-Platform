@@ -26,10 +26,10 @@ post "/find-user" do
       sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
       usersID = db.execute(sql,@chosenusername)
       if usersID.nil?
-        session["userfound"] = nil
+        @userfound = nil
         @error="Username not found"
        else
-        session["userfound"] = usersID
+        @userfound = usersID
         end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
@@ -42,7 +42,7 @@ end
 post "/delete-account" do
     @error = nil
     begin
-        if session["userfound"].empty?
+        if @userfound.empty?
             @error="Username not found"
         end
       db = SQLite3::Database.new 'database.sqlite3'
@@ -127,6 +127,7 @@ post "/create-account" do
         user.premium=0
         user.popcorns=0
         user.activediscount=1
+        user.interactions=0
         user.save_changes
         session["logged_in"] = true
         if @account_type=="reader" then
