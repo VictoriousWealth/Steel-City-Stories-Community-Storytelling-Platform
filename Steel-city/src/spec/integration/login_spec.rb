@@ -1,4 +1,14 @@
 RSpec.describe "Login controller" do
+    describe "GET /login" do
+        context "when clicking on login" do
+            it "displays a blank login page" do
+                get "/login"
+                expect(last_response).to be_ok
+                expect(last_response.body).to include("Login")
+            end
+        end
+    end
+
     describe "POST /login" do
         context "with no login details" do
             it "tells the user the details are incorrect" do
