@@ -17,6 +17,9 @@ get "/staff-actions" do
     erb :staff_actions
 end
 
+get "/payment" do
+    erb :paymentpage
+end
 
 post "/find-user" do
     @chosenusername = params.fetch("username","")
