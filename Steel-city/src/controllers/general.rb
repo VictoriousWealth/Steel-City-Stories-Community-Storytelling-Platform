@@ -80,11 +80,11 @@ end
 
 get "/account-settings" do
   erb :accountsettings
-  end
+end
 
-  get "/contact-staff" do 
-    erb :staffcontactpage
-  end
+get "/contact-staff" do 
+  erb :staffcontactpage
+end
 
 get "/create-account" do
   erb :create_account
