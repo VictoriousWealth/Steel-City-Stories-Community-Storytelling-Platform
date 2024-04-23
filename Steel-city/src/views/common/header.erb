@@ -1,7 +1,6 @@
 <html lang="en">
-  <% myTitle = "Home" %>
   <head>
-    <title><%= myTitle %></title>
+    <title><%= @myTitle %></title>
     <link rel="stylesheet" href="style/style.css">
   </head>
   <body>
@@ -11,7 +10,6 @@
 
         <a href="/"><img src="images/peak-district-prose-logo.png" width="50"/></a>
 
-        <h1><%= myTitle %> working on it</h1>
         <% if session["logged_in"] %>
             <nav>
               <ul class="ul_org">

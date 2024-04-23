@@ -1,7 +1,8 @@
 require "require_all"
 
 get "/staff-actions" do
-    erb :staff_actions
+  @myTitle = "Staff Actions"
+  erb :staff_actions
 end
 
 

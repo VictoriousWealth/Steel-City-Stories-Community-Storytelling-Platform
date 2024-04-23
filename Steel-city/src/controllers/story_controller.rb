@@ -1,6 +1,7 @@
 require "require_all"
 
 get "/create-story" do
+  @myTitle = "Create"
   erb :writingstorypage
 end
 

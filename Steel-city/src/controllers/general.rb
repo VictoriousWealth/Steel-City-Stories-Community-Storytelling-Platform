@@ -1,28 +1,18 @@
 require "require_all"
 
 get "/common/header" do
-  @myTitle = "Team 25"
   erb :header
 end
 
 get "/" do
+  @myTitle = "home"
   erb :home
 end
 
 get "/promotions" do
+  @myTitle = "Promotional Campaigns"
   erb :promotionalcampaigns
 end
-
-get "/staff-actions" do
-    erb :staff_actions
-end
-
-get "/payment" do
-    erb :paymentpage
-end
-
-
-
 
 get "/login" do 
     @database = nil
@@ -39,10 +29,12 @@ get "/login" do
 end
 
 get "/account-settings" do
+  @myTitle = "Account Settings"
   erb :accountsettings
 end
 
-get "/contact-staff" do 
+get "/contact-staff" do
+  @myTitle = "Account Settings"
   erb :staffcontactpage
 end
 
