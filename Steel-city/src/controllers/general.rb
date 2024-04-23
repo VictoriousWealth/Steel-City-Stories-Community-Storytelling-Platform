@@ -13,6 +13,7 @@ get "/promotions" do
   erb :promotionalcampaigns
 end
 
+<<<<<<< HEAD
 get "/staff-actions" do
     erb :staff_actions
 end
@@ -63,6 +64,8 @@ end
 post "find-story" do
 
 end
+=======
+>>>>>>> 68101f3 (staff action changes)
 
 get "/login" do 
     @database = nil
