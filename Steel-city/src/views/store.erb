@@ -1,18 +1,21 @@
 <% myTitle = "Store" %>
 <%= erb :"common/header" %>
+
+  <h1 class = "title">"><%= myTitle %></h1>
+
   <main>
     <section class="product">
       <h2>Product 1</h2>
       <p>Description of Product 1.</p>
       <p>Price: $19.99</p>
-      <button>Add to Cart</button>
+      <input type="submit" value="Add to cart">
     </section>
 
     <section class="product">
       <h2>Product 2</h2>
       <p>Description of Product 2.</p>
       <p>Price: $24.99</p>
-      <button>Add to Cart</button>
+      <input type="submit" value="Add to cart">
     </section>
 
   </main>
