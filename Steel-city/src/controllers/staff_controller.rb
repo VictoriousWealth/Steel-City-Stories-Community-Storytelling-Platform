@@ -89,7 +89,7 @@ post "/edit-story" do
 end
 
 post "/edit-popcorns" do
-  @popcorncount=params.fetch("popcorns","")
+  @popcorncount=params.fetch("popcorns","").to_i
   @error = nil
     begin
         if session["userfound"].nil?
@@ -97,13 +97,35 @@ post "/edit-popcorns" do
         end
       db = SQLite3::Database.new 'database.sqlite3'
       sql = "SELECT popcorns FROM users WHERE userid = ?"
-      currentpopcorns = db.execute(sql,session["userfound"])
-      totalpopcorns = currentpopcorns + @popcorncount
+      currentpopcorns = db.get_first_value(sql,session["userfound"]).to_i
+      totalpopcorns = @popcorncount + currentpopcorns
       sql = "UPDATE users SET popcorns = ? WHERE userid = ?"
-      db.execute(sql,[totalpopcorns,session["userfound"]])
+      db.execute(sql,totalpopcorns,session["userfound"])
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
       db.close if db
     end
+    session["userfound"] = nil
+    erb :staff_actions
 end
+
+post "/change-type" do
+  account_type = params.fetch("account_type","")
+  @error = nil
+    begin
+        if session["userfound"].nil?
+            @error="User not found"
+        end
+      db = SQLite3::Database.new 'database.sqlite3'
+      sql = "UPDATE users SET type = ? WHERE userid = ?"
+      db.execute(sql,account_type,session["userfound"])
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    session["userfound"] = nil
+    erb :staff_actions
+end
+

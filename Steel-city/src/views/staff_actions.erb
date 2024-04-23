@@ -25,6 +25,18 @@
     <input type="number" step="1" id="popcorns" name="popcorns" value="<%= h @popcorns %>" required><br>
     <button type="submit">Change Popcorns</button>
     </form>
+    <form action="/change-type" method="post>
+    <label for="account_type">Account Type:</label><br>
+        <input type="radio" id="reader" name="account_type" value="reader" <%= @account_type == 'reader' ? 'checked' : '' %>>
+        <label for="reader">Reader</label><br>
+        <input type="radio" id="writer" name="account_type" value="writer" <%= @account_type == 'writer' ? 'checked' : '' %>>
+        <label for="writer">Writer</label><br>
+        <input type="radio" id="admin" name="account_type" value="admin" <%= @account_type == 'admin' ? 'checked' : '' %>>
+        <label for="admin">Admin</label><br>
+        <input type="radio" id="manager" name="account_type" value="manager" <%= @account_type == 'manager' ? 'checked' : '' %>>
+        <label for="manager">Manager</label><br>
+        <button type="submit">Change Type</button>
+    </form>
     <% end %>
     <% if !session["storyfound"].nil? %>
     <form action="/delete-story" method="post">

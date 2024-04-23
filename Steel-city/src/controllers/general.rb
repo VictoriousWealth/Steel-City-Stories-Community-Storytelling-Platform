@@ -21,48 +21,7 @@ get "/payment" do
     erb :paymentpage
 end
 
-post "/find-user" do
-    @chosenusername = params.fetch("username","")
-    @error = nil
-    begin
-      db = SQLite3::Database.new 'database.sqlite3'
-      sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
-      usersID = db.execute(sql,@chosenusername)
-      if usersID.nil?
-        @userfound = nil
-        @error="Username not found"
-       else
-        @userfound = usersID
-        end
-    rescue SQLite3::Exception => e
-      @error = "Database error: #{e.message}"
-    ensure
-      db.close if db
-    end
-    erb :staff_actions
-end
 
-post "/delete-account" do
-    @error = nil
-    begin
-        if @userfound.empty?
-            @error="Username not found"
-        end
-      db = SQLite3::Database.new 'database.sqlite3'
-      sql = "DELETE FROM users WHERE userid = ?"
-      db.execute(sql,session["userfound"])
-    rescue SQLite3::Exception => e
-      @error = "Database error: #{e.message}"
-    ensure
-      db.close if db
-    end
-    session["userfound"] = nil
-    erb :staff_actions
-end
-
-post "find-story" do
-
-end
 
 
 get "/login" do 
