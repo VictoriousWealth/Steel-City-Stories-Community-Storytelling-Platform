@@ -109,6 +109,11 @@ Author: Myron Sukhanov
     justify-content: center;
   }
 
+  .shoppingcart{
+    width: 40px;
+    max-width: 40px;
+  }
+
   .searchimg {
     width: 20px;
     max-width: 20px;
