@@ -2,7 +2,7 @@ require "require_all"
 
 get "/create-story" do
   @myTitle = "Create"
-  erb :writingstorypage
+  erb :writing_story_page
 end
 
 post "/submit-story" do
@@ -35,5 +35,5 @@ post "/submit-story" do
       db.close if db
     end
     #should redirect to relevant story page
-    erb :writingstorypage
+    erb :writing_story_page
 end
