@@ -11,7 +11,7 @@ end
 
 get "/promotions" do
   @myTitle = "Promotional Campaigns"
-  erb :promotionalcampaigns
+  erb :promotional_campaigns
 end
 
 get "/login" do 
@@ -25,17 +25,17 @@ get "/login" do
     ensure
         db.close if db
     end
-    erb :login_Page
+    erb :login_page
 end
 
 get "/account-settings" do
   @myTitle = "Account Settings"
-  erb :accountsettings
+  erb :account_settings
 end
 
 get "/contact-staff" do
   @myTitle = "Account Settings"
-  erb :staffcontactpage
+  erb :staff_contact_page
 end
 
 get "/create-account" do
@@ -150,7 +150,7 @@ post "/login" do
     else
       @error = "Please ensure all fields have been filled in"
     end
-    erb :login_Page
+    erb :login_page
 end
 
 get "/logout" do

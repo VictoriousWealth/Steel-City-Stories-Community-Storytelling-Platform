@@ -7,6 +7,6 @@ end
 
 get "/payment" do
     @myTitle = "Checkout"
-    erb :paymentpage
+    erb :payment_page
 end
 
