@@ -27,13 +27,16 @@ post "/submit-story" do
         story.genre=@genre
         story.releasedate=Date.today.strftime("%d/%m/%y")
         story.writerid=session["currentuser"]
+        @author = story.writerid
+        @storyID = story.storyid
         story.save_changes
         session["logged_in"] = true
+        
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
       db.close if db
     end
     #should redirect to relevant story page
-    erb :writing_story_page
+    erb :story_page
 end
