@@ -157,3 +157,63 @@ get "/logout" do
     session.clear
     erb :home
 end
+
+post "/update-profile" do
+    @username = params.fetch("username", "")
+    @email = params.fetch("email", "")
+    @error = nil
+    begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "UPDATE users SET username = ?, email = ? WHERE userid = ?"
+    db.execute(sql,@username,@email,session["currentuser"])
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  erb :account_settings
+end
+
+post "/change-password" do
+  @currentpassword = params.fetch("currentPassword")
+  @newpassword = params.fetch("newPassword")
+  @confirmpassword = params.fetch("confirmPassword")
+  @error=nil
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "SELECT password FROM users WHERE userid = ? ORDER BY userid LIMIT 1"
+    @checkpass=db.get_first_value(sql,session["currentuser"])
+    if @checkpass!=@currentpassword
+      @error="Passwords Incorrect"
+    elsif @newpassword!=@confirmpassword
+      @error="Passwords do not match"
+    else
+      sql = "UPDATE users SET password = ? WHERE userid = ?"
+      db.execute(sql,@newpassword,session["currentuser"])
+    end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  erb :account_settings
+end
+
+post "/delete-self" do
+  @error=nil
+  begin
+    if session["currentuser"].nil?
+        @error="Usernot logged in"
+    end
+  db = SQLite3::Database.new 'database.sqlite3'
+  sql = "DELETE FROM users WHERE userid = ?"
+  db.execute(sql,session["currentuser"])
+rescue SQLite3::Exception => e
+  @error = "Database error: #{e.message}"
+ensure
+  db.close if db
+end
+session.clear
+redirect "/"
+erb :account_settings
+end
