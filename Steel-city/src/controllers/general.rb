@@ -5,7 +5,7 @@ get "/common/header" do
 end
 
 get "/" do
-  @myTitle = "home"
+  @myTitle = "Home"
   erb :home
 end
 
