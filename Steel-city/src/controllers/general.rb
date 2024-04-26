@@ -46,31 +46,9 @@ post "/create-account" do
     @username = params.fetch("username", "")
     @password = params.fetch("password", "")
     @confirm_password = params.fetch("confirm_password","")
-    @dob = params.fetch("dob","")
-    Date.parse(@dob)
-    @email = params.fetch("email","")
-    @account_type = params.fetch("account_type","")
     @error = nil
     begin
       db = SQLite3::Database.new 'database.sqlite3'
-      sql = "SELECT * FROM users WHERE email = ? LIMIT 1"
-      check_email = db.execute(sql,@email)
-      sql = "SELECT * FROM users WHERE username = ? LIMIT 1"
-      check_username = db.execute(sql, @username)
-      if !check_username.empty?
-        @error="Username already taken"
-      elsif @password!=@confirm_password
-        @error="Ensure that the passwords match"
-      elsif get_password_strength(@password) < 3
-        @error="Password is too weak. Password strength is "+get_password_strength(@password).to_s
-        +". Password strength should be at least 3."
-      elsif @dob.empty? || Date.parse(@dob) > Date.today - (13 * 365.25)
-        @error="Invalid Date of Birth"
-      elsif !check_email.empty?
-        @error="Email already in use"
-      elsif @account_type.empty?
-        @error="Choose an account type! Reader or Writer."
-      else
         user=User.new
         numusers=User.all.count()
         user.userid=numusers+1

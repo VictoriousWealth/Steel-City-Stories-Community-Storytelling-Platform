@@ -130,3 +130,32 @@ post "/change-type" do
     erb :staff_actions
 end
 
+post "/send-form" do
+    email = params.fetch("email", "")
+    title = params.fetch("formember", "")
+    body = params.fetch("feedback","")
+    @email = params.fetch("email","")
+    @account_type = params.fetch("account_type","")
+    @error = nil
+    begin
+        contact=StaffContact.new
+        numcontacts=StaffContact.all.count()
+        contact.requestid=numcontacts+1
+        if session["currentuser"]!=nil
+            contact.userid=session["currentuser"]
+        else 
+            contact.userid=0;
+        end
+        contact.email=email
+        contact.title=title
+        user.feedback=body
+        contact.save_changes
+        redirect "/"
+      end
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    erb :staff_contact_page
+end
