@@ -1,31 +1,35 @@
+<% myTitle = "Promotional Campaigns" %>
 <%= erb :"common/header" %>
 
-<h1 class = "title"><%= @myTitle %></h1>
+<h1 class = "title">Cart</h1>
 
 <main>
-  <section class="billing">
-    <label for="line1">Line 1:</label>
-    <input type="text" name="line1" id="line1">
+  <section class="flexcolumn">
+    <label for="address1">Address:</label>
+    <input type="text" name="address1" id="address1" placeholder="1234 Main St">
 
-    <label for="line2">Line 2:</label>
-    <input type="text" name="line2" id="line2">
+    <label for="address2">Address 2 (Optional):</label>
+    <input type="text" name="address2" id="address2" placeholder="Apartment or suite">
 
-    <label for="line3">Line 3:</label>
-    <input type="text" name="line3" id="line3">
+    <label for="city">City:</label>
+    <input type="text" name="city" id="city" placeholder="London">
 
-    <label for="line4">Line 4:</label>
-    <input type="text" name="line4" id="line4">
+    <label for="country">Country:</label>
+    <input type="text" name="country" id="country" placeholder="United Kingdom">
+
+    <label for="postcode">Postcode:</label>
+    <input type="text" name="postcode" id="postcode" placeholder="SW1A 0AA">
   </section>
 
-  <section class="carddetails">
+  <section class="flexcolumn">
     <label for="sortcode">Sort Code:</label>
-    <input type="text" name="sortcode" id="sortcode">
+    <input type="text" name="sortcode" id="sortcode" placeholder="01-23-45">
 
     <label for="accountnumber">Account Number:</label>
-    <input type="text" name="accountnumber" id="accountnumber">
+    <input type="text" name="accountnumber" id="accountnumber" placeholder="01234567">
 
     <label for="accountname">Account Name:</label>
-    <input type="text" name="accountname" id="accountname">
+    <input type="text" name="accountname" id="accountname" placeholder="John Doe">
   </section>
 </main>
 <%= erb :"common/footer" %>
