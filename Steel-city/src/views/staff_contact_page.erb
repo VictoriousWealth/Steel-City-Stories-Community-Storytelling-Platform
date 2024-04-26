@@ -4,21 +4,24 @@
 
   <main>
       <h2>Contact Form:</h2>
-      <form name="contactusform" action="mailto:tjohnson-martin1@sheffield.ac.uk?subject=FeedbackForm" enctype="text/plain" method="post">
+      <% unless @error.nil? %>
+        <p><strong class="error"><%= @error %></strong></p>
+    <% end %>
+      <form name="contactusform" action="/send-form" method="post">
       <p>
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" placeholder=
-        "Enter your Email" maxlength="40" size="20" required>
+        "Enter your Email" maxlength="40" size="20" value="<%= h @email %>" required>
       </p>
       <p>
         <label for="formember">For:</label>
         <input type="text" name="formember" id="formember"
-        placeholder="Enter what the feedback is for" required>
+        placeholder="Subject matter..." value="<%= h @subject %>" required>
       </p>
       <p>
         <label for="feedback">Feedback:</label>
         <textarea name="feedback" id="feedback"
-        placeholder="Enter your feedback" required></textarea>
+        placeholder="Enter your feedback" value="<%= h @feedback %>" required></textarea>
       </p>
       <p>
         <input type="reset" class="button">

@@ -27,7 +27,8 @@ post "/submit-story" do
         story.genre=@genre
         story.releasedate=Date.today.strftime("%d/%m/%y")
         story.writerid=session["currentuser"]
-        @author = story.writerid
+        sql = "SELECT username FROM users WHERE userid = ?"
+        @author = db.get_first_value(sql,story.writerid)
         @storyID = story.storyid
         story.save_changes
         session["logged_in"] = true
