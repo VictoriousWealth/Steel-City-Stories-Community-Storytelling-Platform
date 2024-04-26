@@ -48,7 +48,7 @@ post "/create-account" do
     @confirm_password = params.fetch("confirm_password","")
     @error = nil
     begin
-      db = SQLite3::Database.new 'database.sqlite3'
+        db = SQLite3::Database.new 'database.sqlite3'
         user=User.new
         numusers=User.all.count()
         user.userid=numusers+1
@@ -75,7 +75,6 @@ post "/create-account" do
         sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
         session["currentuser"] = db.execute(sql,@username)
         redirect "/"
-      end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure

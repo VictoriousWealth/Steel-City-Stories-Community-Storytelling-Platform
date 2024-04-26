@@ -4,7 +4,10 @@
 
   <main>
       <h2>Contact Form:</h2>
-      <form name="contactusform" action="post" enctype="text/plain" method="post">
+      <% unless @error.nil? %>
+        <p><strong class="error"><%= @error %></strong></p>
+    <% end %>
+      <form name="contactusform" action="/send-form" method="post">
       <p>
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" placeholder=

@@ -134,24 +134,21 @@ post "/send-form" do
     email = params.fetch("email", "")
     title = params.fetch("formember", "")
     body = params.fetch("feedback","")
-    @email = params.fetch("email","")
-    @account_type = params.fetch("account_type","")
     @error = nil
     begin
+        db = SQLite3::Database.new 'database.sqlite3'
         contact=StaffContact.new
         numcontacts=StaffContact.all.count()
-        contact.requestid=numcontacts+1
-        if session["currentuser"]!=nil
+        if !session["currentuser"].nil?
+            contact.requestid=numcontacts+1
             contact.userid=session["currentuser"]
+            contact.email=email
+            contact.title=title
+            contact.feedback=body
+            contact.save_changes
         else 
-            contact.userid=0;
+            @error = "Please log in"
         end
-        contact.email=email
-        contact.title=title
-        user.feedback=body
-        contact.save_changes
-        redirect "/"
-      end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
