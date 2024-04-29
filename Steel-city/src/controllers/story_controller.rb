@@ -14,7 +14,7 @@ get "/story-page/:storyid" do
   @blurb = story.blurb
   @genre = story.genre
   @storyID = story.storyid
-  sql = "SELECT username FROM users WHERE userid = ?"
+  #sql = "SELECT username FROM users WHERE userid = ?"
   #@author = db.get_first_value(sql,story.writerid)
   erb :story_page
 end
