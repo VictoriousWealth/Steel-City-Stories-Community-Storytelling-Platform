@@ -140,7 +140,7 @@ end
 
 get "/logout" do
     session.clear
-    erb :home
+    redirect "/"
 end
 
 post "/update-profile" do

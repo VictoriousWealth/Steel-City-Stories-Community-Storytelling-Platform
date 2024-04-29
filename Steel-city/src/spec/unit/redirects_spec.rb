@@ -48,7 +48,7 @@ RSpec.describe "page redirects" do
       context "when clicking on logout" do
         it "redirects you to the home page logged out" do
           get "/logout"
-          expect(last_response.status).to eq(200)
+          expect(last_response.status).to eq(302)
         end
       end
     end

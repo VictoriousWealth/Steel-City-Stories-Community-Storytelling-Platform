@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-04-24T12:51:35+00:00">2024-04-24T12:51:35+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-04-29T01:37:17+00:00">2024-04-29T01:37:17+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  53.78%
+  33.55%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
-       <span class="green">
-         1.83
+       <span class="red">
+         0.9
        </span>
     </span> hits/line
     )
@@ -39,15 +39,15 @@
   <a name="AllFiles"></a>
 
   <div>
-    <b>7</b> files in total.
+    <b>8</b> files in total.
   </div>
 
   <div class="t-line-summary">
-    <b>251</b> relevant lines,
-    <span class="green"><b>135</b> lines covered</span> and
-    <span class="red"><b>116</b> lines missed. </span>
+    <b>304</b> relevant lines,
+    <span class="green"><b>102</b> lines covered</span> and
+    <span class="red"><b>202</b> lines missed. </span>
     (<span class="red">
-  53.78%
+  33.55%
 </span>
 )
   </div>
@@ -83,23 +83,23 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#656df199eeeb35b9c02db77e22b144d078de8abb" class="src_link" title="controllers/general.rb">controllers/general.rb</a></td>
-            <td class="yellow strong cell--number t-file__coverage">84.35 %</td>
-            <td class="cell--number">159</td>
-            <td class="cell--number">115</td>
-            <td class="cell--number">97</td>
-            <td class="cell--number">18</td>
-            <td class="cell--number">3.66</td>
+            <td class="red strong cell--number t-file__coverage">44.44 %</td>
+            <td class="cell--number">204</td>
+            <td class="cell--number">135</td>
+            <td class="cell--number">60</td>
+            <td class="cell--number">75</td>
+            <td class="cell--number">1.73</td>
             
           </tr>
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#ea79c9f95df7e2f9ecb8682a491ae83273e20a4d" class="src_link" title="controllers/staff_controller.rb">controllers/staff_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">13.58 %</td>
-            <td class="cell--number">132</td>
-            <td class="cell--number">81</td>
-            <td class="cell--number">11</td>
-            <td class="cell--number">70</td>
-            <td class="cell--number">0.14</td>
+            <td class="red strong cell--number t-file__coverage">12.00 %</td>
+            <td class="cell--number">158</td>
+            <td class="cell--number">100</td>
+            <td class="cell--number">12</td>
+            <td class="cell--number">88</td>
+            <td class="cell--number">0.12</td>
             
           </tr>
         
@@ -116,12 +116,23 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#570b775bd3ca6a914792909dac054b6cbcb5f794" class="src_link" title="controllers/story_controller.rb">controllers/story_controller.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">16.13 %</td>
-            <td class="cell--number">42</td>
-            <td class="cell--number">31</td>
-            <td class="cell--number">5</td>
-            <td class="cell--number">26</td>
-            <td class="cell--number">0.16</td>
+            <td class="red strong cell--number t-file__coverage">13.95 %</td>
+            <td class="cell--number">57</td>
+            <td class="cell--number">43</td>
+            <td class="cell--number">6</td>
+            <td class="cell--number">37</td>
+            <td class="cell--number">0.14</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#d2c03c488e374f097ea101d3e5e8c18c3da28c5d" class="src_link" title="models/StaffContact.rb">models/StaffContact.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">1.00</td>
             
           </tr>
         
@@ -474,8 +485,8 @@
   <div class="header">
     <h3>controllers/general.rb</h3>
     <h4>
-      <span class="yellow">
-  84.35%
+      <span class="red">
+  44.44%
 </span>
 
       lines covered
@@ -484,9 +495,9 @@
     
 
     <div class="t-line-summary">
-      <b>115</b> relevant lines.
-      <span class="green"><b>97</b> lines covered</span> and
-      <span class="red"><b>18</b> lines missed.</span>
+      <b>135</b> relevant lines.
+      <span class="green"><b>60</b> lines covered</span> and
+      <span class="red"><b>75</b> lines missed.</span>
     </div>
 
     
@@ -574,35 +585,35 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="8">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="8">
+            
             
 
             
 
-            <code class="ruby">  @myTitle = &quot;home&quot;</code>
+            <code class="ruby">  @myTitle = &quot;Home&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="9">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="9">
+            
             
 
             
 
-            <code class="ruby">  erb :home</code>
+            <code class="ruby">  num_stories=Story.all.count() #use if we randomise the home page stories or implement likes into stories and choose most liked</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="10">
+          <li class="missed" data-hits="0" data-linenumber="10">
             
             
 
             
 
-            <code class="ruby">end</code>
+            <code class="ruby">  @stories = Story.all</code>
           </li>
         </div>
       
@@ -613,40 +624,40 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  #@firstID = 1</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="12">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="12">
+            
             
 
             
 
-            <code class="ruby">get &quot;/promotions&quot; do</code>
+            <code class="ruby">  #@secondID = 2</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="13">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="13">
+            
             
 
             
 
-            <code class="ruby">  @myTitle = &quot;Promotional Campaigns&quot;</code>
+            <code class="ruby">  #@thirdID =  3</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="14">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="14">
+            
             
 
             
 
-            <code class="ruby">  erb :promotional_campaigns</code>
+            <code class="ruby">  #@firstTitle = Story.first(storyid: @firstID).title</code>
           </li>
         </div>
       
@@ -657,7 +668,7 @@
 
             
 
-            <code class="ruby">end</code>
+            <code class="ruby">  #@secondTitle = Story.first(storyid: @secondID).title</code>
           </li>
         </div>
       
@@ -668,29 +679,29 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  #@thirdTitle = Story.first(storyid: @thirdID).title</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="17">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="17">
+            
             
 
             
 
-            <code class="ruby">get &quot;/login&quot; do </code>
+            <code class="ruby">  erb :home</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="18">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="18">
+            
             
 
             
 
-            <code class="ruby">    @database = nil</code>
+            <code class="ruby">end</code>
           </li>
         </div>
       
@@ -701,7 +712,7 @@
 
             
 
-            <code class="ruby">    begin </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -712,7 +723,7 @@
 
             
 
-            <code class="ruby">        db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+            <code class="ruby">get &quot;/promotions&quot; do</code>
           </li>
         </div>
       
@@ -723,7 +734,7 @@
 
             
 
-            <code class="ruby">        sql = &quot;SELECT * FROM users&quot;</code>
+            <code class="ruby">  @myTitle = &quot;Promotional Campaigns&quot;</code>
           </li>
         </div>
       
@@ -734,7 +745,7 @@
 
             
 
-            <code class="ruby">        @database = db.execute(sql)</code>
+            <code class="ruby">  erb :promotional_campaigns</code>
           </li>
         </div>
       
@@ -745,29 +756,29 @@
 
             
 
-            <code class="ruby">    rescue SQLite3::Exception =&gt; e</code>
+            <code class="ruby">end</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="24">
+          <li class="never" data-hits="" data-linenumber="24">
             
             
 
             
 
-            <code class="ruby">        @error = &quot;Database error: #{e.message}&quot;</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="25">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="25">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">    ensure</code>
+            
+
+            <code class="ruby">get &quot;/login&quot; do </code>
           </li>
         </div>
       
@@ -778,7 +789,7 @@
 
             
 
-            <code class="ruby">        db.close if db</code>
+            <code class="ruby">    @database = nil</code>
           </li>
         </div>
       
@@ -789,7 +800,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    begin </code>
           </li>
         </div>
       
@@ -800,804 +811,34 @@
 
             
 
-            <code class="ruby">    erb :login_page</code>
+            <code class="ruby">        db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="29">
-            
-            
-
-            
-
-            <code class="ruby">end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="30">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="31">
+          <li class="covered" data-hits="1" data-linenumber="29">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">get &quot;/account-settings&quot; do</code>
+            <code class="ruby">        sql = &quot;SELECT * FROM users&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="32">
+          <li class="covered" data-hits="1" data-linenumber="30">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  @myTitle = &quot;Account Settings&quot;</code>
+            <code class="ruby">        @database = db.execute(sql)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="33">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  erb :account_settings</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="34">
-            
-            
-
-            
-
-            <code class="ruby">end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="35">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="36">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">get &quot;/contact-staff&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="37">
-            
-            
-
-            
-
-            <code class="ruby">  @myTitle = &quot;Account Settings&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="38">
-            
-            
-
-            
-
-            <code class="ruby">  erb :staff_contact_page</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="39">
-            
-            
-
-            
-
-            <code class="ruby">end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="40">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="41">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">get &quot;/create-account&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="42">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  erb :create_account</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="43">
-            
-            
-
-            
-
-            <code class="ruby">end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="44">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="45">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">post &quot;/create-account&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="46">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    @username = params.fetch(&quot;username&quot;, &quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="47">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    @password = params.fetch(&quot;password&quot;, &quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="48">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    @confirm_password = params.fetch(&quot;confirm_password&quot;,&quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="49">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    @dob = params.fetch(&quot;dob&quot;,&quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="50">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    Date.parse(@dob)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="51">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    @email = params.fetch(&quot;email&quot;,&quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="52">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    @account_type = params.fetch(&quot;account_type&quot;,&quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="53">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">    @error = nil</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="54">
-            
-            
-
-            
-
-            <code class="ruby">    begin</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="55">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">      db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="56">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">      sql = &quot;SELECT * FROM users WHERE email = ? LIMIT 1&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="57">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">      check_email = db.execute(sql,@email)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="58">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">      sql = &quot;SELECT * FROM users WHERE username = ? LIMIT 1&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="59">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">      check_username = db.execute(sql, @username)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="10" data-linenumber="60">
-            <span class="hits">10</span>
-            
-
-            
-
-            <code class="ruby">      if !check_username.empty?</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="61">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        @error=&quot;Username already taken&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="62">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">      elsif @password!=@confirm_password</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="63">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        @error=&quot;Ensure that the passwords match&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="8" data-linenumber="64">
-            <span class="hits">8</span>
-            
-
-            
-
-            <code class="ruby">      elsif get_password_strength(@password) &lt; 3</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="65">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        @error=&quot;Password is too weak. Password strength is &quot;+get_password_strength(@password).to_s</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="66">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        +&quot;. Password strength should be at least 3.&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="7" data-linenumber="67">
-            <span class="hits">7</span>
-            
-
-            
-
-            <code class="ruby">      elsif @dob.empty? || Date.parse(@dob) &gt; Date.today - (13 * 365.25)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="68">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        @error=&quot;Invalid Date of Birth&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="6" data-linenumber="69">
-            <span class="hits">6</span>
-            
-
-            
-
-            <code class="ruby">      elsif !check_email.empty?</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="70">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        @error=&quot;Email already in use&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="71">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">      elsif @account_type.empty?</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="72">
-            
-            
-
-            
-
-            <code class="ruby">        @error=&quot;Choose an account type! Reader or Writer.&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="73">
-            
-            
-
-            
-
-            <code class="ruby">      else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="74">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user=User.new</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="75">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        numusers=User.all.count()</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="76">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.userid=numusers+1</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="77">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.username=@username</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="78">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.password=@password</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="79">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.email=@email</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="80">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.dateofbirth=@dob</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="81">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.type=@account_type</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="82">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.premium=0</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="83">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.popcorns=0</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="84">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.activediscount=1</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="85">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.interactions=0</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="86">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        user.save_changes</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="87">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        session[&quot;logged_in&quot;] = true</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="88">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        if @account_type==&quot;reader&quot; then</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="89">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">          session[&quot;type&quot;] = &quot;reader&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="90">
-            
-            
-
-            
-
-            <code class="ruby">        elsif @account_type==&quot;writer&quot; then</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="91">
-            
-            
-
-            
-
-            <code class="ruby">          session[&quot;type&quot;] = &quot;writer&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="92">
-            
-            
-
-            
-
-            <code class="ruby">        elsif @account_type==&quot;admin&quot; then</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="93">
-            
-            
-
-            
-
-            <code class="ruby">          session[&quot;type&quot;] = &quot;admin&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="94">
-            
-            
-
-            
-
-            <code class="ruby">        elsif type==&quot;manager&quot; then</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="95">
-            
-            
-
-            
-
-            <code class="ruby">          session[&quot;type&quot;] = &quot;manager&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="96">
-            
-            
-
-            
-
-            <code class="ruby">        end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="97">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        sql = &quot;SELECT userid FROM users WHERE username = ? LIMIT 1&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="98">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        session[&quot;currentuser&quot;] = db.execute(sql,@username)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="99">
-            <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">        redirect &quot;/&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="100">
-            
-            
-
-            
-
-            <code class="ruby">      end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="101">
+          <li class="never" data-hits="" data-linenumber="31">
             
             
 
@@ -1608,18 +849,18 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="102">
+          <li class="missed" data-hits="0" data-linenumber="32">
             
             
 
             
 
-            <code class="ruby">      @error = &quot;Database error: #{e.message}&quot;</code>
+            <code class="ruby">        @error = &quot;Database error: #{e.message}&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="103">
+          <li class="never" data-hits="" data-linenumber="33">
             
             
 
@@ -1630,18 +871,18 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="10" data-linenumber="104">
-            <span class="hits">10</span>
+          <li class="covered" data-hits="1" data-linenumber="34">
+            <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      db.close if db</code>
+            <code class="ruby">        db.close if db</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="105">
+          <li class="never" data-hits="" data-linenumber="35">
             
             
 
@@ -1652,8 +893,613 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="5" data-linenumber="106">
-            <span class="hits">5</span>
+          <li class="covered" data-hits="1" data-linenumber="36">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    erb :login_page</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="37">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="38">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="39">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">get &quot;/account-settings&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="40">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  @myTitle = &quot;Account Settings&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="41">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  erb :account_settings</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="42">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="43">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="44">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">get &quot;/contact-staff&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="45">
+            
+            
+
+            
+
+            <code class="ruby">  @myTitle = &quot;Account Settings&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="46">
+            
+            
+
+            
+
+            <code class="ruby">  erb :staff_contact_page</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="47">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="48">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="49">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">get &quot;/create-account&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="50">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  erb :create_account</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="51">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="52">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="53">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">post &quot;/create-account&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="54">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">    @username = params.fetch(&quot;username&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="55">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">    @password = params.fetch(&quot;password&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="56">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">    @confirm_password = params.fetch(&quot;confirm_password&quot;,&quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="57">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">    @error = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="58">
+            
+            
+
+            
+
+            <code class="ruby">    begin</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="59">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="60">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user=User.new</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="61">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        numusers=User.all.count()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="62">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.userid=numusers+1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="63">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.username=@username</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="64">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.password=@password</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="65">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.email=@email</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="66">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.dateofbirth=@dob</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="67">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.type=@account_type</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="68">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.premium=0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="69">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.popcorns=0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="70">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.activediscount=1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="71">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.interactions=0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="72">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        user.save_changes</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="73">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        session[&quot;logged_in&quot;] = true</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="74">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        if @account_type==&quot;reader&quot; then</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="75">
+            
+            
+
+            
+
+            <code class="ruby">          session[&quot;type&quot;] = &quot;reader&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="76">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        elsif @account_type==&quot;writer&quot; then</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="77">
+            
+            
+
+            
+
+            <code class="ruby">          session[&quot;type&quot;] = &quot;writer&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="78">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        elsif @account_type==&quot;admin&quot; then</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="79">
+            
+            
+
+            
+
+            <code class="ruby">          session[&quot;type&quot;] = &quot;admin&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="80">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">        elsif type==&quot;manager&quot; then</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="81">
+            
+            
+
+            
+
+            <code class="ruby">          session[&quot;type&quot;] = &quot;manager&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="82">
+            
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="83">
+            
+            
+
+            
+
+            <code class="ruby">        sql = &quot;SELECT userid FROM users WHERE username = ? LIMIT 1&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="84">
+            
+            
+
+            
+
+            <code class="ruby">        session[&quot;currentuser&quot;] = db.execute(sql,@username)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="85">
+            
+            
+
+            
+
+            <code class="ruby">        redirect &quot;/&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="86">
+            
+            
+
+            
+
+            <code class="ruby">    rescue SQLite3::Exception =&gt; e</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="87">
+            
+            
+
+            
+
+            <code class="ruby">      @error = &quot;Database error: #{e.message}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="88">
+            
+            
+
+            
+
+            <code class="ruby">    ensure</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="89">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">      db.close if db</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="90">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="91">
+            
             
 
             
@@ -1663,13 +1509,178 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="107">
+          <li class="never" data-hits="" data-linenumber="92">
             
             
 
             
 
             <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="93">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="94">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">def get_password_strength(password)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="95">
+            
+            
+
+            
+
+            <code class="ruby">  strength = 0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="96">
+            
+            
+
+            
+
+            <code class="ruby">  strength += 1 if password.length &gt;= 8</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="97">
+            
+            
+
+            
+
+            <code class="ruby">  strength += 1 if password.match?(/[A-Z]/)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="98">
+            
+            
+
+            
+
+            <code class="ruby">  strength += 1 if password.match?(/[a-z]/)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="99">
+            
+            
+
+            
+
+            <code class="ruby">  strength += 1 if password.match?(/\d/)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="100">
+            
+            
+
+            
+
+            <code class="ruby">  strength += 1 if password.match?(/[!@#$%^&amp;*]/)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="101">
+            
+            
+
+            
+
+            <code class="ruby">  strength</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="102">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="103">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="104">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">post &quot;/login&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="105">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    @username = params.fetch(&quot;username&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="106">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    @password = params.fetch(&quot;password&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="107">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    @error = nil</code>
           </li>
         </div>
       
@@ -1685,173 +1696,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="109">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">def get_password_strength(password)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="110">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">  strength = 0</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="111">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">  strength += 1 if password.length &gt;= 8</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="112">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">  strength += 1 if password.match?(/[A-Z]/)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="113">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">  strength += 1 if password.match?(/[a-z]/)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="114">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">  strength += 1 if password.match?(/\d/)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="115">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">  strength += 1 if password.match?(/[!@#$%^&amp;*]/)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="116">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">  strength</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="117">
-            
-            
-
-            
-
-            <code class="ruby">end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="118">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="119">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">post &quot;/login&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="4" data-linenumber="120">
-            <span class="hits">4</span>
-            
-
-            
-
-            <code class="ruby">    @username = params.fetch(&quot;username&quot;, &quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="4" data-linenumber="121">
-            <span class="hits">4</span>
-            
-
-            
-
-            <code class="ruby">    @password = params.fetch(&quot;password&quot;, &quot;&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="4" data-linenumber="122">
-            <span class="hits">4</span>
-            
-
-            
-
-            <code class="ruby">    @error = nil</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="123">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="4" data-linenumber="124">
-            <span class="hits">4</span>
+          <li class="covered" data-hits="2" data-linenumber="109">
+            <span class="hits">2</span>
             
 
             
@@ -1861,8 +1707,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="125">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="1" data-linenumber="110">
+            <span class="hits">1</span>
             
 
             
@@ -1872,7 +1718,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="126">
+          <li class="never" data-hits="" data-linenumber="111">
             
             
 
@@ -1883,8 +1729,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="127">
-            <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="112">
+            
             
 
             
@@ -1894,8 +1740,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="128">
-            <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="113">
+            
             
 
             
@@ -1905,7 +1751,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="129">
+          <li class="never" data-hits="" data-linenumber="114">
             
             
 
@@ -1916,8 +1762,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="130">
-            <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="115">
+            
             
 
             
@@ -1927,8 +1773,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="131">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="116">
+            
             
 
             
@@ -1938,7 +1784,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="132">
+          <li class="never" data-hits="" data-linenumber="117">
             
             
 
@@ -1949,8 +1795,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="133">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="118">
+            
             
 
             
@@ -1960,8 +1806,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="134">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="119">
+            
             
 
             
@@ -1971,7 +1817,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="135">
+          <li class="missed" data-hits="0" data-linenumber="120">
             
             
 
@@ -1982,7 +1828,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="136">
+          <li class="missed" data-hits="0" data-linenumber="121">
             
             
 
@@ -1993,7 +1839,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="137">
+          <li class="missed" data-hits="0" data-linenumber="122">
             
             
 
@@ -2004,7 +1850,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="138">
+          <li class="missed" data-hits="0" data-linenumber="123">
             
             
 
@@ -2015,7 +1861,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="139">
+          <li class="missed" data-hits="0" data-linenumber="124">
             
             
 
@@ -2026,7 +1872,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="140">
+          <li class="missed" data-hits="0" data-linenumber="125">
             
             
 
@@ -2037,7 +1883,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="141">
+          <li class="never" data-hits="" data-linenumber="126">
             
             
 
@@ -2048,8 +1894,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="142">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="127">
+            
             
 
             
@@ -2059,8 +1905,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="143">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="128">
+            
             
 
             
@@ -2070,7 +1916,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="144">
+          <li class="never" data-hits="" data-linenumber="129">
             
             
 
@@ -2081,8 +1927,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="145">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="130">
+            
             
 
             
@@ -2092,7 +1938,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="146">
+          <li class="never" data-hits="" data-linenumber="131">
             
             
 
@@ -2103,7 +1949,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="147">
+          <li class="never" data-hits="" data-linenumber="132">
             
             
 
@@ -2114,7 +1960,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="148">
+          <li class="covered" data-hits="1" data-linenumber="133">
             <span class="hits">1</span>
             
 
@@ -2125,7 +1971,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="149">
+          <li class="never" data-hits="" data-linenumber="134">
             
             
 
@@ -2136,7 +1982,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="150">
+          <li class="never" data-hits="" data-linenumber="135">
             
             
 
@@ -2147,7 +1993,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="151">
+          <li class="covered" data-hits="1" data-linenumber="136">
             <span class="hits">1</span>
             
 
@@ -2158,7 +2004,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="152">
+          <li class="never" data-hits="" data-linenumber="137">
             
             
 
@@ -2169,8 +2015,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="153">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="2" data-linenumber="138">
+            <span class="hits">2</span>
             
 
             
@@ -2180,7 +2026,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="154">
+          <li class="never" data-hits="" data-linenumber="139">
             
             
 
@@ -2191,7 +2037,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="155">
+          <li class="never" data-hits="" data-linenumber="140">
             
             
 
@@ -2202,7 +2048,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="156">
+          <li class="covered" data-hits="1" data-linenumber="141">
             <span class="hits">1</span>
             
 
@@ -2213,8 +2059,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="157">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="1" data-linenumber="142">
+            <span class="hits">1</span>
             
 
             
@@ -2224,18 +2070,678 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="158">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="1" data-linenumber="143">
+            <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    erb :home</code>
+            <code class="ruby">    redirect &quot;/&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="159">
+          <li class="never" data-hits="" data-linenumber="144">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="145">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="146">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">post &quot;/update-profile&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="147">
+            
+            
+
+            
+
+            <code class="ruby">    @username = params.fetch(&quot;username&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="148">
+            
+            
+
+            
+
+            <code class="ruby">    @email = params.fetch(&quot;email&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="149">
+            
+            
+
+            
+
+            <code class="ruby">    @error = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="150">
+            
+            
+
+            
+
+            <code class="ruby">    begin</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="151">
+            
+            
+
+            
+
+            <code class="ruby">    db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="152">
+            
+            
+
+            
+
+            <code class="ruby">    sql = &quot;UPDATE users SET username = ?, email = ? WHERE userid = ?&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="153">
+            
+            
+
+            
+
+            <code class="ruby">    db.execute(sql,@username,@email,session[&quot;currentuser&quot;])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="154">
+            
+            
+
+            
+
+            <code class="ruby">  rescue SQLite3::Exception =&gt; e</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="155">
+            
+            
+
+            
+
+            <code class="ruby">    @error = &quot;Database error: #{e.message}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="156">
+            
+            
+
+            
+
+            <code class="ruby">  ensure</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="157">
+            
+            
+
+            
+
+            <code class="ruby">    db.close if db</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="158">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="159">
+            
+            
+
+            
+
+            <code class="ruby">  erb :account_settings</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="160">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="161">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="162">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">post &quot;/change-password&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="163">
+            
+            
+
+            
+
+            <code class="ruby">  @currentpassword = params.fetch(&quot;currentPassword&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="164">
+            
+            
+
+            
+
+            <code class="ruby">  @newpassword = params.fetch(&quot;newPassword&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="165">
+            
+            
+
+            
+
+            <code class="ruby">  @confirmpassword = params.fetch(&quot;confirmPassword&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="166">
+            
+            
+
+            
+
+            <code class="ruby">  @error=nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="167">
+            
+            
+
+            
+
+            <code class="ruby">  begin</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="168">
+            
+            
+
+            
+
+            <code class="ruby">    db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="169">
+            
+            
+
+            
+
+            <code class="ruby">    sql = &quot;SELECT password FROM users WHERE userid = ? ORDER BY userid LIMIT 1&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="170">
+            
+            
+
+            
+
+            <code class="ruby">    @checkpass=db.get_first_value(sql,session[&quot;currentuser&quot;])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="171">
+            
+            
+
+            
+
+            <code class="ruby">    if @checkpass!=@currentpassword</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="172">
+            
+            
+
+            
+
+            <code class="ruby">      @error=&quot;Passwords Incorrect&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="173">
+            
+            
+
+            
+
+            <code class="ruby">    elsif @newpassword!=@confirmpassword</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="174">
+            
+            
+
+            
+
+            <code class="ruby">      @error=&quot;Passwords do not match&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="175">
+            
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="176">
+            
+            
+
+            
+
+            <code class="ruby">      sql = &quot;UPDATE users SET password = ? WHERE userid = ?&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="177">
+            
+            
+
+            
+
+            <code class="ruby">      db.execute(sql,@newpassword,session[&quot;currentuser&quot;])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="178">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="179">
+            
+            
+
+            
+
+            <code class="ruby">  rescue SQLite3::Exception =&gt; e</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="180">
+            
+            
+
+            
+
+            <code class="ruby">    @error = &quot;Database error: #{e.message}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="181">
+            
+            
+
+            
+
+            <code class="ruby">  ensure</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="182">
+            
+            
+
+            
+
+            <code class="ruby">    db.close if db</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="183">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="184">
+            
+            
+
+            
+
+            <code class="ruby">  erb :account_settings</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="185">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="186">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="187">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">post &quot;/delete-self&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="188">
+            
+            
+
+            
+
+            <code class="ruby">  @error=nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="189">
+            
+            
+
+            
+
+            <code class="ruby">  begin</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="190">
+            
+            
+
+            
+
+            <code class="ruby">    if session[&quot;currentuser&quot;].nil?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="191">
+            
+            
+
+            
+
+            <code class="ruby">        @error=&quot;Usernot logged in&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="192">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="193">
+            
+            
+
+            
+
+            <code class="ruby">  db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="194">
+            
+            
+
+            
+
+            <code class="ruby">  sql = &quot;DELETE FROM users WHERE userid = ?&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="195">
+            
+            
+
+            
+
+            <code class="ruby">  db.execute(sql,session[&quot;currentuser&quot;])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="196">
+            
+            
+
+            
+
+            <code class="ruby">rescue SQLite3::Exception =&gt; e</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="197">
+            
+            
+
+            
+
+            <code class="ruby">  @error = &quot;Database error: #{e.message}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="198">
+            
+            
+
+            
+
+            <code class="ruby">ensure</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="199">
+            
+            
+
+            
+
+            <code class="ruby">  db.close if db</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="200">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="201">
+            
+            
+
+            
+
+            <code class="ruby">session.clear</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="202">
+            
+            
+
+            
+
+            <code class="ruby">redirect &quot;/&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="203">
+            
+            
+
+            
+
+            <code class="ruby">erb :account_settings</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="204">
             
             
 
@@ -2255,7 +2761,7 @@
     <h3>controllers/staff_controller.rb</h3>
     <h4>
       <span class="red">
-  13.58%
+  12.0%
 </span>
 
       lines covered
@@ -2264,9 +2770,9 @@
     
 
     <div class="t-line-summary">
-      <b>81</b> relevant lines.
-      <span class="green"><b>11</b> lines covered</span> and
-      <span class="red"><b>70</b> lines missed.</span>
+      <b>100</b> relevant lines.
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>88</b> lines missed.</span>
     </div>
 
     
@@ -3728,6 +4234,292 @@
           </li>
         </div>
       
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="133">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">post &quot;/send-form&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="134">
+            
+            
+
+            
+
+            <code class="ruby">    email = params.fetch(&quot;email&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="135">
+            
+            
+
+            
+
+            <code class="ruby">    title = params.fetch(&quot;formember&quot;, &quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="136">
+            
+            
+
+            
+
+            <code class="ruby">    body = params.fetch(&quot;feedback&quot;,&quot;&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="137">
+            
+            
+
+            
+
+            <code class="ruby">    @error = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="138">
+            
+            
+
+            
+
+            <code class="ruby">    begin</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="139">
+            
+            
+
+            
+
+            <code class="ruby">        db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="140">
+            
+            
+
+            
+
+            <code class="ruby">        contact=StaffContact.new</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="141">
+            
+            
+
+            
+
+            <code class="ruby">        numcontacts=StaffContact.all.count()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="142">
+            
+            
+
+            
+
+            <code class="ruby">        if !session[&quot;currentuser&quot;].nil?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="143">
+            
+            
+
+            
+
+            <code class="ruby">            contact.requestid=numcontacts+1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="144">
+            
+            
+
+            
+
+            <code class="ruby">            contact.userid=session[&quot;currentuser&quot;]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="145">
+            
+            
+
+            
+
+            <code class="ruby">            contact.email=email</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="146">
+            
+            
+
+            
+
+            <code class="ruby">            contact.title=title</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="147">
+            
+            
+
+            
+
+            <code class="ruby">            contact.feedback=body</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="148">
+            
+            
+
+            
+
+            <code class="ruby">            contact.save_changes</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="149">
+            
+            
+
+            
+
+            <code class="ruby">        else </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="150">
+            
+            
+
+            
+
+            <code class="ruby">            @error = &quot;Please log in&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="151">
+            
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="152">
+            
+            
+
+            
+
+            <code class="ruby">    rescue SQLite3::Exception =&gt; e</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="153">
+            
+            
+
+            
+
+            <code class="ruby">      @error = &quot;Database error: #{e.message}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="154">
+            
+            
+
+            
+
+            <code class="ruby">    ensure</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="155">
+            
+            
+
+            
+
+            <code class="ruby">      db.close if db</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="156">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="157">
+            
+            
+
+            
+
+            <code class="ruby">    erb :staff_contact_page</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="158">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
     </ol>
   </pre>
 </div>
@@ -3901,7 +4693,7 @@
     <h3>controllers/story_controller.rb</h3>
     <h4>
       <span class="red">
-  16.13%
+  13.95%
 </span>
 
       lines covered
@@ -3910,9 +4702,9 @@
     
 
     <div class="t-line-summary">
-      <b>31</b> relevant lines.
-      <span class="green"><b>5</b> lines covered</span> and
-      <span class="red"><b>26</b> lines missed.</span>
+      <b>43</b> relevant lines.
+      <span class="green"><b>6</b> lines covered</span> and
+      <span class="red"><b>37</b> lines missed.</span>
     </div>
 
     
@@ -4006,7 +4798,7 @@
 
             
 
-            <code class="ruby">post &quot;/submit-story&quot; do</code>
+            <code class="ruby">get &quot;/story-page/:storyid&quot; do</code>
           </li>
         </div>
       
@@ -4017,7 +4809,7 @@
 
             
 
-            <code class="ruby">    @title = params.fetch(&quot;story-title&quot;, &quot;&quot;)</code>
+            <code class="ruby">  story_id = params[:storyid].to_i</code>
           </li>
         </div>
       
@@ -4028,7 +4820,7 @@
 
             
 
-            <code class="ruby">    @body = params.fetch(&quot;story-content&quot;, &quot;&quot;)</code>
+            <code class="ruby">  story = Story[storyid: story_id]</code>
           </li>
         </div>
       
@@ -4039,7 +4831,7 @@
 
             
 
-            <code class="ruby">    @genre = params.fetch(&quot;genre&quot;,&quot;&quot;)</code>
+            <code class="ruby">  @title = story.title</code>
           </li>
         </div>
       
@@ -4050,7 +4842,7 @@
 
             
 
-            <code class="ruby">    @blurb = params.fetch(&quot;blurb-content&quot;,&quot;&quot;)</code>
+            <code class="ruby">  @body = story.content</code>
           </li>
         </div>
       
@@ -4061,7 +4853,7 @@
 
             
 
-            <code class="ruby">    @price = params.fetch(&quot;price&quot;,&quot;&quot;)</code>
+            <code class="ruby">  @price = story.price</code>
           </li>
         </div>
       
@@ -4072,7 +4864,7 @@
 
             
 
-            <code class="ruby">    @error = nil</code>
+            <code class="ruby">  @blurb = story.blurb</code>
           </li>
         </div>
       
@@ -4083,7 +4875,7 @@
 
             
 
-            <code class="ruby">    if @price.to_f==0.0</code>
+            <code class="ruby">  @genre = story.genre</code>
           </li>
         </div>
       
@@ -4094,18 +4886,18 @@
 
             
 
-            <code class="ruby">        @error=&quot;Invalid price&quot;</code>
+            <code class="ruby">  @storyID = story.storyid</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="17">
+          <li class="missed" data-hits="0" data-linenumber="17">
             
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">  sql = &quot;SELECT username FROM users WHERE userid = ?&quot;</code>
           </li>
         </div>
       
@@ -4116,7 +4908,7 @@
 
             
 
-            <code class="ruby">    begin</code>
+            <code class="ruby">  #@author = db.get_first_value(sql,story.writerid)</code>
           </li>
         </div>
       
@@ -4127,40 +4919,40 @@
 
             
 
-            <code class="ruby">      db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+            <code class="ruby">  erb :story_page</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="20">
+          <li class="never" data-hits="" data-linenumber="20">
             
             
 
             
 
-            <code class="ruby">        story=Story.new</code>
+            <code class="ruby">end</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="21">
+          <li class="never" data-hits="" data-linenumber="21">
             
             
 
             
 
-            <code class="ruby">        numstories=Story.all.count()</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="22">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="22">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">        story.storyid=numstories+1</code>
+            
+
+            <code class="ruby">post &quot;/submit-story&quot; do</code>
           </li>
         </div>
       
@@ -4171,7 +4963,7 @@
 
             
 
-            <code class="ruby">        story.title=@title</code>
+            <code class="ruby">    @title = params.fetch(&quot;story-title&quot;, &quot;&quot;)</code>
           </li>
         </div>
       
@@ -4182,7 +4974,7 @@
 
             
 
-            <code class="ruby">        story.content=@body</code>
+            <code class="ruby">    @body = params.fetch(&quot;story-content&quot;, &quot;&quot;)</code>
           </li>
         </div>
       
@@ -4193,7 +4985,7 @@
 
             
 
-            <code class="ruby">        story.price=@price.to_f</code>
+            <code class="ruby">    @genre = params.fetch(&quot;genre&quot;,&quot;&quot;)</code>
           </li>
         </div>
       
@@ -4204,7 +4996,7 @@
 
             
 
-            <code class="ruby">        story.blurb=@blurb</code>
+            <code class="ruby">    @blurb = params.fetch(&quot;blurb-content&quot;,&quot;&quot;)</code>
           </li>
         </div>
       
@@ -4215,7 +5007,7 @@
 
             
 
-            <code class="ruby">        story.genre=@genre</code>
+            <code class="ruby">    @price = params.fetch(&quot;price&quot;,&quot;&quot;)</code>
           </li>
         </div>
       
@@ -4226,7 +5018,7 @@
 
             
 
-            <code class="ruby">        story.releasedate=Date.today.strftime(&quot;%d/%m/%y&quot;)</code>
+            <code class="ruby">    @error = nil</code>
           </li>
         </div>
       
@@ -4237,7 +5029,7 @@
 
             
 
-            <code class="ruby">        story.writerid=session[&quot;currentuser&quot;]</code>
+            <code class="ruby">    if @price.to_f==0.0</code>
           </li>
         </div>
       
@@ -4248,100 +5040,12 @@
 
             
 
-            <code class="ruby">        @author = story.writerid</code>
+            <code class="ruby">        @error=&quot;Invalid price&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="31">
-            
-            
-
-            
-
-            <code class="ruby">        @storyID = story.storyid</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="32">
-            
-            
-
-            
-
-            <code class="ruby">        story.save_changes</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="33">
-            
-            
-
-            
-
-            <code class="ruby">        session[&quot;logged_in&quot;] = true</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="34">
-            
-            
-
-            
-
-            <code class="ruby">        </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="35">
-            
-            
-
-            
-
-            <code class="ruby">    rescue SQLite3::Exception =&gt; e</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="36">
-            
-            
-
-            
-
-            <code class="ruby">      @error = &quot;Database error: #{e.message}&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="37">
-            
-            
-
-            
-
-            <code class="ruby">    ensure</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="38">
-            
-            
-
-            
-
-            <code class="ruby">      db.close if db</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="39">
+          <li class="never" data-hits="" data-linenumber="31">
             
             
 
@@ -4352,13 +5056,101 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="40">
+          <li class="never" data-hits="" data-linenumber="32">
             
             
 
             
 
-            <code class="ruby">    #should redirect to relevant story page</code>
+            <code class="ruby">    begin</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="33">
+            
+            
+
+            
+
+            <code class="ruby">      db = SQLite3::Database.new &#39;database.sqlite3&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="34">
+            
+            
+
+            
+
+            <code class="ruby">        story=Story.new</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="35">
+            
+            
+
+            
+
+            <code class="ruby">        numstories=Story.all.count()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="36">
+            
+            
+
+            
+
+            <code class="ruby">        story.storyid=numstories+1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="37">
+            
+            
+
+            
+
+            <code class="ruby">        story.title=@title</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="38">
+            
+            
+
+            
+
+            <code class="ruby">        story.content=@body</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="39">
+            
+            
+
+            
+
+            <code class="ruby">        story.price=@price.to_f</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="40">
+            
+            
+
+            
+
+            <code class="ruby">        story.blurb=@blurb</code>
           </li>
         </div>
       
@@ -4369,12 +5161,252 @@
 
             
 
+            <code class="ruby">        story.genre=@genre</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="42">
+            
+            
+
+            
+
+            <code class="ruby">        story.releasedate=Date.today.strftime(&quot;%d/%m/%y&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="43">
+            
+            
+
+            
+
+            <code class="ruby">        story.writerid=session[&quot;currentuser&quot;]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="44">
+            
+            
+
+            
+
+            <code class="ruby">        sql = &quot;SELECT username FROM users WHERE userid = ?&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="45">
+            
+            
+
+            
+
+            <code class="ruby">        @author = db.get_first_value(sql,story.writerid)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="46">
+            
+            
+
+            
+
+            <code class="ruby">        @storyID = story.storyid</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="47">
+            
+            
+
+            
+
+            <code class="ruby">        story.save_changes</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="48">
+            
+            
+
+            
+
+            <code class="ruby">        session[&quot;logged_in&quot;] = true</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="49">
+            
+            
+
+            
+
+            <code class="ruby">        </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="50">
+            
+            
+
+            
+
+            <code class="ruby">    rescue SQLite3::Exception =&gt; e</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="51">
+            
+            
+
+            
+
+            <code class="ruby">      @error = &quot;Database error: #{e.message}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="52">
+            
+            
+
+            
+
+            <code class="ruby">    ensure</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="53">
+            
+            
+
+            
+
+            <code class="ruby">      db.close if db</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="54">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="55">
+            
+            
+
+            
+
+            <code class="ruby">    #should redirect to relevant story page</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="56">
+            
+            
+
+            
+
             <code class="ruby">    erb :story_page</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="never" data-hits="" data-linenumber="57">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="d2c03c488e374f097ea101d3e5e8c18c3da28c5d">
+  <div class="header">
+    <h3>models/StaffContact.rb</h3>
+    <h4>
+      <span class="green">
+  100.0%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>2</b> relevant lines.
+      <span class="green"><b>2</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="1">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">require &quot;require_all&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="2">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="3">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">class StaffContact &lt; Sequel::Model</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="4">
             
             
 
