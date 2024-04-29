@@ -103,6 +103,10 @@ Author: Myron Sukhanov
     display: block;
     margin: auto;
   }
+
+  .container {
+    border: solid black;
+  }
   
   .search-bar {
     display: flex;

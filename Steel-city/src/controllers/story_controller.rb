@@ -5,6 +5,20 @@ get "/create-story" do
   erb :writing_story_page
 end
 
+get "/story-page/:storyid" do
+  story_id = params[:storyid].to_i
+  story = Story[storyid: story_id]
+  @title = story.title
+  @body = story.content
+  @price = story.price
+  @blurb = story.blurb
+  @genre = story.genre
+  @storyID = story.storyid
+  sql = "SELECT username FROM users WHERE userid = ?"
+  #@author = db.get_first_value(sql,story.writerid)
+  erb :story_page
+end
+
 post "/submit-story" do
     @title = params.fetch("story-title", "")
     @body = params.fetch("story-content", "")
