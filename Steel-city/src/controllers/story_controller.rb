@@ -14,8 +14,17 @@ get "/story-page/:storyid" do
   @blurb = story.blurb
   @genre = story.genre
   @storyID = story.storyid
-  #sql = "SELECT username FROM users WHERE userid = ?"
-  #@author = db.get_first_value(sql,story.writerid)
+
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT username FROM users WHERE userid = ?"
+      @author = db.get_first_value(sql,story.writerid)
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  
   erb :story_page
 end
 
