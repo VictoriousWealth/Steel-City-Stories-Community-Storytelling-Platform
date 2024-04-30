@@ -11,7 +11,10 @@
       <h2>1000 Popcorns</h2>
       <p>Cheapest Deal!</p>
       <p>Price: $19.99</p>
-      <input type="button" value="Add to cart">
+      <form method="post" action="/additem">
+        <input type="submit" value="Add to cart">
+      </form>
+      <p><%= @items %></p>
     </section>
 
     <section class="product">
