@@ -1,0 +1,11 @@
+<%= erb :"common/header" %>
+    <article>
+        <h1>User Tickets:</h1>
+    </article>
+    <main class=home>
+    <% unless @error.nil? %>
+        <p><strong class="error"><%= @error %></strong></p>
+    <% end %>
+    <% for 
+    %>
+    </main>

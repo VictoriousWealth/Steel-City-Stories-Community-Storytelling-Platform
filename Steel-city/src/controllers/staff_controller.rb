@@ -156,3 +156,15 @@ post "/send-form" do
     end
     erb :staff_contact_page
 end
+
+def get_tickets
+  @error = nil
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "SELECT * FROM staff_contacts"
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+end
