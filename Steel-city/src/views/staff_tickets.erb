@@ -1,0 +1,25 @@
+<%= erb :"common/header" %>
+    <article>
+        <h1>User Tickets:</h1>
+    </article>
+    <main class=home>
+    <% unless @error.nil? %>
+        <p><strong class="error"><%= @error %></strong></p>
+    <% end %>
+<% if @staff_contacts.nil? %>
+  <% @staff_contacts.each do |contact| %>
+    <div>
+    <p>ID: <%= contact.requestid %></p>
+    <p>User: <%= contact.userid %></p>
+    <p>Email: <%= contact.email %></p>
+    <p>Email: <%= contact.email %></p>
+    <p>Title: <%= contact.title %></p>
+    <p>Feedback: <%= contact.feedback %></p>
+  </div>
+<% end %>
+<% else %>
+  <p>No staff contacts found.</p>
+<% end %>
+    </main>
+<%= erb :"common/footer" %>
+    

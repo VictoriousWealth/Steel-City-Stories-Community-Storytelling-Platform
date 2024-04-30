@@ -1,6 +1,7 @@
 <%= erb :"common/header" %>
     <article>
         <h1>Staff Actions:</h1>
+        <h3><a href="/staff-tickets">View Tickets</a><h3>
     </article>
     <main class=home>
     <% unless @error.nil? %>
@@ -47,3 +48,4 @@
     </form>
     <% end %>
     </main>
+<%= erb :"common/footer" %>

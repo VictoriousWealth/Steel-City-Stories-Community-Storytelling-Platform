@@ -5,6 +5,10 @@ get "/staff-actions" do
   erb :staff_actions
 end
 
+get "/staff-tickets" do
+  @myTitle = "Staff Tickets"
+  erb :staff_tickets
+end
 
 post "/find-user" do
     @chosenusername = params.fetch("username","")
@@ -161,10 +165,11 @@ def get_tickets
   @error = nil
   begin
     db = SQLite3::Database.new 'database.sqlite3'
-    sql = "SELECT * FROM staff_contacts"
-    rescue SQLite3::Exception => e
-      @error = "Database error: #{e.message}"
-    ensure
-      db.close if db
-    end
+    sql = "SELECT * FROM staff_contact"
+    @staff_contacts = db.execute(sql)
+rescue SQLite3::Exception => e
+  @error = "Database error: #{e.message}"
+ensure
+  db.close if db
+end
 end
