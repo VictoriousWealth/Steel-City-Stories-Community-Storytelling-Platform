@@ -1,7 +1,6 @@
-<% myTitle = "Ca" %>
 <%= erb :"common/header" %>
 
-<h1 class = "title">Cart</h1>
+<h1 class = "title"><%= @myTitle %></h1>
 
 <main>
   <section class="flexcolumn">
@@ -30,6 +29,11 @@
 
     <label for="accountname">Account Name:</label>
     <input type="text" name="accountname" id="accountname" placeholder="John Doe">
+  </section>
+
+  <section class="flexrow">
+    <input type="reset" value="Reset">
+    <input type="submit" value="Pay">
   </section>
 </main>
 <%= erb :"common/footer" %>
