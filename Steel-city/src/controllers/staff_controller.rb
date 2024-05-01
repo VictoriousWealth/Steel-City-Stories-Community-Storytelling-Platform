@@ -169,11 +169,11 @@ def get_tickets
     result = db.execute(sql)
     @staff_contacts = result.map do |row|
       {
-        requestid: row[0],  # Assuming requestid is the first column
-        userid: row[1],     # Assuming userid is the second column
-        email: row[2],      # Assuming email is the third column
-        title: row[3],      # Assuming title is the fourth column
-        feedback: row[4]    # Assuming feedback is the fifth column
+        requestid: row[0],  
+        userid: row[1],     
+        email: row[2],      
+        title: row[3],      
+        feedback: row[4]    
       }
     end
     p @staff_contacts

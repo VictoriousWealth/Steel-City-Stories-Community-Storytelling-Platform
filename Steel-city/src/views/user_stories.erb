@@ -6,7 +6,6 @@
   <% unless @error.nil? %>
     <p><strong class="error"><%= @error %></strong></p>
   <% end %>
-  <% get_stories %>
   <% if @story_list.nil? || @story_list.empty? %>
     <p>User has no stories</p>
   <% else %>
