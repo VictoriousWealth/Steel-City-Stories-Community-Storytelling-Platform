@@ -5,9 +5,22 @@ get "/create-story" do
   erb :writing_story_page
 end
 
+post "/buy-story" do
+  
+end
+
 get "/story-page/:storyid" do
+
   story_id = params[:storyid].to_i
   story = Story[storyid: story_id]
+
+  if session["logged_in"] then
+    @user_id = session["currentuser"]
+  end
+  if session["logged_in"] && BoughtStory.entry_exists?(story_id, user_id) then
+    @bought_story = true
+  end
+
   @title = story.title
   @body = story.content
   @price = story.price
@@ -24,7 +37,7 @@ get "/story-page/:storyid" do
   ensure
     db.close if db
   end
-  
+
   erb :story_page
 end
 

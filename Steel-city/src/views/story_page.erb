@@ -5,7 +5,13 @@
       <h1 class = "title"><%= @title %></h1>
       <% if not session["logged_in"] %>
         <p>Blurb: <%= @blurb %><p>
-      <% elsif session["logged_in"] && %>
+      <% elsif session["logged_in"] && !@bought_story%>
+        <p>Blurb: <%= @blurb %><p>
+        <form action="/buy-story" method="post">
+          <input type="hidden" name="story_id" value="<%= @storyID %>">
+          <button type="submit">Buy Story</button>
+        </form>
+      <% end %>
       <p>StoryID: <%= @storyID %></p>
       <p>Author: <%= @author %></p>
       <p><%= @body %></p>
