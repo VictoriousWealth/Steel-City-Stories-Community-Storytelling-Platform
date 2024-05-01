@@ -17,7 +17,7 @@ get "/story-page/:storyid" do
   if session["logged_in"] then
     @user_id = session["currentuser"]
   end
-  if session["logged_in"] && BoughtStory.entry_exists?(story_id, user_id) then
+  if session["logged_in"] && BoughtStory.entry_exists?(story_id, @user_id) then
     @bought_story = true
   end
 
