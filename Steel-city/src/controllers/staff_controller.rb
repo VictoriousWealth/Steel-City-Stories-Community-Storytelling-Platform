@@ -166,7 +166,17 @@ def get_tickets
   begin
     db = SQLite3::Database.new 'database.sqlite3'
     sql = "SELECT * FROM staff_contacts"
-    @staff_contacts = db.execute(sql)
+    result = db.execute(sql)
+    @staff_contacts = result.map do |row|
+      {
+        requestid: row[0],  # Assuming requestid is the first column
+        userid: row[1],     # Assuming userid is the second column
+        email: row[2],      # Assuming email is the third column
+        title: row[3],      # Assuming title is the fourth column
+        feedback: row[4]    # Assuming feedback is the fifth column
+      }
+    end
+    p @staff_contacts
   rescue SQLite3::Exception => e
     @error = "Database error: #{e.message}"
   ensure

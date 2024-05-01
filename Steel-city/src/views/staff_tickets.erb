@@ -6,18 +6,22 @@
   <% unless @error.nil? %>
     <p><strong class="error"><%= @error %></strong></p>
   <% end %>
+  <% get_tickets %>
   <% if @staff_contacts.nil? || @staff_contacts.empty? %>
     <p>No tickets found.</p>
   <% else %>
     <% @staff_contacts.each do |contact| %>
-      <div>
-        <p>ID: <%= contact.requestid %></p>
-        <p>User: <%= contact.userid %></p>
-        <p>Email: <%= contact.email %></p>
-        <p>Title: <%= contact.title %></p>
-        <p>Feedback: <%= contact.feedback %></p>
+       <div>
+         <section class="story">
+        <div class="container">
+          <% contact.each do |key, value| %>
+          <p><strong><%= key %>:</strong> <%= value %></p>
+        <% end %>
+        </div>
+    </section>
       </div>
     <% end %>
+    <br>
   <% end %>
 </main>
 <%= erb :"common/footer" %>
