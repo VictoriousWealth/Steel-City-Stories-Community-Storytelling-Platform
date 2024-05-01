@@ -64,3 +64,18 @@ post "/submit-story" do
     #should redirect to relevant story page
     erb :story_page
 end
+
+get "/user-stories/:userid" do
+  user_id = params[:userid].to_i
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT title, blurb FROM stories WHERE userid = ?"
+      @story_list = db.get_first_value(sql,user_id)
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  
+  erb :story_page
+end
