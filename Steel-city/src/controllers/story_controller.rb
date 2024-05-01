@@ -27,7 +27,7 @@ get "/story-page/:storyid" do
   @blurb = story.blurb
   @genre = story.genre
   @storyID = story.storyid
-
+  @writerID = story.writerid
   begin
     db = SQLite3::Database.new 'database.sqlite3'
       sql = "SELECT username FROM users WHERE userid = ?"
@@ -76,4 +76,25 @@ post "/submit-story" do
     end
     #should redirect to relevant story page
     erb :story_page
+end
+
+get "/user-stories/:userid" do
+  user_id = params[:userid].to_i
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT title, blurb FROM stories WHERE writerid = ?"
+      result = db.execute(sql,user_id)
+      @story_list = result.map do |row|
+        {
+          title: row[0],  # Assuming requestid is the first column
+          blurb: row[1],     # Assuming userid is the second column
+        }
+      end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  
+  erb :user_stories
 end

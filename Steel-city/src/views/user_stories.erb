@@ -1,16 +1,15 @@
 <%= erb :"common/header" %>
 <article>
-    <h1>User Tickets:</h1>
+    <h1>User Stories:</h1>
 </article>
 <main class="home">
   <% unless @error.nil? %>
     <p><strong class="error"><%= @error %></strong></p>
   <% end %>
-  <% get_tickets %>
-  <% if @staff_contacts.nil? || @staff_contacts.empty? %>
-    <p>No tickets found.</p>
+  <% if @story_list.nil? || @story_list.empty? %>
+    <p>User has no stories</p>
   <% else %>
-    <% @staff_contacts.each do |contact| %>
+    <% @story_list.each do |contact| %>
        <div>
          <section class="story">
         <div class="container">

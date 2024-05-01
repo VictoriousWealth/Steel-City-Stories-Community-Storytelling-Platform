@@ -165,11 +165,22 @@ def get_tickets
   @error = nil
   begin
     db = SQLite3::Database.new 'database.sqlite3'
-    sql = "SELECT * FROM staff_contact"
-    @staff_contacts = db.execute(sql)
-rescue SQLite3::Exception => e
-  @error = "Database error: #{e.message}"
-ensure
-  db.close if db
+    sql = "SELECT * FROM staff_contacts"
+    result = db.execute(sql)
+    @staff_contacts = result.map do |row|
+      {
+        requestid: row[0],  
+        userid: row[1],     
+        email: row[2],      
+        title: row[3],      
+        feedback: row[4]    
+      }
+    end
+    p @staff_contacts
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
 end
+erb :staff_contact_page
 end
