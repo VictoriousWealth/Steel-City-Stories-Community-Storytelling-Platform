@@ -7,6 +7,20 @@
     <% unless @error.nil? %>
         <p><strong class="error"><%= @error %></strong></p>
     <% end %>
+    <h2> Create Promotional Campaign </h2>
+    <form method ="post" action="/create-prom-campaign">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" value="<%= h @title %>" required><br>
+        <label for="campaign-content">Campaign Content:</label><br>
+        <textarea id="campaign-content" name="campaign-content" rows="10" cols="50" required></textarea><br>
+        <label for="start-date">Start Date:</label><br>
+        <input type="date" id="start-date" name="start-date" value="<%= h @start_date %>" required><br>
+        <label for="end-date">End Date:</label><br>
+        <input type="date" id="end-date" name="end-date" value="<%= h @end_date %>" required><br>
+        <label for="discount">Discount:</label><br>
+        <input type="number" id="discount" name="discount" step="0.01" min="0" max="1" value ="<% h @discount %>" required><br>
+        <input type="submit" value="Create Campaign">
+    </form>
     <% if session["type"].eql?("admin")%>
     <form method="post" action="/find-user">
     <p>Find User: <br /><input type="text" name="username" value="<%= h @username %>"/></p>

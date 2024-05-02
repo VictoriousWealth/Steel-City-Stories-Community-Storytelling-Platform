@@ -184,3 +184,43 @@ def get_tickets
 end
 erb :staff_contact_page
 end
+
+post "/create-prom-campaign" do
+    @title = params.fetch("title", "")
+    @body = params.fetch("campaign-content", "")
+    @start_date = params.fetch("start-date","")
+    @end_date = params.fetch("end-date","")
+    @discount = params.fetch("discount","")
+    @error = nil
+    if Date.parse(@start_date) < Date.today
+        @error="Invalid start date"
+    elsif Date.parse(@end_date) <Date.today
+      @error="Invalid end date"
+    elsif Date.parse(@start_date)>Date.parse(@end_date)
+      @error = "Campaign ends before start date"
+    end
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT * FROM promotional_campaigns WHERE enddate > ?"
+        current_campaigns = db.execute(sql,@start_date)
+        if !current_campaigns.empty?
+          @error = "Active campaign at that time"
+        end
+        campaign=PromotionalCampaign.new
+        numcampaigns=PromotionalCampaign.all.count()
+        campaign.campaignid=numcampaigns+1
+        campaign.title=@title
+        campaign.content=@body
+        campaign.managerid=session["currentuser"]
+        campaign.discount=@discount
+        campaign.startdate=@start_date
+        campaign.enddate=@end_date
+        campaign.save_changes     
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    #should redirect to relevant story page
+    erb :staff_actions
+end

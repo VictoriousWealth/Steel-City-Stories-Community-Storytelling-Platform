@@ -13,5 +13,20 @@
       <% end %>
     </section>
 
+    <% if checkIfTop10 && checkIfCampaignAvailable %>
+    <% getActiveCampaigns %>
+    <% @campaign_list.each do |campaign| %>
+      <div>
+        <section class="story">
+            <h3><%= campaign[:title] %></h3>
+            <div class="campaign-info">
+            <p><strong>Content:</strong> <%= campaign[:content] %></p>
+            <p><strong>Start Date:</strong> <%= campaign[:startdate] %></p>
+            <p><strong>End Date:</strong> <%= campaign[:enddate] %></p>
+            <p><strong>Discount:</strong> <%= campaign[:discount] %></p>
+        </section>
+      </div>
+    <% end %>
+    <%end%>
   </main>
 <%= erb :"common/footer" %>

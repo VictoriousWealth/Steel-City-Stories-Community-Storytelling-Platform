@@ -227,3 +227,60 @@ session.clear
 redirect "/"
 erb :account_settings
 end
+
+def checkIfTop10
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+      ten_percent = (0.1*User.all.count()).ceil
+      sql = "SELECT userid, interactions FROM users ORDER BY interactions DESC LIMIT ?"
+      users_array = db.execute(sql,ten_percent)
+      top_10_userids = users_array.map { |user| user[0] }
+      if top_10_userids.include?(session["currentuser"])
+        return true
+      else
+        return false
+      end
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+end
+
+def checkIfCampaignAvailable
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT * FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
+        campaigns = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
+        if !campaigns.empty?
+            return true
+        else 
+            return false
+        end
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+end
+
+def getActiveCampaigns
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+          sql = "SELECT title, content, startdate, enddate, discount FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
+          result = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
+          @campaign_list = result.map do |row|
+            {
+              title: row[0], 
+              content: row[1],  
+              startdate: row[2],
+              enddate: row[3],
+              discount: row[4],
+            }
+          end
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+    end
