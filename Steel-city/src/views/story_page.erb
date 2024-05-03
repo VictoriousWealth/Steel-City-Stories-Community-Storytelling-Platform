@@ -13,10 +13,18 @@
       <% elsif session["logged_in"] && !@bought_story%>
         <p>Blurb: <%= @blurb %><p>
         <p>Purchase this story to read on...<p>
-        <form action="/buy-story" method="post">
-          <input type="hidden" name="story_id" value="<%= @storyID %>">
-          <button type="submit">Buy Story</button>
-        </form>
+        
+        <% if @error == nil %>
+            <form action="/buy-story/<%= @storyID %>" method="post">
+            <input type="hidden" name="story_id" value="<%= @storyID %>">
+            <button type="submit">Buy Story</button>
+            </form>
+        <% elsif @error == "You don't have enough popcorns to purchase this story." %>
+            <p><%= @error %><p>
+            <p>Click <a href="/store">here</a> to purchase more<p>
+        <% else %>
+            <p><%= @error %><p>
+        <% end %>
 
       <% elsif session["logged_in"] && @bought_story %>
         <p>StoryID: <%= @storyID %></p>

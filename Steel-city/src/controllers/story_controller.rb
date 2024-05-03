@@ -5,12 +5,49 @@ get "/create-story" do
   erb :writing_story_page
 end
 
-post "/buy-story" do
-  
+post "/buy-story/:storyid" do
+  @error = nil
+  story_id = params[:storyid].to_i
+
+  if session["logged_in"] then
+    @user_id = session["currentuser"]
+  end
+
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      if User.enough_popcorns?(story_id, @user_id) then
+        story = Story[storyid: story_id]
+        user = User[userid: @user_id]
+
+        bought_story = BoughtStory.new
+        bought_story.storyid = story_id
+        bought_story.userid = @user_id
+        bought_story.save_changes
+
+        user.popcorns -= story.price
+        user.save_changes
+
+        redirect "/buy-confirmation/#{story_id}"
+      else
+        @error = "You don't have enough popcorns to purchase this story."
+      end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  redirect "story_page/#{story_id}"
+end
+
+get "/buy-confirmation/:storyid" do
+    @story_id = params[:storyid].to_i
+    @bought_story_title = Story[@story_id].title
+    erb :buy_confirmation
 end
 
 get "/story-page/:storyid" do
 
+  @error = nil
   story_id = params[:storyid].to_i
   story = Story[storyid: story_id]
 
