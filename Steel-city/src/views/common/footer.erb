@@ -1,5 +1,7 @@
     <footer>
-        <p><a href="/contact-staff">Contact Staff</a></p>
+        <% if session["logged_in"] %>
+          <p><a href="/contact-staff">Contact Staff</a></p>
+        <% end %>  
         <p>&copy; Team 25, University of Sheffield 2024</p>
     </footer>
   </body>

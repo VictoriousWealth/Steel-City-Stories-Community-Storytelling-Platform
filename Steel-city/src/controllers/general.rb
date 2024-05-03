@@ -1,67 +1,25 @@
 require "require_all"
 
 get "/common/header" do
-  @myTitle = "Team 25"
   erb :header
 end
 
 get "/" do
+  @myTitle = "Home"
+  num_stories=Story.all.count() #use if we randomise the home page stories or implement likes into stories and choose most liked
+  @stories = Story.all
+  #@firstID = 1
+  #@secondID = 2
+  #@thirdID =  3
+  #@firstTitle = Story.first(storyid: @firstID).title
+  #@secondTitle = Story.first(storyid: @secondID).title
+  #@thirdTitle = Story.first(storyid: @thirdID).title
   erb :home
 end
 
 get "/promotions" do
-  erb :promotionalcampaigns
-end
-
-get "/staff-actions" do
-    erb :staff_actions
-end
-
-get "/payment" do
-    erb :paymentpage
-end
-
-post "/find-user" do
-    @chosenusername = params.fetch("username","")
-    @error = nil
-    begin
-      db = SQLite3::Database.new 'database.sqlite3'
-      sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
-      usersID = db.execute(sql,@chosenusername)
-      if usersID.nil?
-        @userfound = nil
-        @error="Username not found"
-       else
-        @userfound = usersID
-        end
-    rescue SQLite3::Exception => e
-      @error = "Database error: #{e.message}"
-    ensure
-      db.close if db
-    end
-    erb :staff_actions
-end
-
-post "/delete-account" do
-    @error = nil
-    begin
-        if @userfound.empty?
-            @error="Username not found"
-        end
-      db = SQLite3::Database.new 'database.sqlite3'
-      sql = "DELETE FROM users WHERE userid = ?"
-      db.execute(sql,session["userfound"])
-    rescue SQLite3::Exception => e
-      @error = "Database error: #{e.message}"
-    ensure
-      db.close if db
-    end
-    session["userfound"] = nil
-    erb :staff_actions
-end
-
-post "find-story" do
-
+  @myTitle = "Promotional Campaigns"
+  erb :promotional_campaigns
 end
 
 get "/login" do 
@@ -75,15 +33,17 @@ get "/login" do
     ensure
         db.close if db
     end
-    erb :login_Page
+    erb :login_page
 end
 
 get "/account-settings" do
-  erb :accountsettings
+  @myTitle = "Account Settings"
+  erb :account_settings
 end
 
-get "/contact-staff" do 
-  erb :staffcontactpage
+get "/contact-staff" do
+  @myTitle = "Account Settings"
+  erb :staff_contact_page
 end
 
 get "/create-account" do
@@ -133,13 +93,14 @@ post "/create-account" do
         user.interactions=0
         user.save_changes
         session["logged_in"] = true
+        session["items"] = 0
         if @account_type=="reader" then
           session["type"] = "reader"
         elsif @account_type=="writer" then
           session["type"] = "writer"
         elsif @account_type=="admin" then
           session["type"] = "admin"
-        elsif type=="manager" then
+        elsif @account_type=="manager" then
           session["type"] = "manager"
         end
         sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
@@ -177,6 +138,7 @@ post "/login" do
     
         if @password==entered_password
           session["logged_in"] = true
+          session["items"] = 0
 
           if type=="reader" then
             session["type"] = "reader"
@@ -198,10 +160,127 @@ post "/login" do
     else
       @error = "Please ensure all fields have been filled in"
     end
-    erb :login_Page
+    erb :login_page
 end
 
 get "/logout" do
     session.clear
-    erb :home
+    redirect "/"
 end
+
+post "/update-profile" do
+    @username = params.fetch("username", "")
+    @email = params.fetch("email", "")
+    @error = nil
+    begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "UPDATE users SET username = ?, email = ? WHERE userid = ?"
+    db.execute(sql,@username,@email,session["currentuser"])
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  erb :account_settings
+end
+
+post "/change-password" do
+  @currentpassword = params.fetch("currentPassword")
+  @newpassword = params.fetch("newPassword")
+  @confirmpassword = params.fetch("confirmPassword")
+  @error=nil
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "SELECT password FROM users WHERE userid = ? ORDER BY userid LIMIT 1"
+    @checkpass=db.get_first_value(sql,session["currentuser"])
+    if @checkpass!=@currentpassword
+      @error="Passwords Incorrect"
+    elsif @newpassword!=@confirmpassword
+      @error="Passwords do not match"
+    else
+      sql = "UPDATE users SET password = ? WHERE userid = ?"
+      db.execute(sql,@newpassword,session["currentuser"])
+    end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  erb :account_settings
+end
+
+post "/delete-self" do
+  @error=nil
+  begin
+    if session["currentuser"].nil?
+        @error="Usernot logged in"
+    end
+  db = SQLite3::Database.new 'database.sqlite3'
+  sql = "DELETE FROM users WHERE userid = ?"
+  db.execute(sql,session["currentuser"])
+rescue SQLite3::Exception => e
+  @error = "Database error: #{e.message}"
+ensure
+  db.close if db
+end
+session.clear
+redirect "/"
+erb :account_settings
+end
+
+def checkIfTop10
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+      ten_percent = (0.1*User.all.count()).ceil
+      sql = "SELECT userid, interactions FROM users ORDER BY interactions DESC LIMIT ?"
+      users_array = db.execute(sql,ten_percent)
+      top_10_userids = users_array.map { |user| user[0] }
+      if top_10_userids.include?(session["currentuser"])
+        return true
+      else
+        return false
+      end
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+end
+
+def checkIfCampaignAvailable
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT * FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
+        campaigns = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
+        if !campaigns.empty?
+            return true
+        else 
+            return false
+        end
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+end
+
+def getActiveCampaigns
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+          sql = "SELECT title, content, startdate, enddate, discount FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
+          result = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
+          @campaign_list = result.map do |row|
+            {
+              title: row[0], 
+              content: row[1],  
+              startdate: row[2],
+              enddate: row[3],
+              discount: row[4],
+            }
+          end
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+    end

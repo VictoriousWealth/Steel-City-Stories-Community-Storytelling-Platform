@@ -1,0 +1,26 @@
+<%= erb :"common/header" %>
+<article>
+    <h1>User Stories:</h1>
+</article>
+<main class="home">
+  <% unless @error.nil? %>
+    <p><strong class="error"><%= @error %></strong></p>
+  <% end %>
+  <% if @story_list.nil? || @story_list.empty? %>
+    <p>User has no stories</p>
+  <% else %>
+    <% @story_list.each do |contact| %>
+       <div>
+         <section class="story">
+        <div class="container">
+          <% contact.each do |key, value| %>
+          <p><strong><%= key %>:</strong> <%= value %></p>
+        <% end %>
+        </div>
+    </section>
+      </div>
+    <% end %>
+    <br>
+  <% end %>
+</main>
+<%= erb :"common/footer" %>

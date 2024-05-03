@@ -1,0 +1,29 @@
+<%= erb :"common/header" %>
+
+  <main>
+    <section class="story">
+      <h1 class = "title"><%= @title %></h1>
+      <h2>Written by <%= @author %><h2>
+
+      <% if not session["logged_in"] %>
+        <p>Blurb: <%= @blurb %><p>
+        <br>
+        <p>Please <a href="/login">login</a> or <a href="/create-account">create an account</a> to read this story.<p>
+
+      <% elsif session["logged_in"] && !@bought_story%>
+        <p>Blurb: <%= @blurb %><p>
+        <p>Purchase this story to read on...<p>
+        <form action="/buy-story" method="post">
+          <input type="hidden" name="story_id" value="<%= @storyID %>">
+          <button type="submit">Buy Story</button>
+        </form>
+
+      <% elsif session["logged_in"] && @bought_story %>
+        <p>StoryID: <%= @storyID %></p>
+        <p><%= @body %></p>
+      <% end %>
+
+    </section>
+
+  </main>
+<%= erb :"common/footer" %>
