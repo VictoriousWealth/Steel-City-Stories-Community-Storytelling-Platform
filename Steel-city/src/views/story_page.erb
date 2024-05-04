@@ -30,8 +30,15 @@
         <p>StoryID: <%= @storyID %></p>
         <p><%= @body %></p>
       <% end %>
-
     </section>
+
+        <% if getWriterId(@storyID)==session["currentuser"] %>
+        <section class="story">
+            <p><a href="/editStory/<%= @storyID %>"> Edit Story </a></p>
+            <p><a href="/addPoll/<%= @storyID %>"> Add Poll </a></p>
+            </section>
+        <%end%>
+
 
   </main>
 <%= erb :"common/footer" %>

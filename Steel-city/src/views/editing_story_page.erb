@@ -8,18 +8,18 @@
       <% unless @error.nil? %>
         <p><strong class="error"><%= @error %></strong></p>
         <% end %>
-      <form id="story-form" enctype="multipart/form-data" method="post" action="/submit-story">
+      <form id="story-form" enctype="multipart/form-data" method="post" action="/edit-story/<%= @story_id %>">
         <label for="story-title">Title:</label>
-        <input type="text" id="story-title" name="story-title" required><br><br>
+        <input type="text" id="story-title" value = "<%= @title %>" name="story-title" required><br><br>
 
         <label for="story-content">Story Content:</label><br>
-        <textarea id="story-content" name="story-content" rows="10" cols="50" required></textarea><br><br>
+        <textarea id="story-content" name="story-content" rows="10" cols="50" required><%= @content %></textarea><br><br>
 
        <label for="blurb-content">Blurb:</label><br>
-        <textarea id="blurb-content" name="blurb-content" rows="5" cols="50" required></textarea><br><br>
+        <textarea id="blurb-content" name="blurb-content" rows="5" cols="50" required><%= @blurb %></textarea><br><br>
 
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price" step="0.01" required><br><br>
+        <input type="number" id="price" value = "<%=@price%>" name="price" step="0.01" required><br><br>
         <label for="genre">Genre:</label>
         <select id="genre" name="genre" required>
           <option value="fiction">Fiction</option>
@@ -34,6 +34,7 @@
           <option value="adventure">Adventure</option>
           <option value="drama">Drama</option>
           <option value="autobiography">Autobiography</option>
+          <option value = "<%=@genre%>" selected><%=@genre%> </option>
         <input type="submit" value="Submit">
       </form>
     </section>
