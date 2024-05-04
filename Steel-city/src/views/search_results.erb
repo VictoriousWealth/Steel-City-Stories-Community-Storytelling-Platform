@@ -4,8 +4,8 @@
 
   <main>
     <section>
-        <h2>Searches for <i><%= @query %></i></h2>
-        <h2>Users:</h2>
+        <h2>Searches for <i>"<%= @query %>"</i></h2>
+        <h3>Users:</h3>
         <% if @users_results && !@users_results.empty? %>
             <ul>
                 <% @users_results.each do |result| %>
@@ -16,7 +16,7 @@
             <p>No results found.</p>
         <% end %>
         
-        <h2>Stories:</h2>
+        <h3>Stories:</h3>
         <% if @stories_results && !@stories_results.empty? %>
             <ul>
                 <% @stories_results.each do |result| %>
