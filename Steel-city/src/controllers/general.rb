@@ -80,7 +80,7 @@ post "/create-account" do
         @error="Choose an account type! Reader or Writer."
       else
         user=User.new
-        numusers=User.all.count()
+        numusers=User.max(:userid) || 1
         user.userid=numusers+1
         user.username=@username
         user.password=@password
