@@ -53,11 +53,11 @@
         <button type="submit">Change Type</button>
     </form>
     <% end %>
-    <% if !session["storyfound"].nil? %>
+    <% if !@story_found.nil? %>
     <form action="/delete-story" method="post">
     <button type="submit">Delete Story</button>
     </form>
-    <form action="/edit-story" method="post">
+    <form action="/edit-story/<%=@story_found%>" method="get">
     <button type="submit">Edit Story</button>
     </form>
     <% end %>

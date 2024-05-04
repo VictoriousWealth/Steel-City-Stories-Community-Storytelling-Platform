@@ -86,13 +86,13 @@ post "/submit-story" do
     @blurb = params.fetch("blurb-content","")
     @price = params.fetch("price","")
     @error = nil
-    if @price.to_f==0.0
+    if @to_f==0.0
         @error="Invalid price"
     end
     begin
       db = SQLite3::Database.new 'database.sqlite3'
         story=Story.new
-        numstories=Story.all.count()
+        numstories=Story.max(:requestid) || 1
         story.storyid=numstories+1
         story.title=@title
         story.content=@body
@@ -112,7 +112,7 @@ post "/submit-story" do
     ensure
       db.close if db
     end
-    #should redirect to relevant story page
+    redirect "/story-page/#{@story_id}"
     erb :story_page
 end
 
@@ -124,8 +124,8 @@ get "/user-stories/:userid" do
       result = db.execute(sql,user_id)
       @story_list = result.map do |row|
         {
-          title: row[0],  # Assuming requestid is the first column
-          blurb: row[1],     # Assuming userid is the second column
+          title: row[0], 
+          blurb: row[1], 
         }
       end
   rescue SQLite3::Exception => e
@@ -157,4 +157,66 @@ post '/search' do
     DB.close if DB
   end
   erb :search_results
+end
+
+def getWriterId(storyid)
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+          sql = "SELECT writerid FROM stories WHERE storyid = ?"
+          value = db.get_first_value(sql,storyid)
+          if value.nil?
+            return 0
+          else
+            return value
+          end
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+end
+
+get "/edit-story/:storyid" do
+    @story_id = params[:storyid].to_i
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT title, blurb, content, price, genre FROM stories WHERE storyid = ?"
+        result = db.execute(sql,@story_id).first
+        @title = result[0]
+        @blurb = result[1]
+        @content = result[2]
+        @price = result[3]
+        @genre = result[4]
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    
+    erb :editing_story_page
+  end
+
+post "/edit-story/:storyid" do
+    @story_id = params[:storyid].to_i
+    @title = params.fetch("story-title", "")
+    @body = params.fetch("story-content", "")
+    @genre = params.fetch("genre","")
+    @blurb = params.fetch("blurb-content","")
+    @price = params.fetch("price","")
+    @error = nil
+    if @price.to_f==0.0
+        @error="Invalid price"
+    end
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+        sql = "UPDATE stories SET title = ?, content = ?, genre = ?, blurb = ?, price = ? WHERE storyid = ?"
+        db.execute(sql,@title,@body,@genre,@blurb,@price,@story_id)
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+      redirect "/story-page/#{@story_id}"
+      erb :editing_story_page
+  
 end
