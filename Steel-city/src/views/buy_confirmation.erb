@@ -3,7 +3,7 @@
 <main>
   <section class="confirmation">
     <h1>Thank you for purchasing "<%= @bought_story_title %>!"</h1>
-    <p>Your story ID is <%= @story_id %>.</p>
+    <p>The story ID is <%= @story_id %>.</p>
     <form action="/story-page/<%= @story_id %>" method="get">
       <button type="submit">Okay</button>
     </form>
