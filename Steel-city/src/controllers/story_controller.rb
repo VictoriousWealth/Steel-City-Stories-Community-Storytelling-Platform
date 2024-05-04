@@ -136,3 +136,21 @@ get "/user-stories/:userid" do
   
   erb :user_stories
 end
+
+post '/search' do
+  @query = params[:q]
+  #p query
+  begin
+    DB = SQLite3::Database.new 'database.sqlite3'
+    DB.results_as_hash = true
+    @users_results = DB.execute "SELECT username, type FROM users WHERE lower(username) LIKE ?", "%#{@query.downcase}%"
+    @stories_results = DB.execute "SELECT title, content FROM stories WHERE lower(title) LIKE ? OR WHERE lower(content) LIKE ?", ["%#{@query.downcase}%", "%#{@query.downcase}%"]
+    @users_results ||= []  # Ensures @results is never nil
+    @stories_results ||= []  # Ensures @results is never nil
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    DB.close if DB
+  end
+  erb :search_results
+end

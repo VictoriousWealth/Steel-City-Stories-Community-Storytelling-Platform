@@ -108,6 +108,12 @@ Author: Myron Sukhanov
     border: solid black;
   }
   
+  .search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
   .search-bar {
     display: flex;
     justify-content: center;
