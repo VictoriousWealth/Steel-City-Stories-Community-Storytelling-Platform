@@ -172,7 +172,7 @@ def getWriterId(storyid)
       end
 end
 
-get "/editStory/:storyid" do
+get "/edit-story/:storyid" do
     @story_id = params[:storyid].to_i
     begin
       db = SQLite3::Database.new 'database.sqlite3'

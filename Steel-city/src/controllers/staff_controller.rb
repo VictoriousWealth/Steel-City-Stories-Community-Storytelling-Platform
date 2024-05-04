@@ -37,12 +37,12 @@ post "/find-story" do
     begin
       db = SQLite3::Database.new 'database.sqlite3'
       sql = "SELECT storyid FROM stories WHERE storyid = ? LIMIT 1"
-      storyID = db.execute(sql,@chosenstory)
+      storyID = db.execute(sql,@chosenstory).first[0]
       if storyID.nil?
-        session["storyfound"] = nil
+        @story_found = nil
         @error="Story ID not found"
        else
-        session["storyfound"] = storyID
+        @story_found = storyID
         end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
@@ -73,25 +73,21 @@ end
 post "/delete-story" do
     @error = nil
     begin
-        if session["storyfound"].nil?
+        if @story_found.nil?
             @error="Story not found"
         end
       db = SQLite3::Database.new 'database.sqlite3'
       sql = "DELETE FROM stories WHERE storyid = ?"
-      db.execute(sql,session["storyfound"])
+      db.execute(sql,@story_found)
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
       db.close if db
     end
-    session["storyfound"] = nil
+    @story_found = nil
     erb :staff_actions
 end
 
-post "/edit-story" do
-  #temporary
-  redirect "/"
-end
 
 post "/edit-popcorns" do
   @popcorncount=params.fetch("popcorns","").to_i
@@ -221,6 +217,5 @@ post "/create-prom-campaign" do
     ensure
       db.close if db
     end
-    #should redirect to relevant story page
     erb :staff_actions
 end

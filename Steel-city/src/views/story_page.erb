@@ -34,8 +34,8 @@
 
         <% if getWriterId(@storyID)==session["currentuser"] %>
         <section class="story">
-            <p><a href="/editStory/<%= @storyID %>"> Edit Story </a></p>
-            <p><a href="/addPoll/<%= @storyID %>"> Add Poll </a></p>
+            <p><a href="/edit-story/<%= @storyID %>"> Edit Story </a></p>
+            <p><a href="/add-poll/<%= @storyID %>"> Add Poll </a></p>
             </section>
         <%end%>
 
