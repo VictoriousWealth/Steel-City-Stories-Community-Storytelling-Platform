@@ -9,26 +9,25 @@
         <% if @users_results && !@users_results.empty? %>
             <ul>
                 <% @users_results.each do |result| %>
-                    <li><strong>User:</strong> <%= result['username'] %> Type: <%= result['type'] %></li>
+                    <li>Writer's username: <span class="info"><%= result['username'] %></span></li>
                 <% end %>
             </ul>
         <% else %>
-            <p>No results found.</p>
+            <p class="alert">No results found.</p>
         <% end %>
         
         <h3>Stories:</h3>
         <% if @stories_results && !@stories_results.empty? %>
             <ul>
                 <% @stories_results.each do |result| %>
+                    <li>Story title: <span class="info"><%= result['title'] %></span></li>
                     <ul>
-                        <li><strong>Story title:</strong> <%= result['title'] %></li>
-                        <li><strong>Story content:</strong> <%= result['content'] %></li>
+                        <li>Story content: <span class="info"><%= result['content'] %></span></li>
                     </ul>
-
                 <% end %>
             </ul>
         <% else %>
-            <p>No results found.</p>
+            <p class="alert">No results found.</p>
         <% end %>
     </section>
   </main>

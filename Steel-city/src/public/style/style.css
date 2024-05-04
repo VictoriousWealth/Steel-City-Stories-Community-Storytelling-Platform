@@ -90,6 +90,16 @@ Author: Myron Sukhanov
     z-index: -1; /*puts the img before the main body on the z axis*/
   }
   
+  .alert {
+    color: red;
+  }
+
+  .info {
+    color: gray;
+    font-weight: lighter;
+    font-style: italic;
+  }
+
   body {
     margin: 0 auto;
     padding: 0;

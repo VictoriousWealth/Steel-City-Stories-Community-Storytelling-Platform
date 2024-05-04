@@ -139,14 +139,18 @@ end
 
 post '/search' do
   @query = params[:q]
-  #p query
+  @users_results = []
+  @stories_results = []
   begin
     DB = SQLite3::Database.new 'database.sqlite3'
     DB.results_as_hash = true
-    @users_results = DB.execute "SELECT username, type FROM users WHERE lower(username) LIKE ?", "%#{@query.downcase}%"
-    @stories_results = DB.execute "SELECT title, content FROM stories WHERE lower(title) LIKE ? OR WHERE lower(content) LIKE ?", ["%#{@query.downcase}%", "%#{@query.downcase}%"]
-    @users_results ||= []  # Ensures @results is never nil
-    @stories_results ||= []  # Ensures @results is never nil
+    
+    @users_results = DB.execute "SELECT username FROM users WHERE type IS 'writer' AND lower(username) LIKE ?", "%#{@query.downcase}%"
+    @stories_results = DB.execute "SELECT title, content FROM stories WHERE lower(title) LIKE ? OR lower(content) LIKE ?", ["%#{@query.downcase}%", "%#{@query.downcase}%"]
+    
+    @users_results ||= []  # Ensures @users_results is never nil
+    @stories_results ||= []  # Ensures @stories_results is never nil
+  
   rescue SQLite3::Exception => e
     @error = "Database error: #{e.message}"
   ensure
