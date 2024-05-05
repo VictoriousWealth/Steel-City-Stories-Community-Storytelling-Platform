@@ -28,7 +28,7 @@
     </form>
     <% end %>
     <form method="post" action="/find-story">
-    <p>Find Story: <br /><input type="text" name="storyid" value="<%= h @storyid %>"/></p>
+    <p>Find Story: <br /><input type="number" name="storyid" value="<%= h @storyid %>"/></p>
     <button type="submit">Find Story</button>
     </form>
     <% if !session["userfound"].nil? && session["type"].eql?("admin")%>

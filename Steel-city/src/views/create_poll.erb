@@ -1,0 +1,38 @@
+<%= erb :"common/header" %>
+
+  <h1 class = "title"><%= @myTitle %></h1>
+
+  <main>
+  <section class="story">
+      <h2>Create Poll:</h2>
+      <% unless @error.nil? %>
+        <p><strong class="error"><%= @error %></strong></p>
+    <% end %>
+    <% if @options_num.nil? %>
+      <form name="create_poll_form" action="/create-poll/<%=@story_id%>" method="post">
+      <p>
+        <label for="poll_question">Question:</label>
+        <textarea name="poll_question" id="poll_question"
+        placeholder="Enter your question" value="<%= h @poll_question %>" required></textarea>
+      </p>
+      <p>Number of options: <br /><input type="number" name="optionsnum" value="<%= h @optionsnum %>"/></p>
+      <p>
+        <input type="reset" class="button">
+        <input type="submit" class="button">
+      </p>
+    </form>
+    <% else %>
+    <form name ="addpolloptions" action ="/add-poll-options/<%=@poll_id%>" method ="post">
+    <% @options_num.times do |i|%>
+        <label for="poll_option_<%=i%>">Option <%=i+1%>:</label>
+        <textarea name="poll_option_<%= i %>" id="poll_option_<%= i %>" placeholder="Enter your option" required><%= h instance_variable_get("@poll_option_#{i}") %></textarea>
+    <%end%>
+    <input type="hidden" name="options_num" value="<%= @options_num %>">
+    <p>
+        <input type="reset" class="button">
+        <input type="submit" class="button">
+    </p>
+    <%end%>
+    </section>
+  </main>
+<%= erb :"common/footer" %>
