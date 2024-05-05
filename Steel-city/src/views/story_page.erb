@@ -38,6 +38,23 @@
             <p><a href="/add-poll/<%= @storyID %>"> Add Poll </a></p>
             </section>
         <%end%>
+    
+    <% if checkIfPoll(@storyID) %>
+  <% getPollList(@storyID).each do |poll| %>
+    <div>
+      <section class="story">
+        <p><strong>Question:</strong> <%= poll[:question] %></p>
+        <% getPollOptions(poll[:pollid]) %>
+        <% count = 1 %>
+        <% @option_list.each do |option| %>
+          <p><strong>Option <%= count %>:</strong> <%= option[:option] %></p>
+          <% count += 1 %>
+        <% end %>
+      </section>
+    </div>
+  <% end %>
+<% end %>
+
     <section class ="story">
     <p> Report this story </p>
     <form id="report-story" enctype="multipart/form-data" method="post" action="/report-story/<%=@storyID%>">

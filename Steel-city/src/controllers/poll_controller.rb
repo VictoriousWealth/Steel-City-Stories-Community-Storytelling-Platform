@@ -52,3 +52,55 @@ post "/add-poll-options/:pollid" do
     redirect "/"
     erb :create_poll
 end
+
+def checkIfPoll(storyid)
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "SELECT * FROM polls WHERE storyid = ?"
+    check = db.get_first_value(sql,storyid)
+    if check.nil? 
+      return false
+    else 
+      return true
+    end
+  rescue SQLite3::Exception => e
+     @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+end
+
+def getPollList(storyid)
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT question, pollid FROM polls WHERE storyid = ?"
+      result = db.execute(sql,storyid)
+      @poll_list = result.map do |row|
+        {
+          question: row[0], 
+          pollid: row[1],
+        }
+      end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+end
+
+def getPollOptions(pollid)
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT optiontext FROM poll_options WHERE pollid = ?"
+      result = db.execute(sql,pollid)
+      @option_list = result.map do |row|
+        {
+          option: row[0], 
+        }
+      end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+end
