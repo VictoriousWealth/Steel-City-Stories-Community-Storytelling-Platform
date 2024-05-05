@@ -29,7 +29,6 @@
       <% elsif session["logged_in"] && @bought_story %>
         <p>StoryID: <%= @storyID %></p>
         <p><%= @body %></p>
-      <% end %>
     </section>
 
         <% if getWriterId(@storyID)==session["currentuser"] %>
@@ -43,12 +42,18 @@
   <% getPollList(@storyID).each do |poll| %>
     <div>
       <section class="story">
+        <% if !checkIfAlreadyVoted(poll[:pollid]) %>
         <p><strong>Question:</strong> <%= poll[:question] %></p>
         <% getPollOptions(poll[:pollid]) %>
-        <% count = 1 %>
         <% @option_list.each do |option| %>
-          <p><strong>Option <%= count %>:</strong> <%= option[:option] %></p>
-          <% count += 1 %>
+          <p><strong>Option <%= option[:optionid] %>:</strong><a href="/cast-vote/<%= poll[:pollid] %>/<%= option[:optionid] %>/<%= @storyID %>"> <%= option[:option] %></a></p>
+        <% end %>
+        <% else %>
+        <% getPollOptions(poll[:pollid]) %>
+        <% @option_list.each do |option| %>
+          <p><strong>Option <%= option[:optionid] %>:</strong><%= option[:option] %></p>
+          <p><strong>Votes:</strong><%= option[:optionvotes] %></p>
+          <% end %>
         <% end %>
       </section>
     </div>
@@ -70,6 +75,6 @@
         <input type="submit" value="Submit">
       </form>
         </section>
-
+  <% end %>
   </main>
 <%= erb :"common/footer" %>
