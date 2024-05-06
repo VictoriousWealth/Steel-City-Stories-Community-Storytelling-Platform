@@ -1,27 +1,28 @@
 <%= erb :"common/header" %>
 
-    <div class="flexrow">
-      <div></div>
-      <h1 class = "title"><%= @myTitle %></h1>
-      <a href = "/payment" class="shoppingcart"><img src="/images/shoppingcart.png"></a>
-    </div>
+  <div class="flexrow">
+    <div></div>
+    <h1 class = "title"><%= @myTitle %></h1>
+    <a href = "/payment" class="shoppingcart"><img src="/images/shoppingcart.png"></a>
+  </div>
 
   <main>
     <section class="product">
       <h2>1000 Popcorns</h2>
       <p>Cheapest Deal!</p>
-      <p>Price: $19.99</p>
-      <form method="post" action="/additem">
+      <p>Price: 4.99 Popcorns</p>
+      <form method="post" action="/additem/1000 Popcorns">
         <input type="submit" value="Add to cart">
       </form>
-      <p><%= @items %></p>
     </section>
 
     <section class="product">
       <h2>2000 Popcorns</h2>
       <p>Best Deal!</p>
-      <p>Price: $24.99</p>
-      <input type="submit" value="Add to cart">
+      <p>Price: 8.99 Popcorns</p>
+      <form method="post" action="/additem/2000 Popcorns">
+        <input type="submit" value="Add to cart">
+      </form>
     </section>
 
   </main>
