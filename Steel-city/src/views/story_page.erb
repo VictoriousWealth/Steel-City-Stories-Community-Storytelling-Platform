@@ -47,8 +47,8 @@
   <% getPollList(@storyID).each do |poll| %>
     <div>
       <section class="story">
+      <p><strong>Question:</strong> <%= poll[:question] %></p>
         <% if !checkIfAlreadyVoted(poll[:pollid]) %>
-        <p><strong>Question:</strong> <%= poll[:question] %></p>
         <% getPollOptions(poll[:pollid]) %>
         <% @option_list.each do |option| %>
           <p><strong>Option <%= option[:optionid] %>:</strong><a href="/cast-vote/<%= poll[:pollid] %>/<%= option[:optionid] %>/<%= @storyID %>"> <%= option[:option] %></a></p>

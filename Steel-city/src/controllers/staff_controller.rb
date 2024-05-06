@@ -267,3 +267,17 @@ post "/complete-ticket/:requestid" do
   end
   redirect "/staff-actions"
 end
+
+def getCurrentPopcorns(user)
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "SELECT popcorns FROM users WHERE userid = ?"  
+    popcorns = db.get_first_value(sql,user)
+    return popcorns
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  erb :staff_actions
+end
