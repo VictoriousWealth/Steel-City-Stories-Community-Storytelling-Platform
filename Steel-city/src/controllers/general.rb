@@ -91,10 +91,9 @@ post "/create-account" do
         user.popcorns=0
         user.activediscount=1
         user.interactions=0
-        user.compounds=10
         user.save_changes
         session["logged_in"] = true
-        session["cart"] = {}
+        session["items"] = 0
         if @account_type=="reader" then
           session["type"] = "reader"
         elsif @account_type=="writer" then
@@ -139,7 +138,7 @@ post "/login" do
     
         if @password==entered_password
           session["logged_in"] = true
-          session["cart"] = {}
+          session["items"] = 0
 
           if type=="reader" then
             session["type"] = "reader"
