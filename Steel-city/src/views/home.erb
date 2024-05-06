@@ -13,7 +13,7 @@
       <% end %>
     </section>
 
-    <% if checkIfTop10 && checkIfCampaignAvailable && checkIfNotActive%>
+    <% if checkIfTop10 && checkIfCampaignAvailable %>
     <% getActiveCampaigns %>
     <% @campaign_list.each do |campaign| %>
       <div>
@@ -24,7 +24,6 @@
             <p><strong>Start Date:</strong> <%= campaign[:startdate] %></p>
             <p><strong>End Date:</strong> <%= campaign[:enddate] %></p>
             <p><strong>Discount:</strong> <%= campaign[:discount] %></p>
-            <p><a href="/activateDiscount/<%= campaign[:campaignid] %>"> Activate </a></p>
         </section>
       </div>
     <% end %>

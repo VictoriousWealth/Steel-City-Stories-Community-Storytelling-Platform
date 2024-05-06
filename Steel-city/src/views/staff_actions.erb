@@ -28,7 +28,7 @@
     </form>
     <% end %>
     <form method="post" action="/find-story">
-    <p>Find Story: <br /><input type="number" name="storyid" value="<%= h @storyid %>"/></p>
+    <p>Find Story: <br /><input type="text" name="storyid" value="<%= h @storyid %>"/></p>
     <button type="submit">Find Story</button>
     </form>
     <% if !session["userfound"].nil? && session["type"].eql?("admin")%>
@@ -53,11 +53,11 @@
         <button type="submit">Change Type</button>
     </form>
     <% end %>
-    <% if !@story_found.nil? %>
+    <% if !session["storyfound"].nil? %>
     <form action="/delete-story" method="post">
     <button type="submit">Delete Story</button>
     </form>
-    <form action="/edit-story/<%=@story_found%>" method="get">
+    <form action="/edit-story" method="post">
     <button type="submit">Edit Story</button>
     </form>
     <% end %>

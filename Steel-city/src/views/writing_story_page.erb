@@ -15,11 +15,14 @@
         <label for="story-content">Story Content:</label><br>
         <textarea id="story-content" name="story-content" rows="10" cols="50" required></textarea><br><br>
 
+        <label for="story-file">Upload Story File:</label>
+        <input type="file" id="story-file" name="story-file" accept=".txt,.doc,.docx,.pdf" ><br><br>
+
        <label for="blurb-content">Blurb:</label><br>
         <textarea id="blurb-content" name="blurb-content" rows="5" cols="50" required></textarea><br><br>
 
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price" step="0.01" required><br><br>
+        <input type="text" id="price" name="price" required><br><br>
         <label for="genre">Genre:</label>
         <select id="genre" name="genre" required>
           <option value="fiction">Fiction</option>

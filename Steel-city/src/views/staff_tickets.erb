@@ -10,21 +10,18 @@
   <% if @staff_contacts.nil? || @staff_contacts.empty? %>
     <p>No tickets found.</p>
   <% else %>
-         <% @staff_contacts.each do |contact| %>
+    <% @staff_contacts.each do |contact| %>
        <div>
          <section class="story">
-            <p><strong>Request ID:</strong> <%= contact[:requestid] %></p>
-            <p><strong>User ID:</strong> <%= contact[:userid] %></p>
-            <p><strong>Email:</strong> <%= contact[:email] %></p>
-            <p><strong>Title:</strong> <%= contact[:title] %></p>
-            <p><strong>Feedback:</strong> <%= contact[:feedback] %></p>
-        </section>
-        <form id="complete-ticket-form" method="post" action="/complete-ticket/<%=contact[:requestid]%>">
-            <button type="submit">Complete Ticket</button>
-        </form>
+        <div class="container">
+          <% contact.each do |key, value| %>
+          <p><strong><%= key %>:</strong> <%= value %></p>
+        <% end %>
+        </div>
+    </section>
       </div>
     <% end %>
-    <% end %>
     <br>
+  <% end %>
 </main>
 <%= erb :"common/footer" %>

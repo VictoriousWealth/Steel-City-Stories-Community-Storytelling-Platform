@@ -13,68 +13,17 @@
       <% elsif session["logged_in"] && !@bought_story%>
         <p>Blurb: <%= @blurb %><p>
         <p>Purchase this story to read on...<p>
-        
-        <% if @error == nil %>
-            <form action="/buy-story/<%= @storyID %>" method="post">
-            <input type="hidden" name="story_id" value="<%= @storyID %>">
-            <button type="submit">Buy Story</button>
-            </form>
-        <% elsif @error == "You don't have enough popcorns to purchase this story." %>
-            <p><%= @error %><p>
-            <p>Click <a href="/store">here</a> to purchase more<p>
-        <% else %>
-            <p><%= @error %><p>
-        <% end %>
+        <form action="/buy-story" method="post">
+          <input type="hidden" name="story_id" value="<%= @storyID %>">
+          <button type="submit">Buy Story</button>
+        </form>
 
       <% elsif session["logged_in"] && @bought_story %>
         <p>StoryID: <%= @storyID %></p>
         <p><%= @body %></p>
+      <% end %>
+
     </section>
 
-        <% if getWriterId(@storyID)==session["currentuser"] %>
-        <section class="story">
-            <p><a href="/edit-story/<%= @storyID %>"> Edit Story </a></p>
-            <p><a href="/add-poll/<%= @storyID %>"> Add Poll </a></p>
-            </section>
-        <%end%>
-    
-    <% if checkIfPoll(@storyID) %>
-  <% getPollList(@storyID).each do |poll| %>
-    <div>
-      <section class="story">
-        <% if !checkIfAlreadyVoted(poll[:pollid]) %>
-        <p><strong>Question:</strong> <%= poll[:question] %></p>
-        <% getPollOptions(poll[:pollid]) %>
-        <% @option_list.each do |option| %>
-          <p><strong>Option <%= option[:optionid] %>:</strong><a href="/cast-vote/<%= poll[:pollid] %>/<%= option[:optionid] %>/<%= @storyID %>"> <%= option[:option] %></a></p>
-        <% end %>
-        <% else %>
-        <% getPollOptions(poll[:pollid]) %>
-        <% @option_list.each do |option| %>
-          <p><strong>Option <%= option[:optionid] %>:</strong><%= option[:option] %></p>
-          <p><strong>Votes:</strong><%= option[:optionvotes] %></p>
-          <% end %>
-        <% end %>
-      </section>
-    </div>
-  <% end %>
-<% end %>
-
-    <section class ="story">
-    <p> Report this story </p>
-    <form id="report-story" enctype="multipart/form-data" method="post" action="/report-story/<%=@storyID%>">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="reason">Reason:</label>
-        <select id="reason" name="reason" required>
-          <option value="language">Language</option>
-          <option value="racism">Racism</option>
-          <option value="copyright">Copyright</option>
-          <option value="offensive content">Offensive content</option>
-          <option value="other">Other</option>
-        <input type="submit" value="Submit">
-      </form>
-        </section>
-  <% end %>
   </main>
 <%= erb :"common/footer" %>

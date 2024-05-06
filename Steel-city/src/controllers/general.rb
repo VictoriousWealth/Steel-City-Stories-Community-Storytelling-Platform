@@ -80,7 +80,7 @@ post "/create-account" do
         @error="Choose an account type! Reader or Writer."
       else
         user=User.new
-        numusers=User.max(:userid) || 1
+        numusers=User.all.count()
         user.userid=numusers+1
         user.username=@username
         user.password=@password
@@ -150,7 +150,6 @@ post "/login" do
             session["type"] = "manager"
           end
           session["currentuser"] = User.first(username: @username).userid
-          updateCampaigns
           redirect "/"
         else
           @error = "Password incorrect"
@@ -268,7 +267,7 @@ end
 def getActiveCampaigns
     begin
         db = SQLite3::Database.new 'database.sqlite3'
-          sql = "SELECT title, content, startdate, enddate, discount, campaignid  FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
+          sql = "SELECT title, content, startdate, enddate, discount FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
           result = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
           @campaign_list = result.map do |row|
             {
@@ -277,7 +276,6 @@ def getActiveCampaigns
               startdate: row[2],
               enddate: row[3],
               discount: row[4],
-              campaignid: row[5],
             }
           end
       rescue SQLite3::Exception => e
@@ -286,67 +284,3 @@ def getActiveCampaigns
         db.close if db
       end
     end
-
-    def checkIfNotActive
-        begin
-            db = SQLite3::Database.new 'database.sqlite3'
-            sql = "SELECT * FROM activated_campaigns WHERE userid = ?"
-            campaigns = db.execute(sql,session["currentuser"])
-            if campaigns.empty?
-                return true
-            else 
-                return false
-            end
-          rescue SQLite3::Exception => e
-            @error = "Database error: #{e.message}"
-          ensure
-            db.close if db
-          end
-    end
-
-    get "/activateDiscount/:campaignid" do
-      campaign_id = params[:campaignid].to_i
-        begin
-            db = SQLite3::Database.new 'database.sqlite3'
-             sql = "SELECT activediscount FROM users WHERE userid = ?"
-             current_discount = db.get_first_value(sql,session["userfound"]).to_f
-             sql = "SELECT discount FROM promotional_campaigns WHERE campaignid = ?"
-             applied_discount = db.get_first_value(sql,campaign_id).to_f
-             new_discount = current_discount * applied_discount
-              sql = "UPDATE users SET activediscount = ? WHERE userid = ?"
-              db.execute(sql,new_discount,session["userfound"])
-              sql = "SELECT enddate FROM promotional_campaigns WHERE campaignid = ?"
-              end_date = db.get_first_value(sql,campaign_id)
-              active_campaign=ActivatedCampaign.new
-            active_campaign.campaignid=campaign_id
-            active_campaign.userid=session["currentuser"]
-            active_campaign.enddate=end_date
-            active_campaign.save_changes
-            redirect "/"
-          rescue SQLite3::Exception => e
-            @error = "Database error: #{e.message}"
-          ensure
-            db.close if db
-          end
-        end
-
-def updateCampaigns
-  begin
-    db = SQLite3::Database.new 'database.sqlite3'
-    sql = "SELECT campaignid FROM activated_campaigns WHERE userid = ? AND enddate < ?"
-    campaign = db.get_first_value(sql,session["currentuser"],Date.today.strftime("%Y-%m-%d"))
-    if !campaign.nil?
-      sql = "SELECT discount FROM promotional_campaigns WHERE campaignid = ?"
-      discount = db.get_first_value(sql,campaign)
-      sql = "SELECT activediscount FROM users WHERE userid = ?"
-      current_discount = db.get_first_value(sql,session["currentuser"])
-      update_discount = current_discount/discount
-      sql = "UPDATE users SET activediscount = ? WHERE userid = ?"
-      db.execute(sql,update_discount,session["currentuser"])
-    end
-  rescue SQLite3::Exception => e
-    @error = "Database error: #{e.message}"
-  ensure
-    db.close if db
-  end
-end
