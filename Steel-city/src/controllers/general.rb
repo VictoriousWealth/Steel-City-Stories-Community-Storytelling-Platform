@@ -1,8 +1,10 @@
 require "require_all"
 
+
 get "/common/header" do
   erb :header
 end
+
 
 get "/" do
   @myTitle = "Home"
@@ -17,14 +19,16 @@ get "/" do
   erb :home
 end
 
+
 get "/promotions" do
   @myTitle = "Promotional Campaigns"
   erb :promotional_campaigns
 end
 
-get "/login" do 
+
+get "/login" do
     @database = nil
-    begin 
+    begin
         db = SQLite3::Database.new 'database.sqlite3'
         sql = "SELECT * FROM users"
         @database = db.execute(sql)
@@ -36,19 +40,23 @@ get "/login" do
     erb :login_page
 end
 
+
 get "/account-settings" do
   @myTitle = "Account Settings"
   erb :account_settings
 end
+
 
 get "/contact-staff" do
   @myTitle = "Account Settings"
   erb :staff_contact_page
 end
 
+
 get "/create-account" do
   erb :create_account
 end
+
 
 post "/create-account" do
     @username = params.fetch("username", "")
@@ -80,7 +88,7 @@ post "/create-account" do
         @error="Choose an account type! Reader or Writer."
       else
         user=User.new
-        numusers=User.all.count()
+        numusers=User.max(:userid) || 1
         user.userid=numusers+1
         user.username=@username
         user.password=@password
@@ -93,7 +101,7 @@ post "/create-account" do
         user.interactions=0
         user.save_changes
         session["logged_in"] = true
-        session["items"] = 0
+        session["cart"] = {}
         if @account_type=="reader" then
           session["type"] = "reader"
         elsif @account_type=="writer" then
@@ -115,6 +123,7 @@ post "/create-account" do
     erb :create_account
 end
 
+
 def get_password_strength(password)
   strength = 0
   strength += 1 if password.length >= 8
@@ -125,20 +134,23 @@ def get_password_strength(password)
   strength
 end
 
+
 post "/login" do
     @username = params.fetch("username", "")
     @password = params.fetch("password", "")
     @error = nil
 
+
     if @username != "" and @password != "" then
       if !User.where(username: @username).empty? then
 
+
         entered_password=User.first(username: @username).password
         type=User.first(username: @username).type
-    
+   
         if @password==entered_password
           session["logged_in"] = true
-          session["items"] = 0
+          session["cart"] = {}
 
           if type=="reader" then
             session["type"] = "reader"
@@ -150,6 +162,7 @@ post "/login" do
             session["type"] = "manager"
           end
           session["currentuser"] = User.first(username: @username).userid
+          updateCampaigns
           redirect "/"
         else
           @error = "Password incorrect"
@@ -163,10 +176,12 @@ post "/login" do
     erb :login_page
 end
 
+
 get "/logout" do
     session.clear
     redirect "/"
 end
+
 
 post "/update-profile" do
     @username = params.fetch("username", "")
@@ -183,6 +198,7 @@ post "/update-profile" do
   end
   erb :account_settings
 end
+
 
 post "/change-password" do
   @currentpassword = params.fetch("currentPassword")
@@ -209,6 +225,7 @@ post "/change-password" do
   erb :account_settings
 end
 
+
 post "/delete-self" do
   @error=nil
   begin
@@ -227,6 +244,7 @@ session.clear
 redirect "/"
 erb :account_settings
 end
+
 
 def checkIfTop10
     begin
@@ -247,6 +265,7 @@ def checkIfTop10
     end
 end
 
+
 def checkIfCampaignAvailable
     begin
         db = SQLite3::Database.new 'database.sqlite3'
@@ -254,7 +273,7 @@ def checkIfCampaignAvailable
         campaigns = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
         if !campaigns.empty?
             return true
-        else 
+        else
             return false
         end
       rescue SQLite3::Exception => e
@@ -264,18 +283,20 @@ def checkIfCampaignAvailable
       end
 end
 
+
 def getActiveCampaigns
     begin
         db = SQLite3::Database.new 'database.sqlite3'
-          sql = "SELECT title, content, startdate, enddate, discount FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
+          sql = "SELECT title, content, startdate, enddate, discount, campaignid  FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
           result = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
           @campaign_list = result.map do |row|
             {
-              title: row[0], 
+              title: row[0],
               content: row[1],  
               startdate: row[2],
               enddate: row[3],
               discount: row[4],
+              campaignid: row[5],
             }
           end
       rescue SQLite3::Exception => e
@@ -284,3 +305,70 @@ def getActiveCampaigns
         db.close if db
       end
     end
+
+
+    def checkIfNotActive
+        begin
+            db = SQLite3::Database.new 'database.sqlite3'
+            sql = "SELECT * FROM activated_campaigns WHERE userid = ?"
+            campaigns = db.execute(sql,session["currentuser"])
+            if campaigns.empty?
+                return true
+            else
+                return false
+            end
+          rescue SQLite3::Exception => e
+            @error = "Database error: #{e.message}"
+          ensure
+            db.close if db
+          end
+    end
+
+
+    get "/activateDiscount/:campaignid" do
+      campaign_id = params[:campaignid].to_i
+        begin
+            db = SQLite3::Database.new 'database.sqlite3'
+             sql = "SELECT activediscount FROM users WHERE userid = ?"
+             current_discount = db.get_first_value(sql,session["userfound"]).to_f
+             sql = "SELECT discount FROM promotional_campaigns WHERE campaignid = ?"
+             applied_discount = db.get_first_value(sql,campaign_id).to_f
+             new_discount = current_discount * applied_discount
+              sql = "UPDATE users SET activediscount = ? WHERE userid = ?"
+              db.execute(sql,new_discount,session["userfound"])
+              sql = "SELECT enddate FROM promotional_campaigns WHERE campaignid = ?"
+              end_date = db.get_first_value(sql,campaign_id)
+              active_campaign=ActivatedCampaign.new
+            active_campaign.campaignid=campaign_id
+            active_campaign.userid=session["currentuser"]
+            active_campaign.enddate=end_date
+            active_campaign.save_changes
+            redirect "/"
+          rescue SQLite3::Exception => e
+            @error = "Database error: #{e.message}"
+          ensure
+            db.close if db
+          end
+        end
+
+
+def updateCampaigns
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "SELECT campaignid FROM activated_campaigns WHERE userid = ? AND enddate < ?"
+    campaign = db.get_first_value(sql,session["currentuser"],Date.today.strftime("%Y-%m-%d"))
+    if !campaign.nil?
+      sql = "SELECT discount FROM promotional_campaigns WHERE campaignid = ?"
+      discount = db.get_first_value(sql,campaign)
+      sql = "SELECT activediscount FROM users WHERE userid = ?"
+      current_discount = db.get_first_value(sql,session["currentuser"])
+      update_discount = current_discount/discount
+      sql = "UPDATE users SET activediscount = ? WHERE userid = ?"
+      db.execute(sql,update_discount,session["currentuser"])
+    end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+end
