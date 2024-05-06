@@ -22,8 +22,45 @@
         <p>StoryID: <%= @storyID %></p>
         <p><%= @body %></p>
       <% end %>
-
     </section>
 
+    <% if getWriterId(@storyID)==session["currentuser"] %>
+    <section class="story">
+        <p><a href="/edit-story/<%= @storyID %>"> Edit Story </a></p>
+        <p><a href="/add-poll/<%= @storyID %>"> Add Poll </a></p>
+        </section>
+    <%end%>
+    
+    <% if checkIfPoll(@storyID) %>
+  <% getPollList(@storyID).each do |poll| %>
+    <div>
+      <section class="story">
+        <p><strong>Question:</strong> <%= poll[:question] %></p>
+        <% getPollOptions(poll[:pollid]) %>
+        <% count = 1 %>
+        <% @option_list.each do |option| %>
+          <p><strong>Option <%= count %>:</strong> <%= option[:option] %></p>
+          <% count += 1 %>
+        <% end %>
+      </section>
+    </div>
+  <% end %>
+<% end %>
+
+    <section class ="story">
+    <p> Report this story </p>
+    <form id="report-story" enctype="multipart/form-data" method="post" action="/report-story/<%=@storyID%>">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="reason">Reason:</label>
+        <select id="reason" name="reason" required>
+          <option value="language">Language</option>
+          <option value="racism">Racism</option>
+          <option value="copyright">Copyright</option>
+          <option value="offensive content">Offensive content</option>
+          <option value="other">Other</option>
+        <input type="submit" value="Submit">
+      </form>
+    </section>
   </main>
 <%= erb :"common/footer" %>
