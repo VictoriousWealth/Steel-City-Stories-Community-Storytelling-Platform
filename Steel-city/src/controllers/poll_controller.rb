@@ -1,9 +1,11 @@
 require "require_all"
 
+
 get "/add-poll/:storyid" do
     @story_id = params[:storyid].to_i
     erb :create_poll
 end
+
 
 post "/create-poll/:storyid" do
     @story_id = params[:storyid].to_i
@@ -26,6 +28,7 @@ post "/create-poll/:storyid" do
     end
     erb :create_poll
 end
+
 
 post "/add-poll-options/:pollid" do
     @poll_id = params[:pollid].to_i
@@ -53,14 +56,15 @@ post "/add-poll-options/:pollid" do
     erb :create_poll
 end
 
+
 def checkIfPoll(storyid)
   begin
     db = SQLite3::Database.new 'database.sqlite3'
     sql = "SELECT * FROM polls WHERE storyid = ?"
     check = db.get_first_value(sql,storyid)
-    if check.nil? 
+    if check.nil?
       return false
-    else 
+    else
       return true
     end
   rescue SQLite3::Exception => e
@@ -70,6 +74,7 @@ def checkIfPoll(storyid)
   end
 end
 
+
 def getPollList(storyid)
   begin
     db = SQLite3::Database.new 'database.sqlite3'
@@ -77,7 +82,7 @@ def getPollList(storyid)
       result = db.execute(sql,storyid)
       @poll_list = result.map do |row|
         {
-          question: row[0], 
+          question: row[0],
           pollid: row[1],
         }
       end
@@ -88,14 +93,17 @@ def getPollList(storyid)
   end
 end
 
+
 def getPollOptions(pollid)
   begin
     db = SQLite3::Database.new 'database.sqlite3'
-      sql = "SELECT optiontext FROM poll_options WHERE pollid = ?"
+      sql = "SELECT optiontext, optionid, optionvotes FROM poll_options WHERE pollid = ?"
       result = db.execute(sql,pollid)
       @option_list = result.map do |row|
         {
-          option: row[0], 
+          option: row[0],
+          optionid: row[1],
+          optionvotes: row[2],
         }
       end
   rescue SQLite3::Exception => e
@@ -103,4 +111,56 @@ def getPollOptions(pollid)
   ensure
     db.close if db
   end
+end
+
+
+def checkIfAlreadyVoted(pollid)
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    sql = "SELECT * FROM votes WHERE pollid = ? AND userid = ?"
+    check = db.get_first_value(sql,pollid, session["currentuser"])
+    if check.nil?
+      return false
+    else
+      return true
+    end
+  rescue SQLite3::Exception => e
+     @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+end
+
+
+get "/cast-vote/:pollid/:optionid/:storyid" do
+  pollid = params[:pollid]
+  optionid = params[:optionid]
+  storyid = params[:storyid]
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+    vote = Vote.new
+    vote.userid = session["currentuser"]
+    vote.pollid=pollid
+    vote.optionid=optionid
+    vote.save_changes
+
+
+    sql = "SELECT optionvotes FROM poll_options WHERE pollid = ? AND optionid = ?"
+    currentvotes = db.get_first_value(sql,pollid,optionid).to_i
+    currentvotes = currentvotes+1
+    sql = "UPDATE poll_options SET optionvotes = ? WHERE pollid = ? AND optionid = ?"
+    db.execute(sql,currentvotes,pollid,optionid)
+
+
+    sql = "SELECT interactions FROM users WHERE userid = ?"
+    interactions = db.get_first_value(sql,session["currentuser"]).to_i
+    interactions = interactions+1
+    sql = "UPDATE users SET interactions = ? WHERE userid = ?"
+    db.execute(sql,interactions,session["currentuser"])
+rescue SQLite3::Exception => e
+  @error = "Database error: #{e.message}"
+ensure
+  db.close if db
+end
+redirect "/story-page/#{storyid}"
 end
