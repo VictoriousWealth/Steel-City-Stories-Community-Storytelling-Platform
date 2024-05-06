@@ -101,7 +101,7 @@ post "/create-account" do
         user.interactions=0
         user.save_changes
         session["logged_in"] = true
-        session["items"] = 0
+        session["cart"] = {}
         if @account_type=="reader" then
           session["type"] = "reader"
         elsif @account_type=="writer" then
@@ -150,8 +150,7 @@ post "/login" do
    
         if @password==entered_password
           session["logged_in"] = true
-          session["items"] = 0
-
+          session["cart"] = {}
 
           if type=="reader" then
             session["type"] = "reader"

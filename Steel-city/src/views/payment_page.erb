@@ -5,7 +5,7 @@
 <main>
   <section>
     <h2>Cart</h2>
-    <% if @cart.empty? %>
+    <% if @cart.nil? %>
       <p>Your cart is empty.</p>
     <% else %>
       <ul>
@@ -15,6 +15,9 @@
       </ul>
       <h2>Total Price: <%= @total %> COM_pounds</h2>
     <% end %>
+    <form method="post" action="/buyitemsincart">
+      <input type="submit" value="Buy Items">
+    </form>
   </section>
 
   <section class="flexcolumn">
