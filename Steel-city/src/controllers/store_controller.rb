@@ -2,6 +2,7 @@ require "require_all"
 
 get "/store" do
     @myTitle = "Store"
+    session["totalprice"] = 0.0
     erb :store
 end
 
@@ -14,13 +15,14 @@ get "/payment" do
       '3 Month Subscription' => 19.99,
       '1 Year Subscription' => 39.99
     }
-    @total = 0
+    @compounds = User.first(userid: session["currentuser"]).compounds
+    @total = 0.0
     @cart = session["cart"] 
     @cart.each do |item, quantity|
       price = ITEM_PRICES[item] || 0  # Default to 0 if item not found in prices
       @total += price * quantity
     end
-    @total
+    session["totalprice"] = @total
     @myTitle = "Checkout"
     erb :payment_page
 end
@@ -35,8 +37,37 @@ post "/additem/:item" do
 end
 
 post "/buyitemsincart" do
-    session["cart"].each do |item, quantity|
+    user = User.first(userid: session["currentuser"])
+
+    if user.nil? #|| user.compounds.nil?
+      return erb :payment_page
+    end
+
+    if session["totalprice"] > user.compounds
+      return erb :store
+    else
+      user.update(compounds: user[:compounds] - session["totalprice"])
+    end
+
+    session["totalprice"] = 0
+    session["cart"] = {}
+    @total = session["totalprice"]
+    @myTitle = "Checkout"
+    @cart = session["cart"]
+    @compounds = user.compounds
+    erb :payment_page
+end
+
+post "/removeitem/:item" do
+    item = params[:item]
+    if session["cart"][item] > 1
+      session["cart"][item] -= 1
+    else
       session["cart"].delete(item)
     end
+    @total = session["totalprice"]
+    @myTitle = "Checkout"
+    @cart = session["cart"]
+    @compounds = User.first(userid: session["currentuser"]).compounds
     erb :payment_page
 end
