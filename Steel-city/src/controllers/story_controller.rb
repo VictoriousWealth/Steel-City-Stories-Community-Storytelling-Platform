@@ -70,11 +70,18 @@ get "/story-page/:storyid" do
     @bought_story = true
   end
 
-
-  @title = story.title
-  @body = story.content
+  language = params[:language] || 'en' # Default language is English
+  if language != 'en' then
+    @title = story.translate_text(story.title, language)
+    @body = story.translate_text(story.content, language)
+    @blurb = story.translate_text(story.blurb, language)
+  else
+    @title = story.title
+    @body = story.content
+    @blurb = story.blurb
+  end
+  
   @price = story.price
-  @blurb = story.blurb
   @genre = story.genre
   @storyID = story.storyid
   @writerID = story.writerid

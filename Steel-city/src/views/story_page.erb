@@ -1,8 +1,17 @@
 <%= erb :"common/header" %>
 
-
   <main>
     <section class="story">
+      <form action="/story-page/<%= @storyID %>" method="get">
+        <label for="language">Select Language:</label>
+        <select id="language" name="language">
+          <option value="en">English</option>
+          <option value="zh">Chinese</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+        </select>
+        <input type="submit" value="Translate">
+      </form>
       <h1 class = "title"><%= @title %></h1>
       <h2>Written by <%= @author %><h2>
 
@@ -35,35 +44,34 @@
         <p><%= @body %></p>
     </section>
 
-
         <% if getWriterId(@storyID)==session["currentuser"] %>
         <section class="story">
             <p><a href="/edit-story/<%= @storyID %>"> Edit Story </a></p>
             <p><a href="/add-poll/<%= @storyID %>"> Add Poll </a></p>
             </section>
         <%end%>
-    
-    <% if checkIfPoll(@storyID) %>
-  <% getPollList(@storyID).each do |poll| %>
-    <div>
-      <section class="story">
-      <p><strong>Question:</strong> <%= poll[:question] %></p>
-        <% if !checkIfAlreadyVoted(poll[:pollid]) %>
-        <% getPollOptions(poll[:pollid]) %>
-        <% @option_list.each do |option| %>
-          <p><strong>Option <%= option[:optionid] %>:</strong><a href="/cast-vote/<%= poll[:pollid] %>/<%= option[:optionid] %>/<%= @storyID %>"> <%= option[:option] %></a></p>
+      
+        <% if checkIfPoll(@storyID) %>
+          <% getPollList(@storyID).each do |poll| %>
+          <div>
+            <section class="story">
+              <% if !checkIfAlreadyVoted(poll[:pollid]) %>
+                <p><strong>Question:</strong> <%= poll[:question] %></p>
+                <% getPollOptions(poll[:pollid]) %>
+                <% @option_list.each do |option| %>
+                  <p><strong>Option <%= option[:optionid] %>:</strong><a href="/cast-vote/<%= poll[:pollid] %>/<%= option[:optionid] %>/<%= @storyID %>"> <%= option[:option] %></a></p>
+                <% end %>
+              <% else %>
+                <% getPollOptions(poll[:pollid]) %>
+                <% @option_list.each do |option| %>
+                  <p><strong>Option <%= option[:optionid] %>:</strong><%= option[:option] %></p>
+                  <p><strong>Votes:</strong><%= option[:optionvotes] %></p>
+                <% end %>
+              <% end %>
+            </section>
+          </div>
         <% end %>
-        <% else %>
-        <% getPollOptions(poll[:pollid]) %>
-        <% @option_list.each do |option| %>
-          <p><strong>Option <%= option[:optionid] %>:</strong><%= option[:option] %></p>
-          <p><strong>Votes:</strong><%= option[:optionvotes] %></p>
-          <% end %>
-        <% end %>
-      </section>
-    </div>
-  <% end %>
-<% end %>
+      <% end %>
 
 
     <section class ="story">
@@ -80,7 +88,7 @@
           <option value="other">Other</option>
         <input type="submit" value="Submit">
       </form>
-        </section>
+    </section>
   <% end %>
   </main>
 <%= erb :"common/footer" %>
