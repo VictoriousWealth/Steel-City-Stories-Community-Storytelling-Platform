@@ -22,24 +22,25 @@
         <input type="submit" value="Create Campaign">
     </form>
     <% if session["type"].eql?("admin")%>
-    <form method="post" action="/find-user">
-    <p>Find User: <br /><input type="text" name="username" value="<%= h @username %>"/></p>
-    <button type="submit">Find User</button>
-    </form>
+        <form method="post" action="/find-user">
+            <p>Find User: <br /><input type="text" name="username" value="<%= h @username %>"/></p>
+            <button type="submit">Find User</button>
+        </form>
     <% end %>
     <form method="post" action="/find-story">
-    <p>Find Story: <br /><input type="number" name="storyid" value="<%= h @storyid %>"/></p>
-    <button type="submit">Find Story</button>
+        <p>Find Story: <br /><input type="number" name="storyid" value="<%= h @storyid %>"/></p>
+        <button type="submit">Find Story(ID)</button>
     </form>
     <% if !session["userfound"].nil? && session["type"].eql?("admin")%>
-    <form action="/delete-account" method="post">
-    <button type="submit">Delete Account</button>
-    </form>
+        <p>Found User: <%= @found_username %></p>
+        <form action="/delete-account" method="post">
+            <button type="submit">Delete Account</button>
+        </form>
     <form action="/edit-popcorns" method="post">
-    <p><%= getCurrentPopcorns(session["userfound"]) %> </p>
-    <label for="popcorns">Popcorns:</label><br>
-    <input type="number" step="1" id="popcorns" name="popcorns" value="<%= h @popcorns %>" required><br>
-    <button type="submit">Change Popcorns</button>
+        <p>Current popcorns: <%= getCurrentPopcorns(session["userfound"]) %> </p>
+        <label for="popcorns">Popcorns:</label><br>
+        <input type="number" step="1" id="popcorns" name="popcorns" value="<%= h @popcorns %>" required><br>
+        <button type="submit">Change Popcorns</button>
     </form>
     <form action="/change-type" method="post">
     <label for="account_type">Account Type:</label><br>
@@ -55,12 +56,13 @@
     </form>
     <% end %>
     <% if !@story_found.nil? %>
-    <form action="/delete-story" method="post">
-    <button type="submit">Delete Story</button>
-    </form>
-    <form action="/edit-story/<%=@story_found%>" method="get">
-    <button type="submit">Edit Story</button>
-    </form>
+        <p>Story found: <%= @story_title %></p>
+        <form action="/delete-story" method="post">
+            <button type="submit">Delete Story</button>
+        </form>
+        <form action="/edit-story/<%=@story_found%>" method="get">
+            <button type="submit">Edit Story</button>
+        </form>
     <% end %>
     </main>
 <%= erb :"common/footer" %>

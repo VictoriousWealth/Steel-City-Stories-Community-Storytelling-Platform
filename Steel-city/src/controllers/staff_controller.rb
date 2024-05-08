@@ -23,9 +23,10 @@ post "/find-user" do
       if usersID.nil?
         session["userfound"] = ""
         @error="Username not found"
-       else
+      else
         session["userfound"] = usersID
-        end
+        @found_username = User[userid: usersID].username
+      end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
@@ -45,9 +46,10 @@ post "/find-story" do
       if storyID.nil?
         @story_found = nil
         @error="Story ID not found"
-       else
+      else
         @story_found = storyID
-        end
+        @story_title = Story[storyid: storyID].title
+      end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure

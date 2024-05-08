@@ -10,11 +10,11 @@ RSpec.describe "Creating account route" do
     describe "POST /submit-story" do
         it "creates a story that can be viewed by other users" do
             post '/submit-story', {
-                title: "Test Title",
-                body: "Test story content", 
-                genre: "fiction", 
-                blurb: "Test blurb content",
-                price: "10"
+                "story-title" => "Test Title",
+                "story-content" => "Test story content", 
+                "genre" => "fiction", 
+                "blurb-content" => "Test blurb content",
+                "price" => "10"
             }
 
             expect(last_response).to be_redirect
