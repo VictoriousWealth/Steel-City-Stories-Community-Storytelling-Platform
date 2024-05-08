@@ -35,10 +35,10 @@ RSpec.describe "page redirects" do
       end
     end
 
-    describe "GET /accountsettings" do
-      context "when clicking on the link to the account settings page" do
-        it "redirects you to the account settings page" do
-          get "/account-settings"
+    describe "GET /staff-tickets" do
+      context "when clicking on a ticket " do
+        it "redirects you to the staff ticket page" do
+          get "/staff-tickets"
           expect(last_response.status).to eq(200)
         end
       end
@@ -52,4 +52,13 @@ RSpec.describe "page redirects" do
         end
       end
     end
+
+    describe "GET /account" do
+        context "when clicking on the link to the account settings page" do
+          it "redirects you to the account settings page" do
+            get "/account-settings"
+            expect(last_response.status).to eq(200)
+          end
+        end
+      end
 end

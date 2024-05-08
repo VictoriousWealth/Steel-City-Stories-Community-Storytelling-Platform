@@ -25,5 +25,6 @@ RSpec.configure do |config|
   config.before do
     User.where { userid > 4 }.delete
     Story.where { storyid > 10}.delete
+    PromotionalCampaign.where { campaignid > 3}.delete
   end
 end
