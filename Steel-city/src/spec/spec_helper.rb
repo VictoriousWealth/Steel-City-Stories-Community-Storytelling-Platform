@@ -21,8 +21,9 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include Rack::Test::Methods
 
-  # before each test is run, delete all non-hardcoded records in the Player table
+  # before each test is run, delete all non-hardcoded records in the User table
   config.before do
     User.where { userid > 4 }.delete
+    Story.where { storyid > 10}.delete
   end
 end
