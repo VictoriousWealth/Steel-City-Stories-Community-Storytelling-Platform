@@ -1,0 +1,414 @@
+/* body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav {
+    color: FEFAE0;
+}
+
+h1, p {
+    padding: 0 7px 0 7px;
+}
+
+footer, header, body, article {
+    margin: 3px;
+    padding: 2px;
+}
+
+article > h1 {
+    color: darkgreen;
+    border: 1px solid darkcyan;
+}
+
+footer {
+    color: darkgray;
+    border-top: 1px solid darkgray;
+}
+.error {
+    color: red;
+}
+
+.home {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.story {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.container {
+  text-align: center;
+} */
+
+
+/* 
+Author: Myron Sukhanov
+ */
+
+ /* Setting up usefull vars to have the ability to reuse & rapidly change properties*/
+ :root {
+    --general_font_size: 12px;
+    --title_font_size: 2.1rem;  
+    --sslcom_font_size: 0.8rem;
+    --nav_font_size: 3vw;
+    --footer_font_size: 0.8rem;
+    --author_font_size: 0.6rem;
+    --figcaption_font_size: 0.4rem;
+    --list_font_size: 0.8rem;
+  }
+  
+  /* puts a blurred image before the other content
+   of <body> (otherwise blur affects the whole <body>) */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/flowers.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(0px);
+    z-index: -1; /*puts the img before the main body on the z axis*/
+  }
+  
+  body {
+    margin: 0 auto;
+    padding: 0;
+    font-family: 'Arial Black', sans-serif;
+    position: relative;
+    font-size: var(--general_font_size);
+  }
+  
+  img {
+    width: 100%;
+    display: block;
+    margin: auto;
+  }
+
+  .container {
+    border: solid black;
+  }
+  
+  .search-bar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .shoppingcart{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 60px;
+    max-width: 60px;
+  }
+
+  .searchimg {
+    width: 20px;
+    max-width: 20px;
+  }
+
+  figcaption {
+    text-align: center;
+    font-size: var(--figcaption_font_size);
+  }
+  
+  figcaption a, figcaption a:visited {
+    color: #3f3f3f;
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  p {
+    margin: auto;
+  }
+  
+  /* Fine-tuning the second part of the logo */
+  #sslcom {
+    font-size: var(--sslcom_font_size);
+    text-align: center;
+  }
+  
+  header, section, aside, footer, .island, .nav {
+    background-color: white;
+    font-family: 'Arial Black', sans-serif;
+    position: relative;
+    padding: 4vw;
+    border-radius: 5vw;
+    margin: 4vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Allows for <div> flexboxes */
+  .flexbox {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flexrow {
+    justify-content: space-between; 
+    padding-right: 20px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flexcolumn {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Styling the buttons in the nav menu  */
+  .nav {
+    margin: 0;
+    padding: 0;
+    font-size: var(--nav_font_size);
+    white-space: nowrap;
+    box-sizing: border-box;
+    width: 100%;
+    height: 15vw;
+    border-radius: 20%;
+    transition: background-color 0.3s ease;
+  }
+  
+  button {
+    border: none;
+  }
+  
+  /* Class for li's that contain buttons, links, etc. Not a general li. */
+  .li_org {
+    display: inline-block;
+    margin: 0 2% 0 0;
+    flex-grow: 1;
+    text-align: center; 
+  }
+  
+  .title {
+    font-family: 'Brush Script MT', cursive;
+    font-size: var(--title_font_size);
+    text-align: center;
+    margin: 0.2rem;
+  }
+  
+  /* Mostly adds desired margin to the <nav> */
+  nav {
+    margin: 2vw 4vw 2vw 4vw;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  /* Class for ul's that list buttons, links, etc. Not a general ul.*/
+  .ul_org {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .li_list {
+    font-size: var(--list_font_size);
+  }
+  
+  .li_list:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .a_footer {
+    font-size: var(--footer_font_size);
+    padding-right: 8%;
+  }
+  
+  a {
+    color: black;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  a:visited {
+    color: black;
+  }
+  
+  a:hover {
+    color: rgb(223, 40, 40);
+  }
+  
+  /* makes great transition from black to white & from black to white. Created for the menu buttons & Jumptotop button */
+  .nav:hover, #jumptotop:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  #author {
+    font-size: var(--author_font_size);
+    text-align: center;
+    margin: 15px 0 0 0;
+  }
+  
+  /* Jumptotop button. Great that it does work for all the resolutions (no need in @media)*/
+  #jumptotop {
+    color: black;
+    text-align: center;
+    width: 2rem;
+    height: 2rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+    position: fixed;
+    padding: 0.2rem;
+    right: 10px;
+    bottom: 8%;
+    background-color: white;
+    z-index: 1;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+  }
+  
+  .answer_box {
+    padding: 0 1rem 0 1rem;
+    background-color: black;
+    transition: background-color 2s ease;
+  }
+  
+  .answer_box:hover {
+    background-color: white;
+  }
+  
+  #comments {
+    width: 100% ;
+  }
+  
+  /* Customising the contact form buttons */
+  #submit, #reset {
+    font-size: var(--nav_font_size);
+    box-sizing: border-box;
+    height: 10vw;
+    border-radius: 20%;
+    transition: background-color 0.3s ease;
+    background-color: black;
+    color: white;
+  }
+  
+  #submit:hover, #reset:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  
+  @media screen and (min-width: 550px) {
+  
+    /* All the elements below are just adjusting the values of padding, margin, etc.
+    so it looks great. Nothing new here */
+  
+    /* slightly adjusting the fonts */
+    :root {
+      --general_font_size: 12px;
+      --title_font_size: 2.1rem;
+      --sslcom_font_size: 0.8rem;
+      --nav_font_size: 1.3rem;
+      --footer_font_size: 0.8rem;
+      --author_font_size: 0.6rem;
+      --figcaption_font_size: 0.4rem;
+    }
+  
+    .title {
+      margin: 0.4rem;
+    }
+  
+    .flexbox {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    header, section, aside, footer, .island, .nav {
+      padding: 2vw;
+      border-radius: 2vw;
+      margin: 2vw;
+    }
+  
+    #submit, #reset {
+      height: 6vw;
+      max-height: 42px;
+    }
+  
+    .nav {
+      height: 5vw;
+      border-radius: 20%;
+      margin: 0;
+      padding: 0;
+    }
+  
+    nav {
+      margin: 1vw 2vw 1vw 2vw;
+      padding: 0;
+    }
+  
+    .li_org {
+      display: inline-block;
+      margin: 0 2% 0 0;
+      flex-grow: 1;
+      text-align: center; 
+    }
+  
+    /* Manually adjusting the flexbox on the Test page so it looks good */
+    #accessibility_test {
+      max-width: 40%;
+    }
+  
+  }
+  
+  @media screen and (min-width: 900px) {
+    /* All of the elements below are just adjusting the values of padding, margin, etc.
+    so it looks great on width > 900px. */
+  
+    :root {
+      --title_font_size: 2.1rem;
+      --sslcom_font_size: 0.8rem;
+      --footer_font_size: 1.2rem;
+      --author_font_size: 0.8rem;
+      --figcaption_font_size: 0.6rem; 
+    }
+  
+    body {
+      max-width: 900px;
+    }
+  
+    header, section, aside, footer, .island, .nav {
+      padding: 2vw;
+      border-radius: 1.7vw;
+      margin: 1.5vw;
+    }
+  
+    .nav {
+      height: 4vw;
+      border-radius: 20%;
+      margin: 0;
+      padding: 0;
+    }
+  
+    nav {
+      margin: 1vw 2vw 1vw 2vw;
+      padding: 0;
+    }
+  }

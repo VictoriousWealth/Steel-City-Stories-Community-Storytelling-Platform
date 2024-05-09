@@ -3,10 +3,10 @@ RSpec.describe "Searching for stories" do
       it "then shows the story on the search page" do
         
         visit '/'
-        fill_in 'q', with: 'story 1'
+        fill_in 'q', with: 'The life of a yapper'
         find('button[type="submit"]').click
   
-        expect(page).to have_content "Story title: story 1"
+        expect(page).to have_content "Story title: The life of a yapper"
       end
     end
 

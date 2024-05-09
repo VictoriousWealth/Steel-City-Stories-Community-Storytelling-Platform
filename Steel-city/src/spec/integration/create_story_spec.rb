@@ -1,4 +1,4 @@
-RSpec.describe "Creating account route" do
+RSpec.describe "Creating story route" do
     describe "GET /create-story" do
         it "displays a blank form to write details of story" do
           get "/create-story"

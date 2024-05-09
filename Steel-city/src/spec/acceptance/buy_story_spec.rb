@@ -37,8 +37,25 @@ RSpec.describe "Buying a story as a user" do
             buy_button = find('button', text: 'Buy Story')
             buy_button.click
             
-            save_page
             expect(page).to have_content('Thank you for purchasing')
+        end
+
+        it "doesn't let you purchase if you dont have enough popcorns" do
+            visit '/create-account'
+            fill_in 'username', with: 'testuser'
+            fill_in 'password', with: 'Testpassword'
+            fill_in 'confirm_password', with: 'Testpassword'
+            fill_in 'dob', with: '1990-01-01'
+            fill_in 'email', with: 'test1@example.com'
+            choose "reader"
+            click_button('Create Account')
+
+            click_link "title"
+
+            buy_button = find('button', text: 'Buy Story')
+            buy_button.click
+            
+            expect(page).to have_content("You don't have enough popcorns to purchase this story.")
         end
     end
 end
