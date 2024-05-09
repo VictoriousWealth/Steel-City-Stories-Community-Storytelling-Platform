@@ -19,13 +19,14 @@ post "/find-user" do
     begin
       db = SQLite3::Database.new 'database.sqlite3'
       sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
-      usersID = db.execute(sql,@chosenusername)
+      usersID = db.execute(sql,@chosenusername).first
       if usersID.nil?
-        session["userfound"] = ""
+        session["userfound"] = nil
         @error="Username not found"
-       else
-        session["userfound"] = usersID
-        end
+      else
+        session["userfound"] = usersID.first
+        @found_username = User[userid: usersID.first].username
+      end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
@@ -45,9 +46,10 @@ post "/find-story" do
       if storyID.nil?
         @story_found = nil
         @error="Story ID not found"
-       else
+      else
         @story_found = storyID
-        end
+        @story_title = Story[storyid: storyID].title
+      end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
@@ -60,7 +62,7 @@ end
 post "/delete-account" do
     @error = nil
     begin
-        if session["userfound"].empty?
+        if session["userfound"].nil?
             @error="Username not found"
         end
       db = SQLite3::Database.new 'database.sqlite3'
@@ -198,35 +200,38 @@ post "/create-prom-campaign" do
     @end_date = params.fetch("end-date","")
     @discount = params.fetch("discount","")
     @error = nil
+    
     if Date.parse(@start_date) < Date.today
         @error="Invalid start date"
-    elsif Date.parse(@end_date) <Date.today
+    elsif Date.parse(@end_date) < Date.today
       @error="Invalid end date"
     elsif Date.parse(@start_date)>Date.parse(@end_date)
       @error = "Campaign ends before start date"
+    else
+      begin
+        db = SQLite3::Database.new 'database.sqlite3'
+          sql = "SELECT * FROM promotional_campaigns WHERE enddate > ?"
+          current_campaigns = db.execute(sql,@start_date)
+          if !current_campaigns.empty?
+            @error = "Active campaign at that time"
+          end
+          campaign=PromotionalCampaign.new
+          numcampaigns=PromotionalCampaign.max(:campaignid) || 1
+          campaign.campaignid=numcampaigns+1
+          campaign.title=@title
+          campaign.content=@body
+          campaign.managerid=session["currentuser"]
+          campaign.discount=@discount
+          campaign.startdate=@start_date
+          campaign.enddate=@end_date
+          campaign.save_changes    
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
     end
-    begin
-      db = SQLite3::Database.new 'database.sqlite3'
-        sql = "SELECT * FROM promotional_campaigns WHERE enddate > ?"
-        current_campaigns = db.execute(sql,@start_date)
-        if !current_campaigns.empty?
-          @error = "Active campaign at that time"
-        end
-        campaign=PromotionalCampaign.new
-        numcampaigns=PromotionalCampaign.max(:campaignid) || 1
-        campaign.campaignid=numcampaigns+1
-        campaign.title=@title
-        campaign.content=@body
-        campaign.managerid=session["currentuser"]
-        campaign.discount=@discount
-        campaign.startdate=@start_date
-        campaign.enddate=@end_date
-        campaign.save_changes    
-    rescue SQLite3::Exception => e
-      @error = "Database error: #{e.message}"
-    ensure
-      db.close if db
-    end
+
     erb :staff_actions
 end
 

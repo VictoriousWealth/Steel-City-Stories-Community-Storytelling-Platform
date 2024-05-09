@@ -1,0 +1,68 @@
+<html lang="en">
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="style/style.css">
+  </head>
+  <body>
+    <header>
+
+        
+
+        <a href="/"><img src="images/peak-district-prose-logo.png" width="50"/></a>
+
+            <nav>
+              <ul class="ul_org">
+                <li><a href="/">Home</a><li>
+                
+                    <li><a href="/store">Store</a><li>
+                    <li><a href="/promotions">Promotional Campaigns</a><li>
+                    
+                    
+                    <li><a href="/account-settings">Account Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                
+              </ul>
+            </nav>
+        <div class="search-bar">
+          <form method="post" action="/search">
+            <input type="text" placeholder="Search stories..." name="q">
+            <button type="submit"><img src="images/searchbar.png" class="searchimg"></button>
+          </form>
+        </div>
+    </header>
+
+  <main>
+    <section class="story">
+      <form action="/story-page/1" method="get">
+        <label for="language">Select Language:</label>
+        <select id="language" name="language">
+          <option value="en">English</option>
+          <option value="zh">Chinese</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+        </select>
+        <input type="submit" value="Translate">
+      </form>
+      <h1 class = "title">title</h1>
+      <h2>Written by admin<h2>
+
+      
+        <p>Blurb: blurb<p>
+        <p>Purchase this story to read on...<p>
+        
+        
+            <p>You don't have enough popcorns to purchase this story.<p>
+            <p>Click <a href="/store">here</a> to purchase more<p>
+        
+
+
+      
+  </main>
+    <footer>
+        
+          <p><a href="/contact-staff">Contact Staff</a></p>
+          
+        <p>&copy; Team 25, University of Sheffield 2024</p>
+    </footer>
+  </body>
+</html>

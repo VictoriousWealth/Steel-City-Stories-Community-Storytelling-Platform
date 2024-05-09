@@ -1,66 +1,95 @@
 <%= erb :"common/header" %>
-    <article>
-        <h1>Staff Actions:</h1>
-        <h3><a href="/staff-tickets">View Tickets</a><h3>
-    </article>
+    <section>
+        <article>
+            <h2>Staff Actions:</h2>
+            <h3><a href="/staff-tickets">View Tickets</a><h3>
+            <% unless @error.nil? %>
+                <p><strong class="alert">Error: <%= @error %></strong></p>
+            <% end %>
+        </article>
+    </section>
+
     <main class=home>
-    <% unless @error.nil? %>
-        <p><strong class="error"><%= @error %></strong></p>
-    <% end %>
-    <h2> Create Promotional Campaign </h2>
-    <form method ="post" action="/create-prom-campaign">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" value="<%= h @title %>" required><br>
-        <label for="campaign-content">Campaign Content:</label><br>
-        <textarea id="campaign-content" name="campaign-content" rows="10" cols="50" required></textarea><br>
-        <label for="start-date">Start Date:</label><br>
-        <input type="date" id="start-date" name="start-date" value="<%= h @start_date %>" required><br>
-        <label for="end-date">End Date:</label><br>
-        <input type="date" id="end-date" name="end-date" value="<%= h @end_date %>" required><br>
-        <label for="discount">Discount:</label><br>
-        <input type="number" id="discount" name="discount" step="0.01" min="0" max="1" value ="<% h @discount %>" required><br>
-        <input type="submit" value="Create Campaign">
-    </form>
-    <% if session["type"].eql?("admin")%>
-    <form method="post" action="/find-user">
-    <p>Find User: <br /><input type="text" name="username" value="<%= h @username %>"/></p>
-    <button type="submit">Find User</button>
-    </form>
-    <% end %>
-    <form method="post" action="/find-story">
-    <p>Find Story: <br /><input type="number" name="storyid" value="<%= h @storyid %>"/></p>
-    <button type="submit">Find Story</button>
-    </form>
-    <% if !session["userfound"].nil? && session["type"].eql?("admin")%>
-    <form action="/delete-account" method="post">
-    <button type="submit">Delete Account</button>
-    </form>
-    <form action="/edit-popcorns" method="post">
-    <p><%= getCurrentPopcorns(session["userfound"]) %> </p>
-    <label for="popcorns">Popcorns:</label><br>
-    <input type="number" step="1" id="popcorns" name="popcorns" value="<%= h @popcorns %>" required><br>
-    <button type="submit">Change Popcorns</button>
-    </form>
-    <form action="/change-type" method="post">
-    <label for="account_type">Account Type:</label><br>
-        <input type="radio" id="reader" name="account_type" value="reader" <%= @account_type == 'reader' ? 'checked' : '' %>>
-        <label for="reader">Reader</label><br>
-        <input type="radio" id="writer" name="account_type" value="writer" <%= @account_type == 'writer' ? 'checked' : '' %>>
-        <label for="writer">Writer</label><br>
-        <input type="radio" id="admin" name="account_type" value="admin" <%= @account_type == 'admin' ? 'checked' : '' %>>
-        <label for="admin">Admin</label><br>
-        <input type="radio" id="manager" name="account_type" value="manager" <%= @account_type == 'manager' ? 'checked' : '' %>>
-        <label for="manager">Manager</label><br>
-        <button type="submit">Change Type</button>
-    </form>
-    <% end %>
-    <% if !@story_found.nil? %>
-    <form action="/delete-story" method="post">
-    <button type="submit">Delete Story</button>
-    </form>
-    <form action="/edit-story/<%=@story_found%>" method="get">
-    <button type="submit">Edit Story</button>
-    </form>
-    <% end %>
+        
+
+        <section>
+            <h2> Create Promotional Campaign </h2>
+            <form method ="post" action="/create-prom-campaign">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" value="<%= h @title %>" required><br>
+                <label for="campaign-content">Campaign Content:</label><br>
+                <textarea id="campaign-content" name="campaign-content" rows="10" cols="50" required></textarea><br>
+                <label for="start-date">Start Date:</label><br>
+                <input type="date" id="start-date" name="start-date" value="<%= h @start_date %>" required><br>
+                <label for="end-date">End Date:</label><br>
+                <input type="date" id="end-date" name="end-date" value="<%= h @end_date %>" required><br>
+                <label for="discount">Discount:</label><br>
+                <input type="number" id="discount" name="discount" step="0.01" min="0" max="1" value ="<% h @discount %>" required><br>
+                <input type="submit" value="Create Campaign">
+            </form>
+        </section>
+
+        <section>
+            <% if session["type"].eql?("admin")%>
+                <form method="post" action="/find-user">
+                    <p>Find User: <br /><input type="text" name="username" value="<%= h @username %>"/></p>
+                    <button type="submit">Find User</button>
+                </form>
+
+                <form method="post" action="/find-story">
+                    <p>Find Story: <br /><input type="number" name="storyid" value="<%= h @storyid %>"/></p>
+                    <button type="submit">Find Story(ID)</button>
+                </form>
+            <% end %>
+        </section>
+
+        <section>
+            <h2>Search Results:</p>
+            <% if !session["userfound"].nil? && session["type"].eql?("admin")%>
+                <p>Found User: <%= @found_username %></p>
+
+                <form action="/delete-account" method="post">
+                    <button type="submit">Delete Account</button>
+                </form>
+
+                <form action="/edit-popcorns" method="post">
+                    <p>Current popcorns: <%= getCurrentPopcorns(session["userfound"]) %> </p>
+                    <label for="popcorns">Popcorns:</label><br>
+                    <input type="number" step="1" id="popcorns" name="popcorns" value="<%= h @popcorns %>" required><br>
+                    <button type="submit">Change Popcorns</button>
+                </form>
+
+                <form action="/change-type" method="post">
+                <label for="account_type">Account Type:</label><br>
+                    <input type="radio" id="reader" name="account_type" value="reader" <%= @account_type == 'reader' ? 'checked' : '' %>>
+                    <label for="reader">Reader</label><br>
+                    <input type="radio" id="writer" name="account_type" value="writer" <%= @account_type == 'writer' ? 'checked' : '' %>>
+                    <label for="writer">Writer</label><br>
+                    <input type="radio" id="admin" name="account_type" value="admin" <%= @account_type == 'admin' ? 'checked' : '' %>>
+                    <label for="admin">Admin</label><br>
+                    <input type="radio" id="manager" name="account_type" value="manager" <%= @account_type == 'manager' ? 'checked' : '' %>>
+                    <label for="manager">Manager</label><br>
+                    <button type="submit">Change Type</button>
+                </form>
+            <% else %>
+                <ul>
+                    <li>No users found.</li>
+                </ul>
+            <% end %>
+
+            <% if !@story_found.nil? %>
+                <p>Story found: <%= @story_title %></p>
+                <form action="/delete-story" method="post">
+                    <button type="submit">Delete Story</button>
+                </form>
+                <form action="/edit-story/<%=@story_found%>" method="get">
+                    <button type="submit">Edit Story</button>
+                </form>
+            <% else %>
+                <ul>
+                    <li>No stories found.</li>
+                </ul>
+            <% end %>
+        </section>
     </main>
 <%= erb :"common/footer" %>

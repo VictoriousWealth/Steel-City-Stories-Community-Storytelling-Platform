@@ -1,0 +1,46 @@
+<%= erb :"common/header" %>
+
+<div class="flexrow">
+  <div></div>
+  <h1 class = "title"><%= @myTitle %></h1>
+  <a href = "/payment" class="shoppingcart"><img src="/images/shoppingcart.png"></a>
+</div>
+
+<main>
+  <form method="post" action="/addcompoundstoaccount">
+    <section class="flexcolumn">
+      <label for="address1">Address:</label>
+      <input type="text" name="address1" id="address1" placeholder="1234 Main St" required>
+
+      <label for="address2">Address 2 (Optional):</label>
+      <input type="text" name="address2" id="address2" placeholder="Apartment or suite" required>
+
+      <label for="city">City:</label>
+      <input type="text" name="city" id="city" placeholder="London" required>
+
+      <label for="country">Country:</label>
+      <input type="text" name="country" id="country" placeholder="United Kingdom" required>
+
+      <label for="postcode">Postcode:</label>
+      <input type="text" name="postcode" id="postcode" placeholder="SW1A 0AA" required>
+    </section>
+
+    <section class="flexcolumn">
+      <label for="sortcode">Sort Code:</label>
+      <input type="text" name="sortcode" id="sortcode" placeholder="01-23-45" required>
+
+      <label for="accountnumber">Account Number:</label>
+      <input type="text" name="accountnumber" id="accountnumber" placeholder="01234567" required>
+
+      <label for="accountname">Account Name:</label>
+      <input type="text" name="accountname" id="accountname" placeholder="John Doe" required>
+    </section>
+
+    <section class="flexrow">
+      <input type="reset" value="Reset">
+      <input type="submit" value="Add 100 COM_pounds">
+    </section>
+  </form>
+  <section><%= @error %></section>
+</main>
+<%= erb :"common/footer" %>

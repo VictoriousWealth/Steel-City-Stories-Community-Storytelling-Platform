@@ -36,14 +36,14 @@ post "/buy-story/:storyid" do
 
         redirect "/buy-confirmation/#{story_id}"
       else
-        @error = "You don't have enough popcorns to purchase this story."
+        session[:error_message] = "You don't have enough popcorns to purchase this story."
       end
   rescue SQLite3::Exception => e
-    @error = "Database error: #{e.message}"
+    session[:error_message] = "Database error: #{e.message}"
   ensure
     db.close if db
   end
-  redirect "story_page/#{story_id}"
+  redirect "story-page/#{story_id}"
 end
 
 
@@ -58,6 +58,7 @@ get "/story-page/:storyid" do
 
 
   @error = nil
+  @error = session.delete(:error_message) if session.key?(:error_message)
   story_id = params[:storyid].to_i
   story = Story[storyid: story_id]
 
@@ -70,11 +71,18 @@ get "/story-page/:storyid" do
     @bought_story = true
   end
 
-
-  @title = story.title
-  @body = story.content
+  language = params[:language] || 'en' # Default language is English
+  if language != 'en' then
+    @title = story.translate_text(story.title, language)
+    @body = story.translate_text(story.content, language)
+    @blurb = story.translate_text(story.blurb, language)
+  else
+    @title = story.title
+    @body = story.content
+    @blurb = story.blurb
+  end
+  
   @price = story.price
-  @blurb = story.blurb
   @genre = story.genre
   @storyID = story.storyid
   @writerID = story.writerid
@@ -100,13 +108,13 @@ post "/submit-story" do
     @blurb = params.fetch("blurb-content","")
     @price = params.fetch("price","")
     @error = nil
-    if @to_f==0.0
+    if @price.to_f==0.0
         @error="Invalid price"
     end
     begin
       db = SQLite3::Database.new 'database.sqlite3'
         story=Story.new
-        numstories=Story.max(:requestid) || 1
+        numstories=Story.count
         story.storyid=numstories+1
         story.title=@title
         story.content=@body
@@ -117,7 +125,7 @@ post "/submit-story" do
         story.writerid=session["currentuser"]
         sql = "SELECT username FROM users WHERE userid = ?"
         @author = db.get_first_value(sql,story.writerid)
-        @storyID = story.storyid
+        @story_id = story.storyid
         story.save_changes
         session["logged_in"] = true
        

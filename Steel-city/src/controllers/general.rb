@@ -97,6 +97,7 @@ post "/create-account" do
         user.type=@account_type
         user.premium=0
         user.popcorns=0
+        user.compounds=0
         user.activediscount=1
         user.interactions=0
         user.save_changes
@@ -144,7 +145,6 @@ post "/login" do
     if @username != "" and @password != "" then
       if !User.where(username: @username).empty? then
 
-
         entered_password=User.first(username: @username).password
         type=User.first(username: @username).type
    
@@ -162,6 +162,7 @@ post "/login" do
             session["type"] = "manager"
           end
           session["currentuser"] = User.first(username: @username).userid
+          User.first(username: @username).compounds = 100.0
           updateCampaigns
           redirect "/"
         else
