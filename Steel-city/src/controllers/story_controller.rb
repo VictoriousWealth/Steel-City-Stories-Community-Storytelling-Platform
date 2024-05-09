@@ -32,7 +32,14 @@ post "/buy-story/:storyid" do
 
         user.popcorns -= story.price
         user.save_changes
-
+        
+        sql = "SELECT writerid FROM stories WHERE storyid = ?"
+        author_id = db.get_first_value(sql,story_id).to_i
+        sql = "SELECT popcorns FROM users WHERE userid = ?"
+        author_popcorns = db.get_first_value(sql,author_id)
+        author_popcorns = author_popcorns + 0.5*story.price
+        sql = "UPDATE users SET popcorns = ? WHERE userid = ?"
+        db.execute(sql,author_popcorns,author_id)
 
         redirect "/buy-confirmation/#{story_id}"
       else

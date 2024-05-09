@@ -3,23 +3,25 @@
 <h1 class = "title"><%= @myTitle %></h1>
 
   <main>
-    <section class="campaign">
-      <h2>Campaign 1</h2>
-      <p>Description of Campaign 1.</p>
-      <a href="#">Learn More</a>
-    </section>
-
-    <section class="campaign">
-      <h2>Campaign 2</h2>
-      <p>Description of Campaign 2.</p>
-      <a href="#">Learn More</a>
-    </section>
-
-    <section class="campaign">
-      <h2>Campaign 3</h2>
-      <p>Description of Campaign 3.</p>
-      <a href="#">Learn More</a>
-    </section>
-
+    <% if checkIfTop10 && checkIfCampaignAvailable && checkIfNotActive%>
+    <% getActiveCampaigns %>
+    <% @campaign_list.each do |campaign| %>
+      <div>
+        <section class="story">
+            <h3><%= campaign[:title] %></h3>
+            <div class="campaign-info">
+            <p><strong>Content:</strong> <%= campaign[:content] %></p>
+            <p><strong>Start Date:</strong> <%= campaign[:startdate] %></p>
+            <p><strong>End Date:</strong> <%= campaign[:enddate] %></p>
+            <p><strong>Discount:</strong> <%= campaign[:discount] %></p>
+            <p><a href="/activateDiscount/<%= campaign[:campaignid] %>"> Activate </a></p>
+        </section>
+      </div>
+    <% end %>
+    <% else %>
+      <section class="story">
+            <h3>You do not currently qualify for any active campaigns</h3>
+        </section>
+    <% end %>
   </main>
 <%= erb :"common/footer" %>
