@@ -56,7 +56,6 @@ footer {
   text-align: center;
 } */
 
-
 /* 
 Author: Myron Sukhanov
  */
@@ -141,12 +140,6 @@ Author: Myron Sukhanov
   
   p {
     margin: auto;
-  }
-  
-  /* Fine-tuning the second part of the logo */
-  #sslcom {
-    font-size: var(--sslcom_font_size);
-    text-align: center;
   }
   
   header, section, aside, footer, .island, .nav {
