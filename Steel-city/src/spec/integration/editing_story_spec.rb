@@ -1,7 +1,7 @@
 RSpec.describe "Editing story route" do
-    describe "GET /edit-story/2" do
+    describe "GET /edit-story" do
         it "displays a form to edit details of story" do
-        get "/edit-story"
+        get "/edit-story/1"
         expect(last_response).to be_ok
         expect(last_response.body).to include("Write Your Story")
         end
@@ -17,7 +17,10 @@ RSpec.describe "Editing story route" do
                 "price" => "10"
             }
 
-            post '/edit-story', {
+            story = Story.last
+            storyid = story.storyid
+
+            post "/edit-story/#{storyid}", {
                 "story-title" => "Test Title Edited",
                 "story-content" => "Test story content edited", 
                 "genre" => "fiction", 
