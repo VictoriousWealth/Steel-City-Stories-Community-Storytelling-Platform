@@ -25,6 +25,7 @@ get "/store" do
 end
 
 get "/payment" do
+  if session && session["currentuser"]
     @compounds = User.first(userid: session["currentuser"]).compounds
     @total = 0.0
     @cart = session["cart"] 
@@ -33,8 +34,15 @@ get "/payment" do
       @total += price * quantity
     end
     session["totalprice"] = @total
-    @myTitle = "Checkout"
-    erb :payment_page
+  else
+    # Handle case where current user is not set
+    @compounds = 0
+    @total = 0
+    @cart = {}
+    session["totalprice"] = 0
+  end
+  @myTitle = "Checkout"
+  erb :payment_page
 end
 
 get "/addcompounds" do
