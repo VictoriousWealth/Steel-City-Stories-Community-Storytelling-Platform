@@ -134,6 +134,8 @@ post "/submit-story" do
         @author = db.get_first_value(sql,story.writerid)
         @story_id = story.storyid
         story.save_changes
+        sql = "UPDATE subscriptions SET latestupdate = ? WHERE writerid = ?"
+        db.execute(sql,story.storyid,session["currentuser"])
         session["logged_in"] = true
        
     rescue SQLite3::Exception => e
@@ -245,10 +247,71 @@ post "/edit-story/:storyid" do
       db = SQLite3::Database.new 'database.sqlite3'
         sql = "UPDATE stories SET title = ?, content = ?, genre = ?, blurb = ?, price = ? WHERE storyid = ?"
         db.execute(sql,@title,@body,@genre,@blurb,@price,@story_id)
+        sql = "UPDATE subscriptions SET latestupdate = ? WHERE writerid = ?"
+        db.execute(sql,@story_id,session["currentuser"])
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
       db.close if db
     end
     redirect "/story-page/#{@story_id}"
+end
+
+post "/subscribe/:author" do
+    @author=params[:author]
+    @story_id = params.fetch("story_id","")
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT userid FROM users WHERE username = ?"
+        author_id = db.get_first_value(sql,@author)
+        subscription=Subscription.new
+        subscription.readerid = session["currentuser"]
+        subscription.writerid=author_id
+        sql = "SELECT MAX(storyid) FROM stories WHERE writerid = ?"
+        subscription.latestupdate = db.execute(sql,author_id)
+        subscription.save_changes
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    redirect "/story-page/#{@story_id}"
+    erb :story_page
+end
+
+def checkNotSubbed(author)
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT userid FROM users WHERE username = ?"
+      author_id = db.get_first_value(sql,author)
+      sql = "SELECT * FROM subscriptions WHERE writerid = ? AND readerid = ?"
+      check = db.get_first_value(sql,author_id,session["currentuser"])
+      if check.nil?
+        return true
+      else
+        return false
+      end
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+end
+
+post "/unsubscribe/:author" do
+  @author=params[:author]
+  @story_id = params.fetch("story_id","")
+  begin
+    db = SQLite3::Database.new 'database.sqlite3'
+      sql = "SELECT userid FROM users WHERE username = ?"
+      author_id = db.get_first_value(sql,@author)
+      sql = "DELETE FROM subscriptions WHERE readerid = ? AND writerid = ?"
+      db.execute(sql,session["currentuser"],author_id)
+  rescue SQLite3::Exception => e
+    @error = "Database error: #{e.message}"
+  ensure
+    db.close if db
+  end
+  redirect "/story-page/#{@story_id}"
+  erb :story_page
 end

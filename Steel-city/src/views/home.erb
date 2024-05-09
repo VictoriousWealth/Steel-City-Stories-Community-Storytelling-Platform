@@ -15,6 +15,22 @@
       </section>
     <% end %>
   
+    <% if !session["currentuser"].nil? %>
+    <h2> From your Subscriptions: </h2>
+    <% getLatestSubscriptions %>
+    <% if !@latest_stories.nil? %>
+    <% @latest_stories.each do |story| %>
+      <div>
+        <section class="story">
+            <h2><a href="/story-page/<%= story[:storyid].to_i %>"><%= story[:title] %></a></h2>
+            <p><strong>Blurb:</strong> <%= story[:blurb] %></p>
+        </section>
+      </div>
+    <% end %>
+    <% else %>
+    <p>No subscription content </p>
+    <% end %>
+    <% end %>
 
     <% if checkIfTop10 && checkIfCampaignAvailable && checkIfNotActive%>
     <% getActiveCampaigns %>

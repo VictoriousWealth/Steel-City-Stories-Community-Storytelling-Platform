@@ -14,7 +14,17 @@
       </form>
       <h1 class = "title"><%= @title %></h1>
       <h2>Written by <%= @author %><h2>
-
+      <%if checkNotSubbed(@author) %>
+        <form action="/subscribe/<%= @author %>" method="post">
+        <input type="hidden" name="story_id" value="<%= @storyID %>">
+        <button type="submit">Subscribe</button>
+        </form>
+      <% else %>
+        <form action="/unsubscribe/<%= @author %>" method="post">
+        <input type="hidden" name="story_id" value="<%= @storyID %>">
+        <button type="submit">Unsubscribe</button>
+        </form>
+      <% end %>
       <% if not session["logged_in"] %>
         <p>Blurb: <%= @blurb %><p>
         <br>

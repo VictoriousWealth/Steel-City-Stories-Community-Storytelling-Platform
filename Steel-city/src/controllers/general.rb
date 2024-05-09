@@ -231,7 +231,7 @@ post "/delete-self" do
   @error=nil
   begin
     if session["currentuser"].nil?
-        @error="Usernot logged in"
+        @error="User not logged in"
     end
   db = SQLite3::Database.new 'database.sqlite3'
   sql = "DELETE FROM users WHERE userid = ?"
@@ -372,4 +372,23 @@ def updateCampaigns
   ensure
     db.close if db
   end
+end
+
+def getLatestSubscriptions
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT storyid, title, blurb FROM stories JOIN subscriptions ON subscriptions.latestupdate = stories.storyid WHERE subscriptions.readerid = ?"
+        result = db.execute(sql,session["currentuser"])
+          @latest_stories = result.map do |row|
+            {
+              storyid: row[0],
+              title: row[1],  
+              blurb: row[2],
+            }
+          end
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
 end
