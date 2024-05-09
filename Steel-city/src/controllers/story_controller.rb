@@ -220,7 +220,7 @@ get "/edit-story/:storyid" do
     end
    
     erb :editing_story_page
-  end
+end
 
 
 post "/edit-story/:storyid" do
@@ -243,7 +243,5 @@ post "/edit-story/:storyid" do
     ensure
       db.close if db
     end
-      redirect "/story-page/#{@story_id}"
-      erb :editing_story_page
- 
+    redirect "/story-page/#{@story_id}"
 end
