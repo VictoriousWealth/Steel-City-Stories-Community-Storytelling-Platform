@@ -3,13 +3,14 @@
         <article>
             <h2>Staff Actions:</h2>
             <h3><a href="/staff-tickets">View Tickets</a><h3>
+            <% unless @error.nil? %>
+                <p><strong class="alert">Error: <%= @error %></strong></p>
+            <% end %>
         </article>
     </section>
 
     <main class=home>
-        <% unless @error.nil? %>
-            <p><strong class="error"><%= @error %></strong></p>
-        <% end %>
+        
 
         <section>
             <h2> Create Promotional Campaign </h2>

@@ -19,13 +19,13 @@ post "/find-user" do
     begin
       db = SQLite3::Database.new 'database.sqlite3'
       sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
-      usersID = db.execute(sql,@chosenusername)
+      usersID = db.execute(sql,@chosenusername).first
       if usersID.nil?
-        session["userfound"] = ""
+        session["userfound"] = nil
         @error="Username not found"
       else
-        session["userfound"] = usersID
-        @found_username = User[userid: usersID].username
+        session["userfound"] = usersID.first
+        @found_username = User[userid: usersID.first].username
       end
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
@@ -231,7 +231,7 @@ post "/create-prom-campaign" do
         db.close if db
       end
     end
-    
+
     erb :staff_actions
 end
 
