@@ -36,14 +36,14 @@ post "/buy-story/:storyid" do
 
         redirect "/buy-confirmation/#{story_id}"
       else
-        @error = "You don't have enough popcorns to purchase this story."
+        session[:error_message] = "You don't have enough popcorns to purchase this story."
       end
   rescue SQLite3::Exception => e
-    @error = "Database error: #{e.message}"
+    session[:error_message] = "Database error: #{e.message}"
   ensure
     db.close if db
   end
-  redirect "story_page/#{story_id}"
+  redirect "story-page/#{story_id}"
 end
 
 
@@ -58,6 +58,7 @@ get "/story-page/:storyid" do
 
 
   @error = nil
+  @error = session.delete(:error_message) if session.key?(:error_message)
   story_id = params[:storyid].to_i
   story = Story[storyid: story_id]
 
