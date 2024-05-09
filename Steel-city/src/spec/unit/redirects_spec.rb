@@ -7,6 +7,15 @@ RSpec.describe "page redirects" do
         end
       end
     end
+
+    describe "GET /payment" do
+      context "when clicking on the link to payments" do
+        it "redirects you to the payments page" do
+          get "/payment"
+          expect(last_response.status).to eq(200)
+        end
+      end
+    end
   
     describe "GET /promotions" do
         context "when clicking on the link to the promotions page" do

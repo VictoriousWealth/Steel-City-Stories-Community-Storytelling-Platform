@@ -11,12 +11,18 @@ RSpec.describe "Buying a story as a user" do
             choose "reader"
             click_button('Create Account')
 
+            puts "User's username: #{User.where(username: 'testuser').first&.username}"
+
             user = User.where(username: 'testuser').first
             user.popcorns = 100
 
+            puts "User's popcorns: #{user.popcorns}"
+
             click_link "title"
 
-            click_button "Buy Story"
+            buy_button = find('button', text: 'Buy Story')
+            buy_button.click
+            
             save_page
             expect(page).to have_content('Thank you for purchasing')
         end
