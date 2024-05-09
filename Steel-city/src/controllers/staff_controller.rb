@@ -62,7 +62,7 @@ end
 post "/delete-account" do
     @error = nil
     begin
-        if session["userfound"].empty?
+        if session["userfound"].nil?
             @error="Username not found"
         end
       db = SQLite3::Database.new 'database.sqlite3'
