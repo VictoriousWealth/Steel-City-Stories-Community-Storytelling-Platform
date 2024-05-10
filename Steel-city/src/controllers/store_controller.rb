@@ -25,7 +25,6 @@ get "/store" do
 end
 
 get "/payment" do
-  premium = PremiumSubscription.first(userid: session["currentuser"])
   user = User.first(userid: session["currentuser"])
   if session && session["currentuser"]
     @compounds = user.compounds
@@ -42,7 +41,6 @@ get "/payment" do
     @cart = {}
     session["totalprice"] = 0
   end
-  @premium = premium.length
   @popcorns = user.popcorns
   @myTitle = "Checkout"
   erb :payment_page
