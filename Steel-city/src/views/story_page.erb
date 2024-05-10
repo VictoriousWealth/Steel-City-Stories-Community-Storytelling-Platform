@@ -25,6 +25,11 @@
         <button type="submit">Unsubscribe</button>
         </form>
       <% end %>
+      <%if checkNotLiked(@storyID) %>
+        <form action="/like/<%= @storyID %>" method="post">
+        <button type="submit">Like Story</button>
+        </form>
+      <% end %>
       <% if not session["logged_in"] %>
         <p>Blurb: <%= @blurb %><p>
         <br>
@@ -34,6 +39,7 @@
       <% elsif session["logged_in"] && !@bought_story%>
         <p>Blurb: <%= @blurb %><p>
         <p>Purchase this story to read on...<p>
+        <p>Current popcorns: <%= getCurrentPopcorns(session["currentuser"]) %> </p>
         
         <% if @error == nil %>
             <form action="/buy-story/<%= @storyID %>" method="post">

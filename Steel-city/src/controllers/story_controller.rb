@@ -315,3 +315,42 @@ post "/unsubscribe/:author" do
   redirect "/story-page/#{@story_id}"
   erb :story_page
 end
+
+def checkNotLiked(story_id)
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+          sql = "SELECT * FROM likes WHERE storyid = ? AND userid = ?"
+          check = db.get_first_value(sql,story_id,session["currentuser"])
+          if check.nil?
+            return true
+          else
+            return false
+          end
+      rescue SQLite3::Exception => e
+        @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+end
+
+post "/like/:storyID" do
+    @story_id=params[:storyID]
+    begin
+      db = SQLite3::Database.new 'database.sqlite3'
+        like=Like.new
+        like.userid = session["currentuser"]
+        like.storyid=@story_id
+        like.save_changes
+        sql = "SELECT interactions FROM users WHERE userid = ?"
+    interactions = db.get_first_value(sql,session["currentuser"]).to_i
+    interactions = interactions+1
+    sql = "UPDATE users SET interactions = ? WHERE userid = ?"
+    db.execute(sql,interactions,session["currentuser"])
+    rescue SQLite3::Exception => e
+      @error = "Database error: #{e.message}"
+    ensure
+      db.close if db
+    end
+    redirect "/story-page/#{@story_id}"
+    erb :story_page
+end
