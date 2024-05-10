@@ -41,7 +41,6 @@ get "/payment" do
     @cart = {}
     session["totalprice"] = 0
   end
-  @popcorns = user.popcorns
   @myTitle = "Checkout"
   erb :payment_page
 end

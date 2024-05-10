@@ -30,8 +30,8 @@ RSpec.configure do |config|
     StaffContact.where { userid > 4}.delete
     Poll.where { writerid > 4 || storyid > 10}.delete
     BoughtStory.where { userid > 4}.delete
-    User.where { userid > 4 }.delete
     Story.where { storyid > 10}.delete
     PromotionalCampaign.where { campaignid > 3}.delete
+    User.where { userid > 4 }.delete
   end
 end
