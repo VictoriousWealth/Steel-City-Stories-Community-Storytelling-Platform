@@ -35,7 +35,6 @@ get "/payment" do
     end
     session["totalprice"] = @total
   else
-    # Handle case where current user is not set
     @compounds = 0
     @total = 0
     @cart = {}
@@ -120,5 +119,3 @@ post "/addcompoundstoaccount" do
     end
     erb :addcompounds_page
 end
-
-    
