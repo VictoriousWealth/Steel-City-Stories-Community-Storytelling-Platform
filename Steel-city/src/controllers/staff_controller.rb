@@ -200,6 +200,8 @@ post "/create-prom-campaign" do
     @end_date = params.fetch("end-date","")
     @discount = params.fetch("discount","")
     @error = nil
+
+    puts @start_date
     
     if Date.parse(@start_date) < Date.today
         @error="Invalid start date"

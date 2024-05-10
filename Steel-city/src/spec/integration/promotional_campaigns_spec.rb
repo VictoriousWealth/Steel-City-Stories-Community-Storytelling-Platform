@@ -56,4 +56,6 @@ RSpec.describe "Creating promotional campaigns route" do
             expect(last_response.body).to include("Campaign ends before start date")
         end
     end
+
+    
 end

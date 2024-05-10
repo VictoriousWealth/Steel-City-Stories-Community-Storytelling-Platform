@@ -4,22 +4,7 @@
     <section class="story">
       <h1 class = "title"><%= @title %></h1>
       <h2>Written by <a href = "/user-stories/<%= @writerID %>"><%= @author %></a><h2>
-      <%if checkNotSubbed(@author) %>
-        <form action="/subscribe/<%= @author %>" method="post">
-        <input type="hidden" name="story_id" value="<%= @storyID %>">
-        <button type="submit">Subscribe</button>
-        </form>
-      <% else %>
-        <form action="/unsubscribe/<%= @author %>" method="post">
-        <input type="hidden" name="story_id" value="<%= @storyID %>">
-        <button type="submit">Unsubscribe</button>
-        </form>
-      <% end %>
-      <%if checkNotLiked(@storyID) %>
-        <form action="/like/<%= @storyID %>" method="post">
-        <button type="submit">Like Story</button>
-        </form>
-      <% end %>
+      
       <% if not session["logged_in"] %>
         <p>Blurb: <%= @blurb %><p>
         <br>
@@ -47,6 +32,23 @@
       <% elsif session["logged_in"] && @bought_story %>
         <p>StoryID: <%= @storyID %></p>
         <p><%= @body %></p>
+        <br><br>
+        <%if checkNotSubbed(@author) %>
+            <form action="/subscribe/<%= @author %>" method="post">
+                <input type="hidden" name="story_id" value="<%= @storyID %>">
+                <button type="submit">Subscribe</button>
+            </form>
+        <% else %>
+            <form action="/unsubscribe/<%= @author %>" method="post">
+            <input type="hidden" name="story_id" value="<%= @storyID %>">
+            <button type="submit">Unsubscribe</button>
+            </form>
+        <% end %>
+        <%if checkNotLiked(@storyID) %>
+            <form action="/like/<%= @storyID %>" method="post">
+                <button type="submit">Like Story</button>
+            </form>
+        <% end %>
     </section>
 
         <% if getWriterId(@storyID)==session["currentuser"] %>

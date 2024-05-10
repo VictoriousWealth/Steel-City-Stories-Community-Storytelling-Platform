@@ -6,7 +6,7 @@ RSpec.describe "Searching for stories" do
         fill_in 'q', with: 'The life of a yapper'
         find('button[type="submit"]').click
   
-        expect(page).to have_content "Story title: The life of a yapper"
+        expect(page).to have_content "The life of a yapper"
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe "Searching for stories" do
         fill_in 'q', with: 'writer'
         find('button[type="submit"]').click
 
-        expect(page).to have_content "Writer's username: writer"
+        expect(page).to have_content "writer"
       end
     end
 

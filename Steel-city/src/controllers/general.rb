@@ -281,7 +281,7 @@ def checkIfCampaignAvailable
         sql = "SELECT * FROM promotional_campaigns WHERE startdate < ? AND enddate > ?"
         campaigns = db.execute(sql,Date.today.strftime("%Y-%m-%d"),Date.today.strftime("%Y-%m-%d"))
         if !campaigns.empty?
-            return true
+          return true
         else
             return false
         end
@@ -321,8 +321,10 @@ def getActiveCampaigns
             db = SQLite3::Database.new 'database.sqlite3'
             sql = "SELECT * FROM activated_campaigns WHERE userid = ?"
             campaigns = db.execute(sql,session["currentuser"])
+            puts campaigns[0][0]
             if campaigns.empty?
-                return true
+              puts "should work"
+              return true
             else
                 return false
             end
