@@ -25,8 +25,10 @@ get "/store" do
 end
 
 get "/payment" do
+  premium = PremiumSubscription.first(userid: session["currentuser"])
+  user = User.first(userid: session["currentuser"])
   if session && session["currentuser"]
-    @compounds = User.first(userid: session["currentuser"]).compounds
+    @compounds = user.compounds
     @total = 0.0
     @cart = session["cart"] 
     @cart.each do |item, quantity|
@@ -40,6 +42,8 @@ get "/payment" do
     @cart = {}
     session["totalprice"] = 0
   end
+  @premium = premium.length
+  @popcorns = user.popcorns
   @myTitle = "Checkout"
   erb :payment_page
 end
@@ -105,6 +109,16 @@ post "/buyitemsincart" do
       end
     end
 
+
+    if premium.nil? || premium_startdate + premium.length.to_i < DateTime.now
+      user.update(premium: 0)
+      user.update(activediscount: 1)
+    else
+      user.update(premium: 1)
+      user.update(activediscount: 0.8)
+    end
+
+
     premium.update(length: premium_length.to_s)
     session["totalprice"] = 0
     session["cart"] = {}
@@ -113,6 +127,7 @@ post "/buyitemsincart" do
     @cart = session["cart"]
     @compounds = user.compounds
     @premium = premium.length
+    @popcorns = user.popcorns
     erb :payment_page
 end
 

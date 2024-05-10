@@ -151,6 +151,14 @@ post "/login" do
         if @password==entered_password
           session["logged_in"] = true
           session["cart"] = {}
+          premium = PremiumSubscription.first(userid: session["currentuser"])
+          if premium.nil? || DateTime.parse(premium.startdate) + premium.length.to_i < DateTime.now
+            User.first(username: @username).update(premium: 0)
+            User.first(username: @username).update(activediscount: 1)
+          else
+            User.first(username: @username).update(premium: 1)
+            User.first(username: @username).update(activediscount: 0.8)
+          end
 
           if type=="reader" then
             session["type"] = "reader"

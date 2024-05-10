@@ -30,7 +30,7 @@ post "/buy-story/:storyid" do
         bought_story.save_changes
 
 
-        user.popcorns -= story.price
+        user.popcorns -= story.price * user.activediscount
         user.save_changes
         
         sql = "SELECT writerid FROM stories WHERE storyid = ?"
