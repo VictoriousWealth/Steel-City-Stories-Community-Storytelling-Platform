@@ -44,4 +44,21 @@ RSpec.describe "account settings page" do
             expect(user.password).to eq("Newpassword")
         end
     end
+
+    describe "post /delete-self" do
+        it "deletes the account that selects it" do
+            post '/create-account', {
+                username: 'testuser',
+                password: 'Testpassword',
+                confirm_password: 'Testpassword',
+                dob: '1990-01-01',
+                email: 'test1@example.com',
+                account_type: 'reader'
+            }
+
+            post '/delete-self'
+
+            expect(last_response).to be_redirect
+        end
+    end
 end
