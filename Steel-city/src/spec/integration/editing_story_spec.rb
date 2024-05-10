@@ -14,7 +14,8 @@ RSpec.describe "Editing story route" do
                 "story-content" => "Test story content", 
                 "genre" => "fiction", 
                 "blurb-content" => "Test blurb content",
-                "price" => "10"
+                "price" => "10",
+                "language" => "en"
             }
 
             story = Story.last
@@ -25,7 +26,8 @@ RSpec.describe "Editing story route" do
                 "story-content" => "Test story content edited", 
                 "genre" => "fiction", 
                 "blurb-content" => "Test blurb content",
-                "price" => "10"
+                "price" => "10",
+                "language" => "en"
             }
 
             expect(last_response).to be_redirect

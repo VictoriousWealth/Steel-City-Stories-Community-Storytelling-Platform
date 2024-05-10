@@ -230,13 +230,14 @@ get "/edit-story/:storyid" do
     @story_id = params[:storyid].to_i
     begin
       db = SQLite3::Database.new 'database.sqlite3'
-        sql = "SELECT title, blurb, content, price, genre FROM stories WHERE storyid = ?"
+        sql = "SELECT title, blurb, content, price, genre, language FROM stories WHERE storyid = ?"
         result = db.execute(sql,@story_id).first
         @title = result[0]
         @blurb = result[1]
         @content = result[2]
         @price = result[3]
         @genre = result[4]
+        @language = result[5]
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
     ensure
@@ -261,7 +262,7 @@ post "/edit-story/:storyid" do
     end
     begin
       db = SQLite3::Database.new 'database.sqlite3'
-        sql = "UPDATE stories SET title = ?, content = ?, genre = ?, blurb = ?, price = ? language = ? WHERE storyid = ?"
+        sql = "UPDATE stories SET title = ?, content = ?, genre = ?, blurb = ?, price = ?, language = ? WHERE storyid = ?"
         db.execute(sql,@title,@body,@genre,@blurb,@price,@language,@story_id)
         sql = "UPDATE subscriptions SET latestupdate = ? WHERE writerid = ?"
         db.execute(sql,@story_id,session["currentuser"])
