@@ -70,7 +70,7 @@
           <% getPollList(@storyID).each do |poll| %>
           <div>
             <section class="story">
-              <% if !checkIfAlreadyVoted(poll[:pollid]) %>
+              <% if !checkIfAlreadyVoted(poll[:pollid]) && checkNotConcluded(poll[:pollid]) %>
                 <p><strong>Question:</strong> <%= poll[:question] %></p>
                 <% getPollOptions(poll[:pollid]) %>
                 <% @option_list.each do |option| %>
@@ -82,6 +82,9 @@
                   <p><strong>Option <%= option[:optionid] %>:</strong><%= option[:option] %></p>
                   <p><strong>Votes:</strong><%= option[:optionvotes] %></p>
                 <% end %>
+              <% end %>
+              <% if getWriterId(@storyID)==session["currentuser"] && checkNotConcluded(poll[:pollid])%>
+                  <p><a href="/end-poll/<%= poll[:pollid] %>/<%= @storyID %>"> End Poll </a></p>
               <% end %>
             </section>
           </div>

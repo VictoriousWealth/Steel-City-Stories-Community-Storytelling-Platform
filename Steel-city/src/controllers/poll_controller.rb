@@ -20,6 +20,7 @@ post "/create-poll/:storyid" do
         poll.writerid=session["currentuser"]
         poll.storyid=@story_id
         poll.question=@question
+        poll.ended = 0
         poll.save_changes
     rescue SQLite3::Exception => e
       @error = "Database error: #{e.message}"
@@ -78,7 +79,7 @@ end
 def getPollList(storyid)
   begin
     db = SQLite3::Database.new 'database.sqlite3'
-      sql = "SELECT question, pollid FROM polls WHERE storyid = ?"
+      sql = "SELECT question, pollid FROM polls WHERE storyid = ? AND ended != 1"
       result = db.execute(sql,storyid)
       @poll_list = result.map do |row|
         {
@@ -163,4 +164,45 @@ ensure
   db.close if db
 end
 redirect "/story-page/#{storyid}"
+end
+
+def checkNotConcluded(pollid)
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+        sql = "SELECT ended FROM polls WHERE pollid = ?"
+        check = db.get_first_value(sql,pollid).to_i
+        if check == 1
+          return false
+        else
+          return true
+        end
+      rescue SQLite3::Exception => e
+         @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+end
+
+get "/end-poll/:pollid/:storyid" do
+    pollid = params[:pollid]
+    storyid = params[:storyid]
+    begin
+        db = SQLite3::Database.new 'database.sqlite3'
+        sql = "UPDATE polls SET ended = 1 WHERE pollid = ?"
+        db.execute(sql,pollid)
+        sql = "SELECT optionid FROM votes GROUP BY optionid ORDER BY optionid DESC LIMIT 1"
+        winning_option = db.get_first_value(sql)
+        sql = "SELECT userid FROM votes WHERE optionid = ? ORDER BY RANDOM() LIMIT 1"
+        winner = db.get_first_value(sql,winning_option)
+        sql = "SELECT popcorns FROM users WHERE userid = ?"
+        winner_popcorns = db.get_first_value(sql,winner)
+        winner_popcorns = winner_popcorns + 500
+        sql = "UPDATE users SET popcorns = ? WHERE userid = ?"
+        db.execute(sql,winner_popcorns,winner)
+      rescue SQLite3::Exception => e
+         @error = "Database error: #{e.message}"
+      ensure
+        db.close if db
+      end
+    redirect "/story-page/#{storyid}"
 end
