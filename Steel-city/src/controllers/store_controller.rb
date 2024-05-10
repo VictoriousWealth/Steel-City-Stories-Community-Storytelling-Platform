@@ -101,7 +101,7 @@ post "/buyitemsincart" do
 
     @cart.each do |item, quantity|
       if POPCORNS.key?(item)
-        user.update(popcorns: user[:popcorns] + POPCORNS[item])
+        user.update(popcorns: user[:popcorns] + (POPCORNS[item] * quantity))
       else
         premium_length += PREMIUM[item] * quantity
       end
