@@ -106,8 +106,7 @@ post "/create-account" do
         elsif @account_type=="manager" then
           session["type"] = "manager"
         end
-        sql = "SELECT userid FROM users WHERE username = ? LIMIT 1"
-        session["currentuser"] = db.execute(sql,@username)
+        session["currentuser"] = User.first(username: @username).userid
         redirect "/"
       end
     rescue SQLite3::Exception => e
@@ -315,7 +314,6 @@ def getActiveCampaigns
             db = SQLite3::Database.new 'database.sqlite3'
             sql = "SELECT * FROM activated_campaigns WHERE userid = ?"
             campaigns = db.execute(sql,session["currentuser"])
-            puts campaigns[0][0]
             if campaigns.empty?
               puts "should work"
               return true
