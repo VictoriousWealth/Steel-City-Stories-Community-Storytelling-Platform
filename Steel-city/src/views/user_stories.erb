@@ -9,14 +9,13 @@
   <% if @story_list.nil? || @story_list.empty? %>
     <p>User has no stories</p>
   <% else %>
-    <% @story_list.each do |contact| %>
+    <% @story_list.each do |story| %>
        <div>
          <section class="story">
-        <div class="container">
-          <% contact.each do |key, value| %>
-          <p><strong><%= key %>:</strong> <%= value %></p>
-        <% end %>
-        </div>
+        <h2><a href="/story-page/<%= story[:storyid].to_i %>"><%= story[:title] %></a></h2>
+            <p><strong>Blurb:</strong> <%= story[:blurb] %></p>
+        </section>
+      </div>
     </section>
       </div>
     <% end %>
