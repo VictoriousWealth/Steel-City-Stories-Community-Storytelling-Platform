@@ -10,12 +10,6 @@ get "/" do
   @myTitle = "Home"
   num_stories=Story.all.count() #use if we randomise the home page stories or implement likes into stories and choose most liked
   @stories = Story.all
-  #@firstID = 1
-  #@secondID = 2
-  #@thirdID =  3
-  #@firstTitle = Story.first(storyid: @firstID).title
-  #@secondTitle = Story.first(storyid: @secondID).title
-  #@thirdTitle = Story.first(storyid: @thirdID).title
   erb :home
 end
 

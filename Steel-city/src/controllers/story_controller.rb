@@ -182,7 +182,7 @@ post '/search' do
     DB.results_as_hash = true
    
     user_results = DB.execute("SELECT username, userid FROM users WHERE type IS 'writer' AND lower(username) LIKE ?", "%#{@query.downcase}%")
-    story_results = DB.execute("SELECT title, blurb, storyid FROM stories WHERE lower(title) LIKE ? OR lower(content) LIKE ?", ["%#{@query.downcase}%", "%#{@query.downcase}%"])
+    story_results = DB.execute("SELECT title, blurb, storyid, genre FROM stories WHERE lower(title) LIKE ? OR lower(blurb) LIKE ? OR lower(genre) LIKE ?", ["%#{@query.downcase}%", "%#{@query.downcase}%", "%#{@query.downcase}%"])
    
     @users_results = user_results.map do |row|
         {
@@ -195,7 +195,8 @@ post '/search' do
         {
           title: row[0],
           blurb: row[1],
-          storyid: row[2]
+          storyid: row[2],
+          genre: row[3]
         }
       end
  
