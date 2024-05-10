@@ -114,6 +114,7 @@ post "/submit-story" do
     @genre = params.fetch("genre","")
     @blurb = params.fetch("blurb-content","")
     @price = params.fetch("price","")
+    @language = params.fetch("language","")
     @error = nil
     if @price.to_f==0.0
         @error="Invalid price"
@@ -130,6 +131,7 @@ post "/submit-story" do
         story.genre=@genre
         story.releasedate=Date.today.strftime("%d/%m/%y")
         story.writerid=session["currentuser"]
+        story.language=@language
         sql = "SELECT username FROM users WHERE userid = ?"
         @author = db.get_first_value(sql,story.writerid)
         @story_id = story.storyid
@@ -152,12 +154,13 @@ get "/user-stories/:userid" do
   user_id = params[:userid].to_i
   begin
     db = SQLite3::Database.new 'database.sqlite3'
-      sql = "SELECT title, blurb FROM stories WHERE writerid = ?"
+      sql = "SELECT title, blurb, storyid FROM stories WHERE writerid = ?"
       result = db.execute(sql,user_id)
       @story_list = result.map do |row|
         {
           title: row[0],
           blurb: row[1],
+          storyid: row[2]
         }
       end
   rescue SQLite3::Exception => e
@@ -178,11 +181,23 @@ post '/search' do
     DB = SQLite3::Database.new 'database.sqlite3'
     DB.results_as_hash = true
    
-    @users_results = DB.execute "SELECT username FROM users WHERE type IS 'writer' AND lower(username) LIKE ?", "%#{@query.downcase}%"
-    @stories_results = DB.execute "SELECT title, content FROM stories WHERE lower(title) LIKE ? OR lower(content) LIKE ?", ["%#{@query.downcase}%", "%#{@query.downcase}%"]
+    user_results = DB.execute("SELECT username, userid FROM users WHERE type IS 'writer' AND lower(username) LIKE ?", "%#{@query.downcase}%")
+    story_results = DB.execute("SELECT title, blurb, storyid FROM stories WHERE lower(title) LIKE ? OR lower(content) LIKE ?", ["%#{@query.downcase}%", "%#{@query.downcase}%"])
    
-    @users_results ||= []  # Ensures @users_results is never nil
-    @stories_results ||= []  # Ensures @stories_results is never nil
+    @users_results = user_results.map do |row|
+        {
+          username: row[0],
+          userid: row[1],
+        }
+      end
+
+      @stories_results = story_results.map do |row|
+        {
+          title: row[0],
+          blurb: row[1],
+          storyid: row[2]
+        }
+      end
  
   rescue SQLite3::Exception => e
     @error = "Database error: #{e.message}"
@@ -239,14 +254,15 @@ post "/edit-story/:storyid" do
     @genre = params.fetch("genre","")
     @blurb = params.fetch("blurb-content","")
     @price = params.fetch("price","")
+    @language = params.fetch("language","")
     @error = nil
     if @price.to_f==0.0
         @error="Invalid price"
     end
     begin
       db = SQLite3::Database.new 'database.sqlite3'
-        sql = "UPDATE stories SET title = ?, content = ?, genre = ?, blurb = ?, price = ? WHERE storyid = ?"
-        db.execute(sql,@title,@body,@genre,@blurb,@price,@story_id)
+        sql = "UPDATE stories SET title = ?, content = ?, genre = ?, blurb = ?, price = ? language = ? WHERE storyid = ?"
+        db.execute(sql,@title,@body,@genre,@blurb,@price,@language,@story_id)
         sql = "UPDATE subscriptions SET latestupdate = ? WHERE writerid = ?"
         db.execute(sql,@story_id,session["currentuser"])
     rescue SQLite3::Exception => e

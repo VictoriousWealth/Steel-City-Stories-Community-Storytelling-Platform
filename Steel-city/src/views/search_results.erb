@@ -10,9 +10,13 @@
         <h3>Users:</h3>
         <% if @users_results && !@users_results.empty? %>
             <ul>
-                <% @users_results.each do |result| %>
-                    <li>Writer's username: <span class="info"><%= result['username'] %></span></li>
-                <% end %>
+                <% @users_results.each do |user| %>
+                <div>
+                <section class="story">
+                    <h2><a href="/user-stories/<%= user[:userid].to_i %>"><%= user[:username] %></a></h2>
+        </section>
+      </div>
+    <% end %>
             </ul>
         <% else %>
             <p class="alert">No results found.</p>
@@ -21,12 +25,14 @@
         <h3>Stories:</h3>
         <% if @stories_results && !@stories_results.empty? %>
             <ul>
-                <% @stories_results.each do |result| %>
-                    <li>Story title: <span class="info"><%= result['title'] %></span></li>
-                    <ul>
-                        <li>Story content: <span class="info"><%= result['content'] %></span></li>
-                    </ul><br>
-                <% end %>
+                <% @stories_results.each do |story| %>
+                <div>
+                <section class="story">
+                 <h2><a href="/story-page/<%= story[:storyid].to_i %>"><%= story[:title] %></a></h2>
+                  <p><strong>Blurb:</strong> <%= story[:blurb] %></p>
+                </section>
+      </div>
+    <% end %>
             </ul>
         <% else %>
             <p class="alert">No results found.</p>
