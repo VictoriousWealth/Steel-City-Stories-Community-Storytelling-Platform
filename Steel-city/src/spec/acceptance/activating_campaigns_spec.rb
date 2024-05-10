@@ -9,7 +9,6 @@ RSpec.describe "Campaign activation" do
 
             today = Date.today
             start_date = today.strftime("%Y-%m-%d")
-            puts start_date
             finish_date = "2027-01-01"
 
             visit '/staff-actions'
@@ -34,7 +33,6 @@ RSpec.describe "Campaign activation" do
             user = User.last
             user.interactions = 1000
             user.save_changes
-            puts user.interactions
 
             visit '/'
             click_link('Activate')
