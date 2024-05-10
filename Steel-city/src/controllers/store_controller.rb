@@ -12,9 +12,9 @@ get "/store" do
       '12 Month Subscription' => 39.99
     }
     PREMIUM = {
-      '1 Month Subscription' => 1,
-      '3 Month Subscription' => 3,
-      '12 Month Subscription' => 12
+      '1 Month Subscription' => 30,
+      '3 Month Subscription' => 90,
+      '12 Month Subscription' => 365
     }
     POPCORNS = {
       '1000 Popcorns' => 1000,
@@ -78,18 +78,41 @@ post "/buyitemsincart" do
       user.update(compounds: user[:compounds] - session["totalprice"])
     end
 
+
+    premium = PremiumSubscription.first(userid: session["currentuser"])
+    if premium.nil?
+      premium = PremiumSubscription.new
+      premium.userid = session["currentuser"]
+      premium.startdate = DateTime.now.to_s
+      premium.length = '0'
+    end
+
+    premium_startdate = DateTime.parse(premium.startdate)
+
+    if DateTime.now >= premium_startdate + premium.length.to_i
+      premium.update(startdate: DateTime.now.to_s)
+      premium.update(length: '0')
+      premium_startdate = DateTime.parse(premium.startdate)
+    end
+    
+    premium_length = premium.length.to_i
+
     @cart.each do |item, quantity|
       if POPCORNS.key?(item)
         user.update(popcorns: user[:popcorns] + POPCORNS[item])
+      else
+        premium_length += PREMIUM[item] * quantity
       end
     end
 
+    premium.update(length: premium_length.to_s)
     session["totalprice"] = 0
     session["cart"] = {}
     @total = session["totalprice"]
     @myTitle = "Checkout"
     @cart = session["cart"]
     @compounds = user.compounds
+    @premium = premium.length
     erb :payment_page
 end
 
