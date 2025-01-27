@@ -1,42 +1,29 @@
-Project Overview
-Steel City Stories is a web platform designed for sharing and writing stories centered around Sheffield's culture. The project features a rich set of functionalities, including user management, story publishing, and database-driven interactions, with a focus on community engagement.
-
-Key Features
+Developing a Ruby-based web application to facilitate storytelling and community engagement centered on Sheffield's culture. This project showcases expertise in full-stack development, database design, and application logic.
+Objectives and Current Features:
 User Management:
-
-User roles: Supports regular users, premium members, and admin accounts.
-Account functionalities: Login, registration, and profile management.
-Premium subscriptions: Includes features like subscription tracking and additional perks for premium users.
+Role-based access control for users, premium members, and admins.
+Features include user registration, login, profile management, and premium subscriptions.
 Story Management:
-
-Users can write, share, and publish stories with customizable attributes (e.g., price, genre, and release date).
-Stories include metadata such as titles, blurbs, and genres.
-Community Engagement:
-
-Users can interact with stories using features like ratings, reviews, or social sharing (as inferred from context).
-Database-Driven Architecture:
-
-Designed using SQLite3 for robust data storage and management.
-Schema includes tables for users, premium subscriptions, stories, and interactions (e.g., ratings and purchases).
-Frontend-Backend Integration:
-
-Built using Sinatra, a lightweight Ruby framework for web applications.
-Backend integrates seamlessly with database models and controllers.
-Technical Implementation
+Supports the creation and publishing of stories with metadata like title, genre, price, and release date.
+Includes functionalities for purchasing stories using virtual currency.
+Premium Membership:
+Implements a subscription model with tracking of membership duration and benefits.
+Database-Driven Design:
+Comprehensive schema includes tables for users, subscriptions, stories, and transactions.
+Developed with SQLite3 and Sequel ORM for robust data management.
+Technical Implementation:
 Backend:
-
-Written in Ruby, using the Sinatra framework for HTTP request handling.
-Leveraged Sequel ORM for database interactions and schema migrations.
-Implements session management for secure user authentication and state tracking.
-Database Schema:
-
-Users: Stores user details, subscription status, and account types.
-Stories: Tracks story details like writer, title, content, and associated metadata.
-Premium Subscriptions: Handles subscription data for premium members.
-Purchases: Manages user interactions with paid stories.
-Frontend:
-
-Views are likely implemented using embedded Ruby templates (ERB), rendering dynamic content for users.
-Testing:
-
-Includes RSpec and Capybara tests for robust end-to-end testing of user journeys and functionality.
+Built using Sinatra, a lightweight Ruby framework.
+Modularized structure with separate layers for controllers, helpers, and models.
+Frontend and User Interaction:
+Templates for dynamic content rendering using embedded Ruby (ERB).
+Static assets (e.g., CSS and JavaScript) served from the public directory.
+Testing and Quality Assurance:
+Automated testing with RSpec and Capybara for end-to-end functionality validation.
+Ensured database integrity with schema migrations and testing scripts.
+Documentation and Resources:
+Comprehensive project documentation, database schema diagrams, and a website demo video.
+Current Progress:
+Core functionality for user and story management is complete.
+Future work includes enhancing the premium subscription model and refining frontend aesthetics.
+This project demonstrates your ability to design, implement, and document a scalable full-stack application, emphasizing your expertise in Ruby, Sinatra, and database-driven development.
